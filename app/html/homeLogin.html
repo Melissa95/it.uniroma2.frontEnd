@@ -1,7 +1,24 @@
 
-<div style="text-align: center;color:white">
-    <h5 style="padding-top: 200px">Username <input ng-model="user"></h5>
-    <h5>Password <input ng-model="pwd"></h5>
-    <button type="button" class="btn btn-dark">Submit</button>
+<div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlLogin">
+    <table align="center">
+        <tr>
+           <td><h5>Username </h5></td>
+           <td> <input ng-model="username"></td>
+        </tr>
+
+        <tr></tr>
+
+        <tr>
+            <td><h5>Password </h5></td>
+            <td> <input ng-model="password"></td>
+        </tr>
+
+        <tr></tr>
+
+        <tr>
+            <td></td>
+            <td><button type="button" ng-click="login()" class="btn btn-dark">Submit</button></td>
+        </tr>
+    </table>
 </div>
 
