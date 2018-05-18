@@ -1,6 +1,6 @@
 
 // Declare app level module which depends on views, and components
-var app = angular.module('myApp', ['ngRoute', 'myApp.homeSignIn']);
+var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -16,7 +16,10 @@ app.config(function($routeProvider) {
             templateUrl: "html/homeSignIn.html",
             controller: "ctrlSignIn"
         })
-
+        .when("/homeCustomer", {
+            templateUrl: "html/homeCustomer.html"
+            //controller: "ctrlSignIn"
+        })
 
 });
 

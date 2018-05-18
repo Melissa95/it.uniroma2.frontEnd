@@ -1,24 +1,24 @@
-
+<form name="loginForm">
 <div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlLogin">
     <table align="center">
         <tr>
            <td><h5>Username </h5></td>
-           <td> <input ng-model="username"></td>
+           <td> <input ng-minlength="3" ng-required="true" ng-model="username"></td>
         </tr>
 
         <tr></tr>
 
         <tr>
             <td><h5>Password </h5></td>
-            <td> <input type="password" ng-model="password"></td>
+            <td> <input type="password" ng-minlength="6" ng-required="true" ng-model="password"></td>
         </tr>
 
         <tr></tr>
 
         <tr>
             <td></td>
-            <td><button type="button" ng-click="login()" class="btn btn-dark">Submit</button></td>
+            <td><button ng-disabled="loginForm.$invalid" type="button" ng-click="login()" class="btn btn-dark">Submit</button></td>
         </tr>
     </table>
 </div>
-
+</form>

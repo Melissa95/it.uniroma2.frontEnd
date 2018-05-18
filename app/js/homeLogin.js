@@ -1,13 +1,48 @@
 
-var appLog = angular.module('myApp.homeLogin', ['ngRoute']);
+app.controller('ctrlLogin', function($scope,$http,$location) {
 
-/*.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/homeLogin', {
-    templateUrl: 'html/homeLogin.html',
-    controller: 'ctrlLogin'
-  });
-}])*/
+    $scope.login = function() {
+//inviare sia username che password
 
-appLog.controller('ctrlLogin', [function() {
+        console.log("nel login" + $scope.username);
+        console.log($scope.password);
+        var url = "http://192.168.43.101:8200/ticketingsystem/user/login";
 
-}]);
+        $http ({
+            method: 'POST',
+            url: url,
+            dataType: 'json',
+            data: {
+
+                username: $scope.username,
+                password: $scope.password
+
+            },
+            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
+        }).then(function (response) {
+
+            if (response.status === 200) {
+                alert( "login");
+                $scope.log = 1
+                $location.path('/homeCustomer');
+            }
+
+
+
+        }).catch(function(response) {
+
+            //username ok, password wrong
+            if (response.status === 302) {
+                alert("Password wrong");
+            }
+            //username wrong
+            if (response.status === 404) {
+                alert("Username wrong");
+            }
+
+        });
+
+    }
+
+});
