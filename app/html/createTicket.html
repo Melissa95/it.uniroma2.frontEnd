@@ -13,42 +13,49 @@
     </div>
 </nav>
 
+<div ng-controller="ctrlTicket">
+
 <form name="regForm">
     <div style="text-align: center;color:white;padding-top: 150px">
 
         <h1>Create new ticket</h1>
         <table align="center">
             <tr>
-                <td><h5></h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="name"></td>
+                <td><h5>Title</h5></td>
+                <td><input ng-minlength="3" ng-required="true" ng-model="title"></td>
             </tr>
             <tr>
 
             </tr>
             <tr>
-                <td><h5>Surname </h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="surname"></td>
+                <td><h5>Categoria</h5></td>
+                <td><input ng-minlength="3" ng-required="true" ng-model="category"></td>
             </tr>
             <tr>
 
             </tr>
             <tr>
-                <td><h5>Username </h5></td>
-                <td> <input ng-minlength="3" ng-required="true" ng-model="username"></td>
+                <td><h5>Description </h5></td>
+                <td> <input ng-minlength="3" ng-required="true" ng-model="description"></td>
             </tr>
             <tr>
 
             </tr>
             <tr>
-                <td><h5>Password </h5></td>
-                <td><input placeholder="min 6 char" ng-minlength="6" ng-required="true" type="password" ng-model="password"></td>
+                <td><h5>Product</h5></td>
+                <td><input ng-minlength="6" ng-required="true"  ng-model="product"></td>
             </tr>
             <tr>
 
             </tr>
             <tr>
-                <td><h5>Email </h5></td>
-                <td><input type="email" ng-pattern="emailFormat" name = "input" ng-required="true" ng-model="email"></td>
+                <td><h5>Priority </h5></td>
+                <td>
+                    <select class="selectpicker">
+                         <option ng-model ="customerPriority" ng-repeat="p in priority">{{p}}</option>
+                    </select>
+                </td>
+
 
             </tr>
             <tr>
@@ -61,3 +68,4 @@
         </table>
     </div>
 </form>
+</div>

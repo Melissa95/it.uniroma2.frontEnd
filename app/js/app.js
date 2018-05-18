@@ -30,8 +30,8 @@ app.config(function($routeProvider) {
 
         })
         .when("/createTicket", {
-        templateUrl: "html/createTicket.html"
-        //controller: "ctrlCust"
+            templateUrl: "html/createTicket.html",
+            controller: "ctrlTicket"
 
     })
 
