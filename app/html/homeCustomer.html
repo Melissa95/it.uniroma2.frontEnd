@@ -7,7 +7,6 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li class="nav-item active"><a class="nav-link" href="#">My account</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#">Create ticket</a></li>
             <li class="nav-item active"><a class="nav-link" href="#">My Tickets</a></li>
             <li class="nav-item active"><a class="nav-link" href="#">Sign out</a></li>
 
@@ -15,5 +14,11 @@
 
     </div>
 </nav>
-<div><h1 style="text-align: center;padding-top: 250px;color: white">page user</h1></div>
+    <div class="jumbotron" style="opacity:0.7">
+        <h1 class="display-4">Welcome!</h1>
+        <p class="lead">From your customer function you can check your tickets status, create a new ticket and modify your personal information</p>
+        <hr class="my-4">
+        <p>Have a compliant about a product? Create your ticket</p>
+        <a class="btn btn-dark" ng-click="newTicket()" role="button" style="color: white">New ticket</a>
+    </div>
 </div>

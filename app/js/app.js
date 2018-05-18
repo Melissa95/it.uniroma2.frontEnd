@@ -29,6 +29,11 @@ app.config(function($routeProvider) {
             controller: "ctrlCust"
 
         })
+        .when("/createTicket", {
+        templateUrl: "html/createTicket.html"
+        //controller: "ctrlCust"
+
+    })
 
 });
 
