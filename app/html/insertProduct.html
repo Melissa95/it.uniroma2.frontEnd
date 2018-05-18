@@ -41,6 +41,24 @@
                 <td></td>
                 <td><button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
             </tr>
+            <tr>
+
+            </tr>
+            <tr>
+
+            </tr>
+
+
+        </table>
+        <table align="center" style="margin-top: 3%">
+            <tr>
+                <td></td>
+                <td><div ng-hide="result" ng-model="result"><h1>successful entry</h1></div></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div ng-hide="resultNegative" ng-model="resultNegative"><h1>insertion failed</h1></div></td>
+            </tr>
         </table>
     </div>
 </form>

@@ -2,10 +2,13 @@
 app.controller('ctrlProduct', function($scope,$http) {
 
     console.log("sono nel controller");
+    $scope.result = true;
+    $scope.resultNegative = true;
 
     $scope.insertProduct = function() {
 
         console.log("sono in insert product");
+
 
 
         var url = "http://192.168.43.101:8200/ticketingsystem/product";
@@ -26,12 +29,20 @@ app.controller('ctrlProduct', function($scope,$http) {
 
         }).then(function (response) {
 
-            if (response.status === 201) alert("Insert success");
+            if (response.status === 201)
+                $scope.result=false;
+                $scope.name="";
+                $scope.version="";
+                $scope.description="";
+                $scope.resultNegative=true;
 
         }).catch(function() {
 
-            //attivata se username è gia presente
-            alert("Error in insert product");
+            $scope.resultNegative=false;
+            $scope.name="";
+            $scope.version="";
+            $scope.description="";
+            $scope.result=true;
         });
 
 
