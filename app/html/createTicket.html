@@ -16,7 +16,7 @@
 <div ng-controller="ctrlTicket">
 
 <form name="regForm">
-    <div style="text-align: center;color:white;padding-top: 150px">
+    <div style="text-align: center;color:white;padding-top: 50px">
 
         <h1>Create new ticket</h1>
         <table align="center">
@@ -28,15 +28,8 @@
 
             </tr>
             <tr>
-                <td><h5>Categoria</h5></td>
+                <td><h5>Category</h5></td>
                 <td><input ng-minlength="3" ng-required="true" ng-model="category"></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-                <td><h5>Description </h5></td>
-                <td> <textarea ng-minlength="3" ng-required="true" ng-model="description"></td>
             </tr>
             <tr>
 
@@ -44,7 +37,15 @@
 
             <tr>
                 <td><h5>Product</h5></td>
-                <td><input ng-minlength="6" ng-required="true"  ng-model="product"></td>
+                <td><input type="number"  ng-required="true"  ng-model="product"></td>
+            </tr>
+            <tr>
+
+            </tr>
+
+            <tr>
+                <td><h5>Description </h5></td>
+                <td> <textarea ng-minlength="10" cols="40" rows="5" ng-required="true" ng-model="description"></textarea></td>
             </tr>
             <tr>
 
@@ -52,8 +53,8 @@
             <tr>
                 <td><h5>Priority </h5></td>
                 <td>
-                    <select class="selectpicker">
-                         <option ng-model ="customerPriority" ng-repeat="p in priority">{{p}}</option>
+                    <select class="selectpicker" ng-model ="customerPriority">
+                         <option  ng-repeat="p in priority">{{p}}</option>
                     </select>
                 </td>
 
@@ -64,7 +65,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button ng-disabled="regForm.$invalid" ng-click="register()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+                <td><button ng-disabled="regForm.$invalid" ng-click="createTick()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
             </tr>
         </table>
     </div>
