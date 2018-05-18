@@ -24,6 +24,11 @@ app.config(function($routeProvider) {
             templateUrl: "html/insertProduct.html",
             controller: "ctrlProduct"
         })
+        .when("/homeCustomer", {
+            templateUrl: "html/homeCustomer.html",
+            controller: "ctrlCust"
+
+        })
 
 });
 
