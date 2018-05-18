@@ -1,5 +1,5 @@
 
-app.controller('ctrlProduct', function($scope,$http) {
+app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
 
     console.log("sono nel controller");
     $scope.result = true;
@@ -46,6 +46,39 @@ app.controller('ctrlProduct', function($scope,$http) {
         });
 
 
+
+    }
+
+
+    $scope.showProducts = function () {
+
+        var url = "http://192.168.43.101:8200/ticketingsystem/product";
+
+        var records = {};
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            params: "",
+            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 201)
+                $scope.result=false;
+
+            $scope.records = response;
+
+            $scope.resultNegative=true;
+
+        }).catch(function() {
+
+            $scope.resultNegative=false;
+
+            $scope.result=true;
+        });
 
     }
 

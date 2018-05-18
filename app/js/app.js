@@ -30,10 +30,15 @@ app.config(function($routeProvider) {
 
         })
         .when("/createTicket", {
-        templateUrl: "html/createTicket.html"
+        templateUrl: "html/createTicket.html",
         //controller: "ctrlCust"
 
-    })
+        })
+        .when("/showProducts", {
+            templateUrl: "html/showProducts.html",
+            controller: "ctrlShowProducts"
+
+        })
 
 });
 
