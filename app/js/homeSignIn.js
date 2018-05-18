@@ -34,7 +34,8 @@ app2.controller('ctrlSignIn', function($scope,$http) {
               surname: $scope.surname,
               username: $scope.username,
               password: $scope.password,
-              email: $scope.email},
+              email: $scope.email,
+              "ruolo": "utente"},
           headers: {'Content-Type': 'application/json; charset=UTF-8'}
 
       }).then(function(data) {
