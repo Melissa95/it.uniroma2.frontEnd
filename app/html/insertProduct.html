@@ -1,0 +1,47 @@
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Ticketing system</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="nav-item active"><a class="nav-link" href="#!/homeLogin">Login</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<form name="prodForm">
+    <div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlProduct">
+
+        <table align="center">
+            <tr>
+                <td><h5>Name</h5></td>
+                <td><input ng-minlength="3" ng-required="true" ng-model="name"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Version </h5></td>
+                <td><input ng-value="number" ng-required="true" ng-model="version"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Description </h5></td>
+                <td> <input ng-minlength="5" ng-maxlength="200" ng-required="true" ng-model="description"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>

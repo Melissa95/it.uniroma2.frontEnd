@@ -20,6 +20,10 @@ app.config(function($routeProvider) {
             templateUrl: "html/homeCustomer.html"
             //controller: "ctrlSignIn"
         })
+        .when("/insertProduct",{
+            templateUrl: "html/insertProduct.html",
+            controller: "ctrlProduct"
+        })
 
 });
 
