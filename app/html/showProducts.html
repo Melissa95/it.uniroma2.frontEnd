@@ -1,0 +1,65 @@
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Ticketing system</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="nav-item active"><a class="nav-link" href="#!/homeLogin">Login</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<form name="prodShowForm">
+    <div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlShowProd">
+
+        <table align="center">
+            <tr>
+                <td><h5>Name</h5></td>
+                <td><input ng-minlength="3" ng-required="true" ng-model="name"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Version </h5></td>
+                <td><input ng-value="number" ng-required="true" ng-model="version"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Description </h5></td>
+                <td> <input ng-minlength="5" ng-maxlength="200" ng-required="true" ng-model="description"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+
+            </tr>
+
+
+        </table>
+        <table align="center" style="margin-top: 3%">
+            <tr>
+                <td></td>
+                <td><div ng-hide="result" ng-model="result"><h1>successful entry</h1></div></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div ng-hide="resultNegative" ng-model="resultNegative"><h1>insertion failed</h1></div></td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>

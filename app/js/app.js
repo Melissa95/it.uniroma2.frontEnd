@@ -32,8 +32,11 @@ app.config(function($routeProvider) {
         .when("/createTicket", {
            templateUrl: "html/createTicket.html",
            controller: "ctrlTicket"
-
-    })
+        })
+        .when("/modifyUser",{
+            templateUrl: "html/modifyUser.html",
+            controller: "ctrlModifyUser"
+        })
 
 
 });

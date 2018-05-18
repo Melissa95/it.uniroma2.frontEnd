@@ -10,7 +10,7 @@ app.controller('ctrlSignIn', function($scope,$http) {
       console.log("sono in register");
 
 
-      var url = "http://192.168.43.101:8200/ticketingsystem/user";
+      var url = "http://localhost:8200/ticketingsystem/user";
 
 
       $http ({

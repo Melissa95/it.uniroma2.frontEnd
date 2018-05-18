@@ -6,7 +6,7 @@ app.controller('ctrlLogin', function($scope,$http,$location) {
 
         console.log("nel login" + $scope.username);
         console.log($scope.password);
-        var url = "http://192.168.43.101:8200/ticketingsystem/user/login";
+        var url = "http://localhost:8200/ticketingsystem/user/login";
 
         $http ({
             method: 'POST',
