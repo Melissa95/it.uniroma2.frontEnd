@@ -1,9 +1,12 @@
 
-app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
+app.controller('ctrlProduct', function($scope,$http) {
 
     console.log("sono nel controller");
     $scope.result = true;
     $scope.resultNegative = true;
+    $scope.records;
+
+
 
     $scope.insertProduct = function() {
 
@@ -11,7 +14,8 @@ app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
 
 
 
-        var url = "http://192.168.43.101:8200/ticketingsystem/product";
+        var url = "http://192.168.1.9:8200/ticketingsystem/product";
+        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 
 
         $http ({
@@ -52,9 +56,13 @@ app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
 
     $scope.showProducts = function () {
 
-        var url = "http://192.168.43.101:8200/ticketingsystem/product";
+        console.log("sono in show product " );
 
-        var records = {};
+        var url = "http://192.168.1.9:8200/ticketingsystem/product";
+
+        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
+
+        //var records;
 
         $http ({
             method: 'GET',
@@ -69,7 +77,9 @@ app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
             if (response.status === 201)
                 $scope.result=false;
 
-            $scope.records = response;
+            $scope.records = response.data;
+            console.log(response.data );
+
 
             $scope.resultNegative=true;
 
@@ -81,5 +91,8 @@ app.controller('ctrlProduct', 'ctrlShowProducts', function($scope,$http) {
         });
 
     }
+    console.log("sono dopo show product");
+
+    $scope.showProducts();
 
 });

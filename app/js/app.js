@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
             templateUrl: "html/modifyUser.html",
             controller: "ctrlModifyUser"
         })
+        .when("/showProducts",{
+            templateUrl: "html/showProducts.html",
+            controller: "ctrlProduct"
+        })
 
 
 });
