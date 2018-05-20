@@ -9,7 +9,7 @@ app.controller('ctrlTicket', function($scope,$http,$location) {
         var date = new Date();
 
         console.log("in creation ticket "+ $scope.customerPriority);
-        console.log("in creation ticket "+ date.getDate());
+        console.log("in creation ticket "+ date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear());
 
         $http ({
             method: 'POST',
@@ -22,7 +22,7 @@ app.controller('ctrlTicket', function($scope,$http,$location) {
                 description: $scope.description,
                 customerPriority: $scope.customerPriority,
                 "status": "new",
-                "dateStart":date.getDate()
+                "dateStart":date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear()
             },
             headers: {'Content-Type': 'application/json; charset=UTF-8'}
 
