@@ -46,7 +46,5 @@ app.config(function($routeProvider) {
             controller: "ctrlTicket"
         })
 
-
-
 });
 

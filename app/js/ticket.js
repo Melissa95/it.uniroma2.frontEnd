@@ -7,7 +7,6 @@ app.controller('ctrlTicket', function($scope,$http,$location) {
         var url = "http://localhost:8200/ticketingsystem/ticket";
 
         var date = new Date();
-
         console.log("in creation ticket "+ $scope.customerPriority);
         console.log("in creation ticket "+ date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear());
 

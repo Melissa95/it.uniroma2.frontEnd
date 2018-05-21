@@ -3,7 +3,6 @@ app.controller('ctrlLogin', function($scope,$http,$location) {
 
     $scope.login = function() {
 //inviare sia username che password
-
         console.log("nel login" + $scope.username);
         console.log($scope.password);
         var url = "http://localhost:8200/ticketingsystem/user/login";

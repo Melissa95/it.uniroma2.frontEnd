@@ -11,7 +11,6 @@ app.controller('ctrlModifyUser', function($scope,$http) {
 
         console.log("sono in  modify User");
 
-
         var url = "http://localhost:8200/ticketingsystem/user/"+$scope.username;
 
 

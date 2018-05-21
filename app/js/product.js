@@ -12,8 +12,6 @@ app.controller('ctrlProduct', function($scope,$http) {
 
         console.log("sono in insert product");
 
-
-
         var url = "http://localhost:8200/ticketingsystem/product";
         //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 
