@@ -41,6 +41,11 @@ app.config(function($routeProvider) {
             templateUrl: "html/showProducts.html",
             controller: "ctrlProduct"
         })
+        .when("/showAllTickets",{
+            templateUrl: "html/showAllTickets.html",
+            controller: "ctrlTicket"
+        })
+
 
 
 });

@@ -1,0 +1,54 @@
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Ticketing system</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="nav-item active"><a class="nav-link" href="#!/modifyUser">Modify account</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#!/showProducts">All products</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#!/insertProduct">Insert product</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#!/showAllTickets">All tickets</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#!/createTicket">New ticket</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#!/">Sign out</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+
+<form name="prodShowAllTickets">
+    <div style="text-align: center;color:lightslategrey;padding-top: 150px" ng-controller="ctrlTicket" >
+
+
+        <table style="background-color: #495057; opacity: 0.95" align="center"  border="2">
+            <td> ID </td>
+            <td> Status</td>
+            <td> Creation Date</td>
+            <td> Category</td>
+            <td> Title </td>
+            <td> Description</td>
+            <td> Costumer Priority</td>
+            <td> Product ID</td>
+            <td> Team</td>
+            <tr ng-repeat = "x in records">
+                <td> {{x.id}} </td>
+                <td> {{x.status}} </td>
+                <td> {{x.dateStart}} </td>
+                <td> {{x.category}} </td>
+                <td> {{x.title}} </td>
+                <td> {{x.description}} </td>
+                <td> {{x.customerPriority}} </td>
+                <td> {{x.productId}} </td>
+                <td> {{x.team}} </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</form>
+
+</body>

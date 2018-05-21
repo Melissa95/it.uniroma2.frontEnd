@@ -14,7 +14,7 @@ app.controller('ctrlProduct', function($scope,$http) {
 
 
 
-        var url = "http://192.168.1.9:8200/ticketingsystem/product";
+        var url = "http://localhost:8200/ticketingsystem/product";
         //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 
 
@@ -58,7 +58,7 @@ app.controller('ctrlProduct', function($scope,$http) {
 
         console.log("sono in show product " );
 
-        var url = "http://192.168.1.9:8200/ticketingsystem/product";
+        var url = "http://localhost:8200/ticketingsystem/product";
 
         //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 
