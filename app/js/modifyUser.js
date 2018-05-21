@@ -1,6 +1,9 @@
 
 app.controller('ctrlModifyUser', function($scope,$http) {
 
+    $scope.result = true;
+    $scope.resultNegative = true;
+
 
     $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
@@ -21,7 +24,7 @@ app.controller('ctrlModifyUser', function($scope,$http) {
                 surname: $scope.surname,
                 username: $scope.username,
                 password: $scope.password,
-                email: $scope.email,
+                //email: $scope.email,
                 "role": "customer"
             },
             headers: {'Content-Type': 'application/json; charset=UTF-8'}
@@ -29,13 +32,25 @@ app.controller('ctrlModifyUser', function($scope,$http) {
 
         }).then(function (response) {
 
-            if (response.status === 201) alert("Registration success");
+            if (response.status === 200)
+                $scope.result=false;
+                $scope.name="";
+                $scope.surname="";
+                $scope.username="";
+                $scope.password="";
+                $scope.resultNegative=true;
 
         }).catch(function() {
 
-            //attivata se username è gia presente
-            alert("Error in registration");
-        });
+            //attivata se username non è presente nel sistema
+            $scope.result=true;
+            $scope.name="";
+            $scope.surname="";
+            $scope.username="";
+            $scope.password="";
+            $scope.resultNegative=false;
+
+    });
 
 
 

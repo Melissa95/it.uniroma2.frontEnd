@@ -44,17 +44,27 @@
             <tr>
 
             </tr>
-            <tr>
+            <!--<tr>
                 <td><h5>Email </h5></td>
                 <td><input type="email" ng-pattern="emailFormat" name = "input" ng-required="true" ng-model="email"></td>
 
-            </tr>
+            </tr>-->
             <tr>
 
             </tr>
             <tr>
                 <td></td>
                 <td><button ng-disabled="modifyUserForm.$invalid" ng-click="modifyUser()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+            </tr>
+        </table>
+        <table align="center" style="margin-top: 3%">
+            <tr>
+                <td></td>
+                <td><div ng-hide="result" ng-model="result"><h1>Registration success</h1></div></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div ng-hide="resultNegative" ng-model="resultNegative"><h1>Error: insert your correct username</h1></div></td>
             </tr>
         </table>
     </div>
