@@ -25,7 +25,7 @@ app.config(function($routeProvider) {
         })
         .when("/homeCustomer", {
             templateUrl: "html/homeCustomer.html",
-            controller: "ctrlCust",0
+            controller: "ctrlCust",
             requiresAuthentication: true
 
         })
