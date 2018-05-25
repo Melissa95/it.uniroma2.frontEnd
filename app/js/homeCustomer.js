@@ -1,4 +1,4 @@
-app.controller('ctrlCust', function($scope,$http,$location,$rootScope, $location, Auth) {
+app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth) {
 
 
     $scope.newTicket = function() {
