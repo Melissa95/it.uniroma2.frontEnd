@@ -20,6 +20,7 @@
 
 
 <div ng-controller="ctrlRelation">
+    <form name="formRel">
 <div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
 
 
@@ -30,6 +31,7 @@
             <th scope="col">Title</th>
             <th scope="col">Define Relation</th>
             <th scope="col">Choose ticket</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
@@ -39,25 +41,25 @@
             <td>
 
                 <form name="myForm">
-                <select class="selectpicker" ng-model ="relation">
+                <select class="selectpicker" ng-model ="relation" ng-click="valueRelation(relation)">
                     <option  ng-repeat="p in rel">{{p}}</option>
                 </select>
                 </form>
             </td>
             <td>
-                <select ng-show="relation == 'equality'" class="selectpicker" ng-model="ticketequ">
+                <select ng-show="relation == 'equality'" class="selectpicker" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
                 <option   ng-repeat="t in ticketsforEqu">{{t.id}}  {{t.title}}</option>
                 </select>
 
-                <select ng-show="relation == 'dependency'" class="selectpicker" ng-model="ticketdep">
+                <select ng-show="relation == 'dependency'" class="selectpicker" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
                     <option   ng-repeat="t in ticketsforDep">{{t.id}}  {{t.title}}</option>
                 </select>
 
-                <select ng-show="relation == 'regression'" class="selectpicker" ng-model="ticketreg">
+                <select ng-show="relation == 'regression'" class="selectpicker" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
                     <option   ng-repeat="t in ticketsforReg">{{t.id}}  {{t.title}}</option>
                 </select>
             </td>
-
+           <td><button ng-disabled="formRel.$invalid" ng-click="createRel($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
 
         </tr>
         <tr ng-repeat = "t in ticketsDep">
@@ -66,10 +68,28 @@
 
             <td> {{t.title}} </td>
 
+            <td>
+
+                dependency
+            </td>
+            <td>
+
+
+                <select class="selectpicker" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+                    <option   ng-repeat="t in ticketsforDep">{{t.id}}  {{t.title}}</option>
+                </select>
+
+
+            </td>
+            <td><button ng-disabled="formRel.$invalid" ng-click="createRelDep($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
+
+        </tr>
+
         </tr>
 
         </tbody>
     </table>
 
 </div>
+    </form>
 </div>

@@ -185,5 +185,23 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     $scope.getTicketDep();
 
+    $scope.valueRelation = function (param) {
+        console.log("dati..." + param);
+        $scope.relation = param;
+    };
+
+    $scope.idTicket = function (id) {
+        console.log("dati..." + id);
+        $scope.idChoose = id;
+    };
+
+    $scope.createRel = function (index) {
+        console.log("dati" + " " +  $scope.relation +  " " + $scope.idChoose + " " + $scope.ticketsNoRel[index].id );
+    };
+
+    $scope.createRelDep = function (index) {
+        console.log("dati" + " " +  "dependency" +  " " + $scope.idChoose + " " + $scope.ticketsDep[index].id );
+    };
+
 
 });
