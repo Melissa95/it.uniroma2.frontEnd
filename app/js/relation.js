@@ -1,19 +1,48 @@
 
-app.controller('ctrlRelation', function($timeout, $scope) {
-        $scope.user = null;
-        $scope.users = null;
+app.controller('ctrlRelation', function( $scope) {
+        $scope.ticket= null;
+        $scope.ticketsNoRel = null;
+        $scope.ticketsDep = null;
+        $scope.ticketsforDep=null;
+        $scope.ticketsforEqu=null;
+        $scope.ticketsforReg=null;
 
 
 
 
-        $scope.users =  $scope.users  || [
-                    { id: 1, name: 'Scooby Doo' },
-                    { id: 2, name: 'Shaggy Rodgers' },
-                    { id: 3, name: 'Fred Jones' },
-                    { id: 4, name: 'Daphne Blake' },
-                    { id: 5, name: 'Velma Dinkley' }
 
-                    ];
+    $scope.getTicket = function() {
+
+
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findAllTicketsByStatusNot/new";
+
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 201)
+                $scope.tickets =  response.data;
+                /*$scope.tickets =  $scope.tickets  || [
+                   response
+
+                ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
+
+
+
+    }
 
 
 
