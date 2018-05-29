@@ -8,10 +8,7 @@ app.controller('ctrlRelation', function( $scope) {
         $scope.ticketsforReg=null;
 
 
-
-
-
-    $scope.getTicket = function() {
+        $scope.getTicket = function() {
 
 
 
