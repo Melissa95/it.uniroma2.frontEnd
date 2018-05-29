@@ -12,30 +12,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
        $scope.rel = ["equality","dependency","regression"];
 
-    /*$scope.showSelectValue = function(mySelect) {
-        console.log("qui" + mySelect);
-        $scope.res = mySelect;
-    };
 
-        /*$scope.selectRel = {};
-
-        $scope.changeVal = function() {
-
-
-            console.log("in change value" + $scope.selectRel.value.$modelValue);
-
-
-            if ($scope.selectRel.value === 'equal') {
-                $scope.result = 1;
-            }
-            if ($scope.selectRel.value === 'depend') {
-                $scope.result = 2;
-            }
-            if ($scope.selectRel.value === 'regression') {
-                $scope.result = 3;
-            }
-
-        };*/
 
 
         $scope.getTicket = function() {

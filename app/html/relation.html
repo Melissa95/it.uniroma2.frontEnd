@@ -37,28 +37,13 @@
             <td> {{t.id}}</td>
             <td> {{t.title}} </td>
             <td>
-                <!--<form name="myForm">
-                    <label>
-                        <input type="radio" ng-model="selectRel.value"  id="equal" ng-click="changeVal()" name="relation" value="'equal'" >
-                        Equality
-                    </label><br/>
-                    <label>
-                        <input type="radio" ng-model="selectRel.value" name="relation" id="depend" ng-click="changeVal()" value="'depend'">
-                        Dependency
-                    </label><br/>
-                    <label>
-                        <input type="radio" ng-model="selectRel.value" name="relation" id="regression" ng-click="changeVal()" value="'regression'">
-                        Regression
-                    </label><br/>
 
-                </form>-->
                 <form name="myForm">
                 <select class="selectpicker" ng-model ="relation">
                     <option  ng-repeat="p in rel">{{p}}</option>
                 </select>
                 </form>
             </td>
-            <!--<td> {{relation}}</td>-->
             <td>
                 <select ng-show="relation == 'equality'" class="selectpicker" ng-model="ticketequ">
                 <option   ng-repeat="t in ticketsforEqu">{{t.id}}  {{t.title}}</option>
