@@ -50,6 +50,10 @@ app.config(function($routeProvider) {
             requiresAuthentication: true,
             permissions: ["admin"]
         })
+        .when("/relation",{
+            templateUrl: "html/relation.html",
+            controller:"ctrlRelation"
+        })
 
 
 });

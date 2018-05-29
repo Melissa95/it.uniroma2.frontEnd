@@ -1,4 +1,3 @@
-<div ng-controller="ctrlCust">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -18,11 +17,35 @@
 
     </div>
 </nav>
-    <div class="jumbotron" style="opacity:0.7">
-        <h1 class="display-4">Welcome!</h1>
-        <p class="lead">From your customer function you can check your tickets status, create a new ticket and modify your personal information</p>
-        <hr class="my-4">
-        <p>Have a compliant about a product? Create your ticket</p>
-        <a class="btn btn-dark" ng-click="newTicket()" role="button" style="color: white">New ticket</a>
-    </div>
+
+
+
+<div ng-controller="ctrlRelation" layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+
+    <select class="selectpicker" ng-model="ticket">
+        <option  ng-repeat="user in users">{{user.name}}</option>
+    </select>
+
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+          <!--  <th scope="col">Handle</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "user in users">
+            <td> {{user.name}}<a class="btn btn-dark"  href="#!/homeSignIn">Sign In</a> <select class="selectpicker" ng-model="ticket">
+                <option  ng-repeat="user in users">{{user.name}}</option>
+            </select></td>
+            <td> {{user.id}} </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
 </div>
+
