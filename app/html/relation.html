@@ -19,8 +19,8 @@
 </nav>
 
 
-
-<div ng-controller="ctrlRelation" layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+<div ng-controller="ctrlRelation">
+<div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
 
 
     <table class="table table-dark">
@@ -29,7 +29,7 @@
             <th scope="col">Identification</th>
             <th scope="col">Title</th>
             <th scope="col">Define Relation</th>
-          <!--  <th scope="col">Handle</th>-->
+            <th scope="col">Choose ticket</th>
         </tr>
         </thead>
         <tbody>
@@ -37,35 +37,38 @@
             <td> {{t.id}}</td>
             <td> {{t.title}} </td>
             <td>
-                <form name="myForm" ng-controller="ctrlRelation">
+                <!--<form name="myForm">
                     <label>
-                        <input type="radio" ng-model="equality" value="false">
+                        <input type="radio" ng-model="selectRel.value"  id="equal" ng-click="changeVal()" name="relation" value="'equal'" >
                         Equality
                     </label><br/>
                     <label>
-                        <input type="radio" ng-model="dependency" value="false">
+                        <input type="radio" ng-model="selectRel.value" name="relation" id="depend" ng-click="changeVal()" value="'depend'">
                         Dependency
                     </label><br/>
                     <label>
-                        <input type="radio" ng-model="regression" value="false">
+                        <input type="radio" ng-model="selectRel.value" name="relation" id="regression" ng-click="changeVal()" value="'regression'">
                         Regression
                     </label><br/>
 
+                </form>-->
+                <form name="myForm">
+                <select class="selectpicker" ng-model ="relation">
+                    <option  ng-repeat="p in rel">{{p}}</option>
+                </select>
                 </form>
             </td>
-
+            <!--<td> {{relation}}</td>-->
             <td>
-                <select ng-if="equality" class="selectpicker" ng-model="ticketequ">
+                <select ng-show="relation == 'equality'" class="selectpicker" ng-model="ticketequ">
                 <option   ng-repeat="t in ticketsforEqu">{{t.id}}  {{t.title}}</option>
                 </select>
-            </td>
-            <td>
-                <select ng-if="dependency" class="selectpicker" ng-model="ticketdep">
+
+                <select ng-show="relation == 'dependency'" class="selectpicker" ng-model="ticketdep">
                     <option   ng-repeat="t in ticketsforDep">{{t.id}}  {{t.title}}</option>
                 </select>
-            </td>
-            <td>
-                <select ng-if="regression" class="selectpicker" ng-model="ticketreg">
+
+                <select ng-show="relation == 'regression'" class="selectpicker" ng-model="ticketreg">
                     <option   ng-repeat="t in ticketsforReg">{{t.id}}  {{t.title}}</option>
                 </select>
             </td>
@@ -84,4 +87,4 @@
     </table>
 
 </div>
-
+</div>

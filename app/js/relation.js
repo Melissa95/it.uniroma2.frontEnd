@@ -1,4 +1,5 @@
 
+
 app.controller('ctrlRelation', function( $scope, $http) {
         $scope.ticket= null;
         $scope.ticketsNoRel = null;
@@ -8,11 +9,39 @@ app.controller('ctrlRelation', function( $scope, $http) {
         $scope.ticketsforReg=null;
 
 
+
+       $scope.rel = ["equality","dependency","regression"];
+
+    /*$scope.showSelectValue = function(mySelect) {
+        console.log("qui" + mySelect);
+        $scope.res = mySelect;
+    };
+
+        /*$scope.selectRel = {};
+
+        $scope.changeVal = function() {
+
+
+            console.log("in change value" + $scope.selectRel.value.$modelValue);
+
+
+            if ($scope.selectRel.value === 'equal') {
+                $scope.result = 1;
+            }
+            if ($scope.selectRel.value === 'depend') {
+                $scope.result = 2;
+            }
+            if ($scope.selectRel.value === 'regression') {
+                $scope.result = 3;
+            }
+
+        };*/
+
+
         $scope.getTicket = function() {
 
-        console.log("in get");
 
-        var url = "http://localhost:8200/ticketingsystem/ticket/findAllTicketsByStatusNot/new";
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketNoRelation";
 
 
         $http ({
@@ -24,7 +53,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
         }).then(function (response) {
 
-            if (response.status === 201)
+            if (response.status === 200)
                 $scope.ticketsNoRel =  response.data;
                 /*$scope.tickets =  $scope.tickets  || [
                    response
@@ -39,11 +68,145 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
 
 
-    }
+    };
 
     $scope.getTicket();
 
+    $scope.getTicketForDependency = function() {
+
+        console.log("in getDEP");
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateDependency";
+
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.ticketsforDep =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
 
 
 
-    });
+    };
+
+    $scope.getTicketForRegression = function() {
+
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateRegression";
+
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.ticketsforReg =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
+
+
+
+    };
+
+    $scope.getTicketForEquality = function() {
+
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateUguality";
+        console.log("IN FUNCTION EQUALITY");
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.ticketsDep =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
+
+
+
+    };
+
+    $scope.getTicketForDependency();
+    $scope.getTicketForEquality();
+    $scope.getTicketForRegression();
+
+
+    $scope.getTicketDep = function() {
+
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketDependency";
+        console.log("IN FUNCTION EQUALITY");
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.ticketsforEqu =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
+
+
+
+    };
+
+    $scope.getTicketDep();
+
+
+});
