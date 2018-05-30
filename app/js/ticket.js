@@ -1,15 +1,15 @@
-app.controller('ctrlTicket', function($scope,$http,$sessionStorage) {
+app.controller('ctrlTicket', function($scope,$http,$location) {
 
     $scope.priority = ["1","2","3","4","5"];
 
-    $scope.product;
+
 
     $scope.createTick=function () {
 
         var url = "http://localhost:8200/ticketingsystem/ticket";
 
         var date = new Date();
-        console.log("in creation ticket "+ $scope.customerPriority + "" +  $scope.target);
+        console.log("in creation ticket "+ $scope.customerPriority);
         console.log("in creation ticket "+ date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear());
 
         $http ({
@@ -19,14 +19,9 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage) {
             data: {
                 title: $scope.title,
                 category: $scope.category,
-                target: {
-                    id: $scope.target
-                },
+                //product: $scope.product,
                 description: $scope.description,
                 customerPriority: $scope.customerPriority,
-                customer: {
-                    username: $sessionStorage.user.username
-                },
                 "status": "new",
                 "dateStart":date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear()
             },
@@ -87,43 +82,16 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage) {
     $scope.showAllTickets();
 
 
-    $scope.showProducts = function () {
+    $scope.showDependency = function (index) {
+        console.log("sono nel dep");
+        if(document.getElementById(index).style.display === 'none') {
+            document.getElementById(index).style.display = 'block';
+        }else{
+            document.getElementById(index).style.display = 'none';
+        }
 
-        console.log("sono in show product " );
-
-        var url = "http://localhost:8200/ticketingsystem/target";
-
-
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            params: "",
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
-
-
-        }).then(function (response) {
-
-            if (response.status === 201)
-                $scope.result=false;
-
-            $scope.product = response.data;
-            console.log(response.data );
-
-
-            $scope.resultNegative=true;
-
-        }).catch(function() {
-
-            $scope.resultNegative=false;
-
-            $scope.result=true;
-        });
 
     }
-    console.log("sono dopo show product");
-
-    $scope.showProducts();
 
 
 });
