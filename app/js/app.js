@@ -38,8 +38,8 @@ app.config(function($routeProvider) {
             templateUrl: "html/modifyUser.html",
             controller: "ctrlModifyUser"
         })
-        .when("/showProducts",{
-            templateUrl: "html/showProducts.html",
+        .when("/showTargets",{
+            templateUrl: "html/showTargets.html",
             controller: "ctrlTarget",
             requiresAuthentication: true,
             permissions: ["admin"]
