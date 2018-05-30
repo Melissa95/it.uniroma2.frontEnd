@@ -66,7 +66,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
         }).then(function (response) {
 
             if (response.status === 200)
-                $scope.ticketsforDep =  response.data;
+                $scope.ticketsDep =  response.data;
             /*$scope.tickets =  $scope.tickets  || [
                response
 
@@ -130,7 +130,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
         }).then(function (response) {
 
             if (response.status === 200)
-                $scope.ticketsDep =  response.data;
+                $scope.ticketsforEqu =  response.data;
             /*$scope.tickets =  $scope.tickets  || [
                response
 
@@ -167,7 +167,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
         }).then(function (response) {
 
             if (response.status === 200)
-                $scope.ticketsforEqu =  response.data;
+                $scope.ticketsforDep =  response.data;
             /*$scope.tickets =  $scope.tickets  || [
                response
 
