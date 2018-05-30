@@ -1,6 +1,6 @@
 
 
-app.controller('ctrlRelation', function( $scope, $http) {
+app.controller('ctrlRelation', function( $scope, $http, $location) {
 
         //ticket NEW & having no relations
         $scope.ticketsNoRel = null;
@@ -125,7 +125,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
     $scope.getTicketForEquality = function() {
 
 
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateUguality";
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateEquality";
 
 
         $http ({
@@ -207,16 +207,18 @@ app.controller('ctrlRelation', function( $scope, $http) {
     $scope.createRel = function (index) {
         console.log("dati" + " " +  $scope.relation +  " " + $scope.idChoose + " " + $scope.ticketsNoRel[index].id );
 
-        if ($scope.relation === 'equality') {
+        if ($scope.relation.equals('equality')) {
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/" + ID;
+            console.log("sono nell'if equality");
+
+            var url = "http://localhost:8200/ticketingsystem/ticket/" + $scope.ticketsNoRel[index].id;
 
 
             $http ({
                 method: 'PUT',
                 url: url,
                 data: {
-
+                    sameTicket: $scope.idChoose
                 },
                 dataType: 'json',
                 headers: {'Content-Type': 'charset=UTF-8'}
@@ -224,87 +226,102 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
             }).then(function (response) {
 
-                /*
-                if (response.status === 2)
-                    $scope.ticketsforReg =  response.data;
-                /*$scope.tickets =  $scope.tickets  || [
-                   response
+                if (response.status === 200) {
+                    alert("Relation correctly created!");
+                    $location.path("/homeCustomer");
+                }
 
-                ];*/
+
 
             }).catch(function() {
 
                 //attivata se username è gia presente
-                alert("Impossible create equality");
+                alert("Creation failed!");
             });
 
-        }else if ($scope.relation === 'dependency') {
+        }else if (angular.equals($scope.relation, 'dependency')) {
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/" + ID + dependentTicketID;
+            console.log("sono nell'if dependency");
+
+            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/"
+                + $scope.idChoose + "/" + $scope.ticketsNoRel[index].id;
 
 
             $http ({
                 method: 'POST',
-                url: url,
-                data: {
-
-                },
-                dataType: 'json',
-                headers: {'Content-Type': 'charset=UTF-8'}
+                url: url
 
 
             }).then(function (response) {
 
-                /*
-                if (response.status === 2)
-                    $scope.ticketsforReg =  response.data;
-                /*$scope.tickets =  $scope.tickets  || [
-                   response
+                if (response.status === 200){
+                    alert("Relation correctly created!");
+                    $location.path("/homeCustomer");
+                }
 
-                ];*/
+            }).catch(function(response) {
+
+                if (response.status === 424){
+                    alert("Creation failed!");
+                }
+
+            });
+
+        } else if ($scope.relation.equals('regression')) {
+
+            console.log("sono nell'if regression");
+
+            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/addRegression/"
+                + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
+
+
+            $http ({
+                method: 'POST',
+                url: url
+
+
+            }).then(function (response) {
+
+                if (response.status === 200){
+                    alert("Relation correctly created!");
+                    $location.path("/homeCustomer");
+                }
 
             }).catch(function() {
 
-                //attivata se username è gia presente
-                alert("Impossible create dependency");
+                alert("Creation failed!");
             });
 
-        } else if ($scope.relation === 'regression') {
-
-        var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/addRegression" + ID + idGenerator;
-
-
-        $http ({
-            method: 'POST',
-            url: url,
-            data: {
-
-            },
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
-
-
-        }).then(function (response) {
-
-            /*
-            if (response.status === 2)
-                $scope.ticketsforReg =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
-
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Impossible create regression");
-        });
-
-    }
+        }
     };
 
     $scope.createRelDep = function (index) {
         console.log("dati" + " " +  "dependency" +  " " + $scope.idChoose + " " + $scope.ticketsDep[index].id );
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/"
+            + $scope.idChoose + "/" + $scope.ticketsDep[index].id;
+
+
+        $http ({
+            method: 'POST',
+            url: url
+
+
+        }).then(function (response) {
+
+            if (response.status === 200){
+                alert("Relation correctly created!");
+                $location.path("/homeCustomer");
+            }
+
+        }).catch(function(response) {
+
+            if (response.status === 424){
+                alert("Creation failed!");
+            }
+
+        });
+2
     };
 
 
