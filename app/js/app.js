@@ -54,6 +54,13 @@ app.config(function($routeProvider) {
             templateUrl: "html/relation.html",
             controller:"ctrlRelation"
         })
+        .when("/showMyTicket",{
+            templateUrl: "html/showMyTicket.html",
+            controller: "ctrlUserTicket",
+            requiresAuthentication: true,
+            permission: ["customer"]
+
+        })
 
 
 });
