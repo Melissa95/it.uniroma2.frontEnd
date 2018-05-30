@@ -17,9 +17,9 @@ app.config(function($routeProvider) {
             templateUrl: "html/homeSignIn.html",
             controller: "ctrlSignIn"
         })
-        .when("/insertProduct",{
-            templateUrl: "html/insertProduct.html",
-            controller: "ctrlProduct",
+        .when("/insertTarget",{
+            templateUrl: "html/insertTarget.html",
+            controller: "ctrlTarget",
             requiresAuthentication: true,
             permissions: ["admin"]
         })
@@ -40,7 +40,7 @@ app.config(function($routeProvider) {
         })
         .when("/showProducts",{
             templateUrl: "html/showProducts.html",
-            controller: "ctrlProduct",
+            controller: "ctrlTarget",
             requiresAuthentication: true,
             permissions: ["admin"]
         })

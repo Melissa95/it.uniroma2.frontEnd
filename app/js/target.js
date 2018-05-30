@@ -1,5 +1,5 @@
 
-app.controller('ctrlProduct', function($scope,$http) {
+app.controller('ctrlTarget', function($scope, $http) {
 
     console.log("sono nel controller");
     $scope.result = true;
@@ -12,7 +12,7 @@ app.controller('ctrlProduct', function($scope,$http) {
 
         console.log("sono in insert product");
 
-        var url = "http://localhost:8200/ticketingsystem/product";
+        var url = "http://localhost:8200/ticketingsystem/target";
         //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 
 
@@ -56,7 +56,7 @@ app.controller('ctrlProduct', function($scope,$http) {
 
         console.log("sono in show product " );
 
-        var url = "http://localhost:8200/ticketingsystem/product";
+        var url = "http://localhost:8200/ticketingsystem/target";
 
         //var url = "http://192.168.43.101:8200/ticketingsystem/product";
 

@@ -40,9 +40,12 @@
             </tr>
 
             <tr>
-                <td><h5>Product</h5></td>
-                <td><input type="number"  ng-required="true"  ng-model="product"></td>
-            </tr>
+                <td><h5>Target</h5></td>
+               <!-- <td><input type="number"  ng-required="true"  ng-model="product"></td>-->
+                <td><select  class="selectpicker" ng-model="target">
+                    <option   ng-repeat="tr in product">{{tr.id}}</option>
+                </select></td>
+            </tr>s
             <tr>
 
             </tr>
