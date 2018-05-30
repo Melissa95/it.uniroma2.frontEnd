@@ -59,7 +59,6 @@ app.config(function($routeProvider) {
             controller: "ctrlUserTicket",
             requiresAuthentication: true,
             permission: ["customer"]
-
         })
 
 

@@ -44,5 +44,4 @@ app.controller('ctrlUserTicket', function($scope,$http,$location, $sessionStorag
     console.log("sono dopo show My ticket");
 
     $scope.ShowMyTickets();
-
 });

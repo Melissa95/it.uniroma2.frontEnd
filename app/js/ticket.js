@@ -80,5 +80,4 @@ app.controller('ctrlTicket', function($scope,$http,$location) {
     $scope.showAllTickets();
 
 
-
 });
