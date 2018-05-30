@@ -1,11 +1,16 @@
 
 
 app.controller('ctrlRelation', function( $scope, $http) {
-        $scope.ticket= null;
+
+        //ticket NEW & having no relations
         $scope.ticketsNoRel = null;
+        //ticket already having a dependency
         $scope.ticketsDep = null;
+        //tickets available for dependency
         $scope.ticketsforDep=null;
+        //tickets available for equality
         $scope.ticketsforEqu=null;
+        //tickets available for regression
         $scope.ticketsforReg=null;
 
 
@@ -14,7 +19,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
 
 
-
+        //returns tickets NEW & having no relations
         $scope.getTicket = function() {
 
 
@@ -49,9 +54,10 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     $scope.getTicket();
 
+
+    //returns tickets available for dependency
     $scope.getTicketForDependency = function() {
 
-        console.log("in getDEP");
 
         var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateDependency";
 
@@ -66,7 +72,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
         }).then(function (response) {
 
             if (response.status === 200)
-                $scope.ticketsDep =  response.data;
+                $scope.ticketsforDep =  response.data;
             /*$scope.tickets =  $scope.tickets  || [
                response
 
@@ -82,6 +88,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     };
 
+    //returns tickets available for regression
     $scope.getTicketForRegression = function() {
 
 
@@ -114,11 +121,12 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     };
 
+    //returns tickets available for equality
     $scope.getTicketForEquality = function() {
 
 
         var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateUguality";
-        console.log("IN FUNCTION EQUALITY");
+
 
         $http ({
             method: 'GET',
@@ -151,11 +159,11 @@ app.controller('ctrlRelation', function( $scope, $http) {
     $scope.getTicketForRegression();
 
 
+    //returns ticket already having a dependency
     $scope.getTicketDep = function() {
 
-
         var url = "http://localhost:8200/ticketingsystem/ticket/findTicketDependency";
-        console.log("IN FUNCTION EQUALITY");
+
 
         $http ({
             method: 'GET',
@@ -167,7 +175,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
         }).then(function (response) {
 
             if (response.status === 200)
-                $scope.ticketsforDep =  response.data;
+                $scope.ticketsDep =  response.data;
             /*$scope.tickets =  $scope.tickets  || [
                response
 
@@ -185,6 +193,7 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     $scope.getTicketDep();
 
+
     $scope.valueRelation = function (param) {
         console.log("dati..." + param);
         $scope.relation = param;
@@ -197,6 +206,101 @@ app.controller('ctrlRelation', function( $scope, $http) {
 
     $scope.createRel = function (index) {
         console.log("dati" + " " +  $scope.relation +  " " + $scope.idChoose + " " + $scope.ticketsNoRel[index].id );
+
+        if ($scope.relation === 'equality') {
+
+            var url = "http://localhost:8200/ticketingsystem/ticket/" + ID;
+
+
+            $http ({
+                method: 'PUT',
+                url: url,
+                data: {
+
+                },
+                dataType: 'json',
+                headers: {'Content-Type': 'charset=UTF-8'}
+
+
+            }).then(function (response) {
+
+                /*
+                if (response.status === 2)
+                    $scope.ticketsforReg =  response.data;
+                /*$scope.tickets =  $scope.tickets  || [
+                   response
+
+                ];*/
+
+            }).catch(function() {
+
+                //attivata se username è gia presente
+                alert("Impossible create equality");
+            });
+
+        }else if ($scope.relation === 'dependency') {
+
+            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/" + ID + dependentTicketID;
+
+
+            $http ({
+                method: 'POST',
+                url: url,
+                data: {
+
+                },
+                dataType: 'json',
+                headers: {'Content-Type': 'charset=UTF-8'}
+
+
+            }).then(function (response) {
+
+                /*
+                if (response.status === 2)
+                    $scope.ticketsforReg =  response.data;
+                /*$scope.tickets =  $scope.tickets  || [
+                   response
+
+                ];*/
+
+            }).catch(function() {
+
+                //attivata se username è gia presente
+                alert("Impossible create dependency");
+            });
+
+        } else if ($scope.relation === 'regression') {
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/addRegression" + ID + idGenerator;
+
+
+        $http ({
+            method: 'POST',
+            url: url,
+            data: {
+
+            },
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            /*
+            if (response.status === 2)
+                $scope.ticketsforReg =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Impossible create regression");
+        });
+
+    }
     };
 
     $scope.createRelDep = function (index) {

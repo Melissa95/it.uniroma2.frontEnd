@@ -52,7 +52,9 @@ app.config(function($routeProvider) {
         })
         .when("/relation",{
             templateUrl: "html/relation.html",
-            controller:"ctrlRelation"
+            controller:"ctrlRelation",
+            requiresAuthentication: true,
+            permission: ["admin"]
         })
         .when("/showMyTicket",{
             templateUrl: "html/showMyTicket.html",
@@ -63,6 +65,8 @@ app.config(function($routeProvider) {
 
 
 });
+
+
 
 app.run(function ($rootScope, $location, Auth) {
     Auth.init();
