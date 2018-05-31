@@ -11,19 +11,21 @@
     </div>
 </nav>
 
+<div ng-controller="ctrlLogin" style="padding-left:20%;padding-top: 3%">
+<div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
 <form name="loginForm">
-<div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlLogin">
+<div style="text-align: center;color:black" >
 
-    <table align="center">
+    <table style="border-collapse: separate;padding-left: 20% ">
         <tr>
            <td><h5>Username </h5></td>
-           <td> <input ng-minlength="3" ng-required="true" ng-model="username"></td>
+           <td> <input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="username"></td>
         </tr>
 
         <tr></tr>
         <tr>
             <td><h5>Password </h5></td>
-            <td> <input type="password" ng-minlength="6" ng-required="true" ng-model="password"></td>
+            <td> <input style="width: 300px" class="btn btn-dark" type="password" ng-minlength="6" ng-required="true" ng-model="password"></td>
         </tr>
 
         <tr></tr>
@@ -35,6 +37,8 @@
     </table>
 </div>
 </form>
+</div>
+</div>
 
 
 

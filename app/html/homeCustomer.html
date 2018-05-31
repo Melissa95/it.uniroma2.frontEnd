@@ -1,4 +1,4 @@
-<div ng-controller="ctrlCust" ng-show="user" ng-cloak>
+<div ng-controller="ctrlCust"  ng-show="user" ng-cloak>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -11,18 +11,21 @@
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
             <li class="nav-item active"><a permission="['customer']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
             <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a permission="['customer']" class="nav-link" href="#!/createTicket">New ticket</a></li>
+            <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
             <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
+
 
         </ul>
 
     </div>
 </nav>
+
+
     <div class="jumbotron" style="opacity:0.7">
-        <h1 class="display-4">Welcome!</h1>
+        <h1 class="display-4">Welcome {{user.username}} !</h1>
         <p class="lead">From your customer function you can check your tickets status, create a new ticket and modify your personal information</p>
         <hr class="my-4">
-        <p>Have a compliant about a product? Create your ticket</p>
+        <p>Have a compliant about a target? Create your ticket</p>
         <a class="btn btn-dark" ng-click="newTicket()" role="button" style="color: white">New ticket</a>
     </div>
 </div>

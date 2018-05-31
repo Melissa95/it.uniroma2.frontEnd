@@ -10,7 +10,7 @@
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
             <li class="nav-item active"><a permission="['customer']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
             <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a permission="['customer']" class="nav-link" href="#!/createTicket">New ticket</a></li>
+            <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
             <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
 
 
@@ -42,21 +42,21 @@
             <td>
 
                 <form name="myForm">
-                <select class="selectpicker" ng-model ="relation" ng-click="valueRelation(relation)">
+                <select style="color: black" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
                     <option  ng-repeat="p in rel">{{p}}</option>
                 </select>
                 </form>
             </td>
             <td>
-                <select ng-show="relation == 'equality'" class="selectpicker" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+                <select ng-show="relation == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
                 <option   ng-repeat="t in ticketsforEqu" ng-value="t.id">{{t.id}} - {{t.title}}</option>
                 </select>
 
-                <select ng-show="relation == 'dependency'" class="selectpicker" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+                <select ng-show="relation == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
                     <option   ng-repeat="t in ticketsforDep" ng-value="t.id">{{t.id}} - {{t.title}}</option>
                 </select>
 
-                <select ng-show="relation == 'regression'" class="selectpicker" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
+                <select ng-show="relation == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
                     <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
                 </select>
             </td>
@@ -76,7 +76,7 @@
             <td>
 
 
-                <select class="selectpicker" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+                <select  class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
                     <option   ng-repeat="t in ticketsforDep" ng-value="t.id">{{t.id}} - {{t.title}}</option>
                 </select>
 

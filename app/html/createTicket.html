@@ -10,40 +10,38 @@
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
             <li class="nav-item active"><a permission="['customer']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
             <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a permission="['customer']" class="nav-link" href="#!/createTicket">New ticket</a></li>
+            <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
             <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
         </ul>
 
     </div>
 </nav>
 
-<div ng-controller="ctrlTicket">
+<div ng-controller="ctrlTicket" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
+<form name="regForm" style="padding-left: auto">
+    <div style="text-align: center;color:black">
 
-<form name="regForm">
-    <div style="text-align: center;color:white;padding-top: 50px">
-
-        <h1>Create new ticket</h1>
-        <table align="center">
+        <h1 style="padding-left: 5%">Create new ticket</h1>
+        <table style="border-collapse: separate;padding-left: 10% ">
             <tr>
                 <td><h5>Title</h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="title"></td>
-            </tr>
-            <tr>
+                <td><input style="width: 400px;opacity:0.9" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="title"></td>
 
             </tr>
             <tr>
                 <td><h5>Category</h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="category"></td>
+                <td><input style="width: 400px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="category"></td>
             </tr>
-            <tr>
+            </br>
 
-            </tr>
+
 
             <tr>
                 <td><h5>Target</h5></td>
                <!-- <td><input type="number"  ng-required="true"  ng-model="product"></td>-->
-                <td><select  class="selectpicker" ng-model="target">
-                    <option   ng-repeat="tr in targ">{{tr.id}}</option>
+                <td><select style="width: 400px"  class="btn btn-dark" ng-model="target">
+                    <option   ng-repeat="tr in targ">{{tr.id}} - {{tr.name}}</option>
                 </select></td>
             </tr>
             <tr>
@@ -52,7 +50,7 @@
 
             <tr>
                 <td><h5>Description </h5></td>
-                <td> <textarea ng-minlength="10" cols="40" rows="5" ng-required="true" ng-model="description"></textarea></td>
+                <td> <textarea class="btn btn-dark" ng-minlength="10" cols="40" rows="5" ng-required="true" ng-model="description"></textarea></td>
             </tr>
             <tr>
 
@@ -60,8 +58,8 @@
             <tr>
                 <td><h5>Priority </h5></td>
                 <td>
-                    <select class="selectpicker" ng-model ="customerPriority">
-                         <option  ng-repeat="p in priority">{{p}}</option>
+                    <select style="width: 400px" class="btn btn-dark" ng-model ="customerPriority">
+                         <option ng-repeat="p in priority">{{p}}</option>
                     </select>
                 </td>
 
@@ -77,4 +75,5 @@
         </table>
     </div>
 </form>
+    </div>
 </div>

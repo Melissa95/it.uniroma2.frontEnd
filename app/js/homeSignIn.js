@@ -1,5 +1,5 @@
 
-app.controller('ctrlSignIn', function($scope,$http) {
+app.controller('ctrlSignIn', function($scope,$http,$location) {
 
   console.log("sono nel controller");
 
@@ -29,7 +29,10 @@ app.controller('ctrlSignIn', function($scope,$http) {
 
       }).then(function (response) {
 
-         if (response.status === 201) alert("Registration success");
+         if (response.status === 201) {
+             alert("Registration success");
+             $location.path("/homeLogin");
+         }
 
       }).catch(function() {
 

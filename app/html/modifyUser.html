@@ -11,53 +11,34 @@
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
             <li class="nav-item active"><a permission="['customer']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
             <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a permission="['customer']" class="nav-link" href="#!/createTicket">New ticket</a></li>
+            <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
             <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
         </ul>
 
     </div>
 </nav>
 
+<div ng-controller="ctrlModifyUser" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
 <form name="modifyUserForm">
-    <div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlModifyUser">
+    <div style="text-align: center;color:black">
 
         <table align="center">
             <tr>
                 <td><h5>Name</h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="name"></td>
+                <td><input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="name"></td>
             </tr>
-            <tr>
 
-            </tr>
             <tr>
                 <td><h5>Surname </h5></td>
-                <td><input ng-minlength="3" ng-required="true" ng-model="surname"></td>
+                <td><input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="surname"></td>
             </tr>
-            <tr>
 
-            </tr>
-            <tr>
-                <td><h5>Username </h5></td>
-                <td> <input ng-minlength="3" ng-required="true" ng-model="username"></td>
-            </tr>
-            <tr>
-
-            </tr>
             <tr>
                 <td><h5>Password </h5></td>
-                <td><input placeholder="min 6 char" ng-minlength="6" ng-required="true" type="password" ng-model="password"></td>
+                <td><input style="width: 300px" class="btn btn-dark" placeholder="min 6 char" ng-minlength="6" ng-required="true" type="password" ng-model="password"></td>
             </tr>
-            <tr>
 
-            </tr>
-            <!--<tr>
-                <td><h5>Email </h5></td>
-                <td><input type="email" ng-pattern="emailFormat" name = "input" ng-required="true" ng-model="email"></td>
-
-            </tr>-->
-            <tr>
-
-            </tr>
             <tr>
                 <td></td>
                 <td><button ng-disabled="modifyUserForm.$invalid" ng-click="modifyUser()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
@@ -66,12 +47,14 @@
         <table align="center" style="margin-top: 3%">
             <tr>
                 <td></td>
-                <td><div ng-hide="result" ng-model="result"><h1>Registration success</h1></div></td>
+                <td><div style="color: forestgreen;text-align: center" ng-hide="result" ng-model="result"><h6>Success in changes</h6></div></td>
             </tr>
             <tr>
                 <td></td>
-                <td><div ng-hide="resultNegative" ng-model="resultNegative"><h1>Error: insert your correct username</h1></div></td>
+                <td><div style="color: darkred;text-align: center" ng-hide="resultNegative" ng-model="resultNegative"><h6>Changes failed</h6></div></td>
             </tr>
         </table>
     </div>
 </form>
+    </div>
+</div>

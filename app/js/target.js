@@ -1,5 +1,5 @@
 
-app.controller('ctrlTarget', function($scope, $http) {
+app.controller('ctrlTarget', function($scope, $http,$location) {
 
     console.log("sono nel controller");
     $scope.result = true;
@@ -37,6 +37,7 @@ app.controller('ctrlTarget', function($scope, $http) {
                 $scope.version="";
                 $scope.description="";
                 $scope.resultNegative=true;
+                $location.path("/showTargets");
 
         }).catch(function() {
 

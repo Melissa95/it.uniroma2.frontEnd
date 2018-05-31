@@ -1,9 +1,10 @@
 app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth) {
 
 
+
     $scope.newTicket = function() {
         $location.path('/createTicket');
-    }
+    };
 
 
 
@@ -12,4 +13,6 @@ app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth) {
             $location.path("/login");
     };
 
+
 });
+
