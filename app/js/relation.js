@@ -207,7 +207,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
     $scope.createRel = function (index) {
         console.log("dati" + " " +  $scope.relation +  " " + $scope.idChoose + " " + $scope.ticketsNoRel[index].id );
 
-        if ($scope.relation.equals('equality')) {
+        if ($scope.relation==='equality') {
 
             console.log("sono nell'if equality");
 
@@ -218,10 +218,11 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                 method: 'PUT',
                 url: url,
                 data: {
-                    sameTicket: $scope.idChoose
+                    sameTicket: { id: $scope.idChoose}
                 },
                 dataType: 'json',
-                headers: {'Content-Type': 'charset=UTF-8'}
+                headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
 
 
             }).then(function (response) {
@@ -239,7 +240,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                 alert("Creation failed!");
             });
 
-        }else if (angular.equals($scope.relation, 'dependency')) {
+        }else if ($scope.relation=== 'dependency') {
 
             console.log("sono nell'if dependency");
 
@@ -267,17 +268,21 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
             });
 
-        } else if ($scope.relation.equals('regression')) {
+        } else if ($scope.relation==='regression') {
 
             console.log("sono nell'if regression");
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/addRegression/"
+            var url = "http://localhost:8200/ticketingsystem/ticket/addRegression/"
                 + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
 
 
             $http ({
                 method: 'POST',
-                url: url
+                url: url,
+                data : {},
+
+                headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
 
 
             }).then(function (response) {

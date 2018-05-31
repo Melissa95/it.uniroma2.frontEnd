@@ -1,4 +1,4 @@
-app.controller('ctrlTicket', function($scope,$http,$sessionStorage) {
+app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
 
     $scope.priority = ["1","2","3","4","5"];
     $scope.targ;
@@ -31,7 +31,7 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage) {
 
         }).then(function (response) {
 
-            if (response.status === 201) alert("Ticket create with success");
+            if (response.status === 201) $location.path("/showMyTicket");
 
         }).catch(function() {
 
