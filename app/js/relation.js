@@ -54,6 +54,41 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
     $scope.getTicket();
 
+    //returns ticket already having a dependency
+    $scope.getTicketDep = function() {
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketDependency";
+
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            headers: {'Content-Type': 'charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.ticketsDep =  response.data;
+            /*$scope.tickets =  $scope.tickets  || [
+               response
+
+            ];*/
+
+        }).catch(function() {
+
+            //attivata se username è gia presente
+            alert("Error getting tickets");
+        });
+
+
+
+    };
+
+    $scope.getTicketDep();
+
+
 
     //returns tickets available for dependency
     $scope.getTicketForDependency = function() {
@@ -159,39 +194,6 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
     $scope.getTicketForRegression();
 
 
-    //returns ticket already having a dependency
-    $scope.getTicketDep = function() {
-
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketDependency";
-
-
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
-
-
-        }).then(function (response) {
-
-            if (response.status === 200)
-                $scope.ticketsDep =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
-
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
-
-
-
-    };
-
-    $scope.getTicketDep();
 
 
     $scope.valueRelation = function (param) {
@@ -322,11 +324,12 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
         }).catch(function(response) {
 
             if (response.status === 424){
-                alert("Creation failed!");
+                /*alert("Creation failed!");*/
+                window.onload();
             }
 
         });
-2
+
     };
 
 

@@ -41,7 +41,7 @@
                 <td><h5>Target</h5></td>
                <!-- <td><input type="number"  ng-required="true"  ng-model="product"></td>-->
                 <td><select style="width: 400px"  class="btn btn-dark" ng-model="target">
-                    <option   ng-repeat="tr in targ">{{tr.id}} - {{tr.name}}</option>
+                    <option   ng-repeat="tr in targ" ng-value="tr.id">{{tr.id}} - {{tr.name}}</option>
                 </select></td>
             </tr>
             <tr>
