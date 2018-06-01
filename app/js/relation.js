@@ -324,8 +324,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
         }).catch(function(response) {
 
             if (response.status === 424){
-                /*alert("Creation failed!");*/
-                window.onload();
+                alert("Creation failed!");
             }
 
         });
