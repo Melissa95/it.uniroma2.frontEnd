@@ -32,57 +32,26 @@ angular.module('AuthServices', ['ngResource', 'ngStorage'])
                 }
             });
 
-           //var url = "http://localhost:8200/ticketingsystem/user/login/"+ username;
              return $q(function(resolve, reject){
                 Profile.login({username:username, password:password}).$promise
                     .then(function(data) {
                         $sessionStorage.user = data;
                         $rootScope.user = $sessionStorage.user;
                         resolve();
-                    }, function() {
+                    }, function(response) {
+                        //password wrong
+                        if (response.status === 302) {
+                            reject();
+                            alert("Password wrong");
+                        }
+                        //username wrong
+                        if (response.status === 404) {
+                            reject();
+                            alert("Username wrong");
+                        }
                         reject();
                     });
-               /* $http ({
-                    method: 'POST',
-                    url: url,
-                    dataType: 'json',
-                    data: {
 
-                        username: username,
-                        password: password
-
-                    },
-                    headers: {'Content-Type': 'application/json; charset=UTF-8'}
-
-                }).then(function (response) {
-
-                    if (response.status === 200) {
-                        alert( "login");
-                        $sessionStorage.user = response;
-                        console.log("dati" + response);
-                        $rootScope.user = $sessionStorage.user;
-                        $location.path('/homeCustomer');
-                        resolve();
-
-
-                    }
-
-
-
-                }).catch(function(response) {
-
-                    //username ok, password wrong
-                    if (response.status === 302) {
-                        reject();
-                        alert("Password wrong");
-                    }
-                    //username wrong
-                    if (response.status === 404) {
-                        reject();
-                        alert("Username wrong");
-                    }
-
-                });*/
             });
         };
 
