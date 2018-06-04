@@ -60,7 +60,7 @@ app.config(function($routeProvider) {
             templateUrl: "html/showMyTicket.html",
             controller: "ctrlUserTicket",
             requiresAuthentication: true,
-            permission: ["customer"]
+            permission: ["customer", "admin"]
         })
 
 

@@ -8,7 +8,7 @@
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showTargets">All targets</a></li>
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/insertTarget">Insert target</a></li>
             <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
-            <li class="nav-item active"><a permission="['customer']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
+            <li class="nav-item active"><a permission="['customer', 'admin']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
             <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
             <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
             <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
@@ -42,7 +42,7 @@
             <td>
 
                 <form name="myForm">
-                <select style="color: black" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
+                <select style="color: white" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
                     <option  ng-repeat="p in rel">{{p}}</option>
                 </select>
                 </form>
