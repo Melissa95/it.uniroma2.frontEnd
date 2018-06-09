@@ -1,7 +1,63 @@
-app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
+app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$uibModal','$log','$mdDialog',function($scope,$http,$sessionStorage,$location,$uibModal, $log,$mdDialog) {
 
     $scope.priority = ["1","2","3","4","5"];
     $scope.targ;
+
+
+    /*$scope.showDetails = function () {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'modal-form.html',
+            controller: ModalInstanceCtrl,
+            scope: $scope,
+            resolve: {
+                userForm: function () {
+                    return $scope.userForm;
+                }
+            }
+
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            //codice
+        });
+    };*/
+
+
+    $scope.showDetails = function() {
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'html/dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose:true
+
+
+        })
+            .then(function(answer) {
+
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+
+
 
 
     $scope.createTick=function () {
@@ -11,6 +67,7 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
         var date = new Date();
         console.log("in creation ticket "+ $scope.customerPriority + "" + $scope.target);
         console.log("in creation ticket "+ date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear());
+
 
         $http ({
             method: 'POST',
@@ -39,7 +96,7 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
         });
 
 
-    }
+    };
 
     $scope.showAllTickets = function () {
 
@@ -77,7 +134,7 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
             $scope.result=true;
         });
 
-    }
+    };
     console.log("sono dopo show All ticket");
 
     $scope.showAllTickets();
@@ -135,4 +192,23 @@ app.controller('ctrlTicket', function($scope,$http,$sessionStorage,$location) {
     }
 
 
-});
+}]);
+
+
+/*var ModalInstanceCtrl = function ($scope, $uibModalInstance, userForm) {
+    $scope.form = {};
+    $scope.submitForm = function () {
+        if ($scope.form.userForm.$valid) {
+            console.log('Premuto OK');
+            //codice
+            $uibModalInstance.close('closed');
+        }
+    };
+
+    $scope.cancel = function () {
+        console.log('Premuto Cancel')
+        //codice
+        $uibModalInstance.dismiss('cancel');
+    };
+};*/
+

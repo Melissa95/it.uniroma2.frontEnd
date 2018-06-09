@@ -13,11 +13,44 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
         //tickets available for regression
         $scope.ticketsforReg=null;
 
+        $scope.allRelation=null;
+        $scope.allTick=null;
+
 
 
        $scope.rel = ["equality","dependency","regression"];
 
 
+         $scope.getAllRelation = function() {
+
+
+            var url = "http://localhost:8200/ticketingsystem/relation";
+
+
+            $http ({
+                method: 'GET',
+                url: url,
+                dataType: 'json',
+                headers: {'Content-Type': 'charset=UTF-8'}
+
+
+            }).then(function (response) {
+
+                if (response.status === 200)
+                    $scope.allRelation =  response.data;
+
+
+            }).catch(function() {
+
+                alert("Error getting relations");
+            });
+
+
+
+        };
+
+
+         $scope.getAllRelation();
 
         //returns tickets NEW & having no relations
         $scope.getTicket = function() {
@@ -53,6 +86,8 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
     };
 
     $scope.getTicket();
+
+
 
     //returns ticket already having a dependency
     $scope.getTicketDep = function() {
@@ -330,6 +365,39 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
         });
 
     };
+
+    //returns all tickets
+    $scope.allTickets = function () {
+
+
+        var url = "http://localhost:8200/ticketingsystem/ticket";
+
+        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
+
+        //var records;
+
+        $http ({
+            method: 'GET',
+            url: url,
+            dataType: 'json',
+            params: "",
+            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
+
+        }).then(function (response) {
+
+            if (response.status === 200)
+                $scope.allTick = response.data;
+
+
+        }).catch(function() {
+            alert("Creation failed!");
+
+        });
+
+    };
+
+    $scope.allTickets();
 
 
 });

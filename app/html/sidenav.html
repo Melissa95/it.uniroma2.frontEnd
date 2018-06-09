@@ -1,0 +1,74 @@
+
+<div ng-controller="sideNavCtrl" layout="column" ng-show="user" ng-cloak>
+
+    <section>
+
+        <md-sidenav class="md-sidenav-left" md-component-id="left"
+                    md-disable-backdrop md-whiteframe="4" style="background-color: #111">
+
+            <md-toolbar class="md-theme-indigo" style="background-color: #111">
+                <h1 class="md-toolbar-tools">Ticketing System
+                <md-button ng-click="toggleLeft()" class="fa fa-close" style="color: white;padding-left: 40%">
+
+                </md-button></h1>
+
+            </md-toolbar>
+
+            <!--<md-content layout-margin>
+                <div layout="column" layout-align="top center">-->
+
+                <!--<md-button class="md-primary md-raised" ng-click="showAdvanced($event)">Open Dialog</md-button>-->
+
+
+              <!--  </div>
+
+            </md-content>-->
+
+            <md-content id="dynamic-content" class="f-clear-padding">
+                <div  class="md-accordion" ng-repeat="data in accordianData | UserFilter: user.role ">
+                    <!-- <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded"> this was the code in demo-->
+                    <md-toolbar ng-init="data.expanded = false" ng-click="toggleView(accordianData, data, $index)" style="background-color: #111">
+                        <div class="md-toolbar-tools">
+                            <!-- <h2> -->
+                            <div ng-repeat="s in data.heading " ng-bind="s.type"></div>
+                            <!-- </h2> -->
+
+                            <div flex=""></div>
+                            <div ng-class="{expandCollapse:true, active:data.expanded}"></div>
+                        </div>
+                    </md-toolbar>
+                    <div ng-class="{dataContent:true, activeContent:data.expanded}">
+                        <!--<div style="padding:10px" ng-bind="data.content"></div>-->
+                        <md-button style="background-color: #111;color: white;text-transform: capitalize" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}}  class="md-toolbar-tools">{{d.name}} </md-button>
+
+
+                    </div>
+
+                </div>
+            </md-content>
+
+        </md-sidenav>
+
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#!/homeCustomer">Ticketing system</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <md-button ng-click="toggleLeft()" class="md-raised">
+                        &#9776;
+                    </md-button>
+                </ul>
+            </div>
+        </nav>
+
+
+
+    </section>
+
+
+</div>
+

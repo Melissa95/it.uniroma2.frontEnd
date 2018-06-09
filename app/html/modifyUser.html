@@ -1,24 +1,8 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#!/homeCustomer">Ticketing system</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item active"><a permission="['admin','customer']" class="nav-link" href="#!/modifyUser">Modify account</a></li>
-            <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showTargets">All targets</a></li>
-            <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/insertTarget">Insert target</a></li>
-            <li class="nav-item active"><a permission="['admin']" class="nav-link" href="#!/showAllTickets">All tickets</a></li>
-            <li class="nav-item active"><a permission="['customer', 'admin']"class="nav-link" href="#!/showMyTicket">Show My ticket</a></li>
-            <li class="nav-item active"><a permission="['admin']"class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a permission="['customer','admin']" class="nav-link" href="#!/createTicket">New ticket</a></li>
-            <li class="nav-item active"><a permission="['admin','customer']"class="nav-link" href="#!/">Sign out</a></li>
-        </ul>
-
-    </div>
-</nav>
+<ng-include src="'html/sidenav.html'"></ng-include>
 
 <div ng-controller="ctrlModifyUser" style="padding-left:20%;padding-top: 3%">
+
     <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
 <form name="modifyUserForm">
     <div style="text-align: center;color:black">
