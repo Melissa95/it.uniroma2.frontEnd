@@ -1,0 +1,60 @@
+<body>
+
+
+<ng-include src="'html/sidenav.html'"></ng-include>
+
+<div ng-controller="ctrlTarget" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
+<form name="prodForm">
+    <div style="text-align: center;color:black" >
+
+        <table align="center">
+            <tr>
+                <td><h5>Name</h5></td>
+                <td><input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="name"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Version </h5></td>
+                <td><input style="width: 300px" class="btn btn-dark" ng-value="number" ng-required="true" ng-model="version"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td><h5>Description </h5></td>
+                <td> <input style="width: 300px" class="btn btn-dark" ng-minlength="5" ng-maxlength="200" ng-required="true" ng-model="description"></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+
+            </tr>
+
+
+        </table>
+        <table align="center" style="margin-top: 3%">
+            <tr>
+                <td></td>
+                <td><div style="color: forestgreen;text-align: center" ng-hide="result" ng-model="result"><h6>successful entry</h6></div></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div style="color: darkred;text-align: center" ng-hide="resultNegative" ng-model="resultNegative"><h6>insertion failed</h6></div></td>
+            </tr>
+        </table>
+    </div>
+</form>
+    </div>
+</div>
+</body>

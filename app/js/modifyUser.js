@@ -1,5 +1,5 @@
 
-app.controller('ctrlModifyUser', function($scope,$http) {
+app.controller('ctrlModifyUser', function($scope,$http,$sessionStorage) {
 
     $scope.result = true;
     $scope.resultNegative = true;
@@ -9,9 +9,9 @@ app.controller('ctrlModifyUser', function($scope,$http) {
 
     $scope.modifyUser = function() {
 
-        console.log("sono in  modify User");
+        console.log("sono in  modify User" + $sessionStorage.user.username );
 
-        var url = "http://localhost:8200/ticketingsystem/user/"+$scope.username;
+        var url = "http://localhost:8200/ticketingsystem/user/"+$sessionStorage.user.username;
 
 
         $http ({
@@ -21,7 +21,7 @@ app.controller('ctrlModifyUser', function($scope,$http) {
             data: {
                 name: $scope.name,
                 surname: $scope.surname,
-                username: $scope.username,
+                username: $sessionStorage.user.username,
                 password: $scope.password,
                 //email: $scope.email,
                 "role": "customer"

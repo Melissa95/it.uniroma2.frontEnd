@@ -1,47 +1,78 @@
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Ticketing system</a>
+
+
+<script type="text/ng-template" id="modal-form.html">
+<div class="modal-header" >
+    <h3>My Modal</h3>
+</div>
+<form name="form.userForm" ng-submit="submitForm()">
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control">
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item active"><a class="nav-link" href="#!/modifyUser">Modify account</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/showProducts">All products</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/insertProduct">Insert product</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/showAllTickets">All tickets</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/createTicket">New ticket</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/">Sign out</a></li>
-        </ul>
 
+        <!-- mettere altri form qui -->
+
+   </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="submitForm()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
-</nav>
 
+</form>
+</script>
 
+<ng-include src="'html/sidenav.html'"></ng-include>
 
 <form name="prodShowAllTickets">
-    <div style="text-align: center;color:white;padding-top: 150px" ng-controller="ctrlTicket" >
+    <div layout="column" style="text-align: center;color:white;padding-top: 7%;padding-left: 3%;padding-right: 3%" ng-controller="ctrlTicket" >
 
 
-        <table style="background-color: #495057; opacity: 0.95" align="center"  border="2">
+        <table class="table table-dark">
             <td> ID </td>
             <td> Status</td>
             <td> Creation Date</td>
             <td> Category</td>
             <td> Title </td>
+            <td> Target</td>
             <td> Description</td>
+            <td> Customer </td>
             <td> Costumer Priority</td>
-            <td> Product ID</td>
             <td> Team</td>
+            <td> Same Ticket</td>
             <tr ng-repeat = "x in records">
                 <td> {{x.id}} </td>
                 <td> {{x.status}} </td>
                 <td> {{x.dateStart}} </td>
                 <td> {{x.category}} </td>
                 <td> {{x.title}} </td>
+                <td> {{x.target.id}}</td>
                 <td> {{x.description}} </td>
+                <td> {{x.customer.username}}</td>
                 <td> {{x.customerPriority}} </td>
-                <td> {{x.productId}} </td>
                 <td> {{x.team}} </td>
+                <td> {{x.sameTicket.id}}</td>
+
+                <td>
+                    <!--<button  class="btn btn-dark" ng-click="showDependency(x.id)">Show Relationships</button>-->
+                    <button  class="btn btn-dark"  ng-click="showDetails()">Show Details</button>
+                    <div id = {{x.id}} style="display: none">
+                        <table style="border: #9fcdff; border-radius: 10%">
+
+                         <td>Dependent Tickets</td>
+                         <td>Regression Generators</td>
+                            <tr>
+                                <td><div ng-repeat="y in x.dependentTickets">{{y.id}}  {{y.title}}</div></td>
+                                <td><div ng-repeat="z in x.regressionTicketsGenerator">{{z.id}}  {{z.title}}</div></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+
+
+
             </tr>
 
         </table>

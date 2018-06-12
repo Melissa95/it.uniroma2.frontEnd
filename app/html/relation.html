@@ -1,30 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#!/">Ticketing system</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item active"><a class="nav-link" href="#!/modifyUser">Modify account</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/showProducts">All products</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/insertProduct">Insert product</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/showAllTickets">All tickets</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/relation">Create relation</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/createTicket">New ticket</a></li>
-            <li class="nav-item active"><a class="nav-link" href="#!/">Sign out</a></li>
+<ng-include src="'html/sidenav.html'"></ng-include>
 
-
-        </ul>
-
-    </div>
-</nav>
-
-
-
-<div ng-controller="ctrlRelation" layout="column" layout-align="center center" style="padding:40px" ng-cloak>
-
-    <select class="selectpicker" ng-model="ticket">
-        <option  ng-repeat="user in users">{{user.name}}</option>
-    </select>
+<div ng-controller="ctrlRelation">
+    <form name="formRel">
+<div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
 
 
     <table class="table table-dark">
@@ -33,47 +11,44 @@
             <th scope="col">Identification</th>
             <th scope="col">Title</th>
             <th scope="col">Define Relation</th>
-          <!--  <th scope="col">Handle</th>-->
+            <th scope="col">Choose ticket</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat = "t in ticketsNoRel">
+        <tr ng-repeat = "t in ticketsNoRel" >
             <td> {{t.id}}</td>
             <td> {{t.title}} </td>
             <td>
-                <form name="myForm" ng-controller="ctrlRelation">
-                    <label>
-                        <input type="radio" ng-model="equality" value="false">
-                        Equality
-                    </label><br/>
-                    <label>
-                        <input type="radio" ng-model="dependency" value="false">
-                        Dependency
-                    </label><br/>
-                    <label>
-                        <input type="radio" ng-model="regression" value="false">
-                        Regression
-                    </label><br/>
 
+                <form  name="myForm">
+                <select  style="color: white" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
+                    <option  ng-repeat="p in rel">{{p}}</option>
+                    <option ng-repeat="s in allRelation">{{s.name}}</option>
+                </select>
                 </form>
             </td>
+            <td>
 
-            <td>
-                <select ng-if="equality" class="selectpicker" ng-model="ticketequ">
-                <option   ng-repeat="t in ticketsforEqu">{{t.id}}  {{t.title}}</option>
-                </select>
-            </td>
-            <td>
-                <select ng-if="dependency" class="selectpicker" ng-model="ticketdep">
-                    <option   ng-repeat="t in ticketsforDep">{{t.id}}  {{t.title}}</option>
-                </select>
-            </td>
-            <td>
-                <select ng-if="regression" class="selectpicker" ng-model="ticketreg">
-                    <option   ng-repeat="t in ticketsforReg">{{t.id}}  {{t.title}}</option>
-                </select>
-            </td>
 
+                <select ng-show="relation == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+                <option   ng-repeat="t in ticketsforEqu"  ng-value="t.id">{{t.id}} - {{t.title}}</option>
+                </select>
+
+                <select ng-show="relation == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+                    <option   ng-repeat="y in ticketsforDep"  ng-value="y.id">{{y.id}} - {{y.title}}</option>
+                </select>
+
+                <select ng-show="relation == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
+                    <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
+                </select>
+
+                <select ng-show="relation != null && relation != 'equality' && relation != 'regression' && relation !== 'dependency' " class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+                    <option   ng-repeat="t in allTick" ng-value="t.id">{{t.id}} - {{t.title}}</option>
+                </select>
+
+            </td>
+           <td><button ng-disabled="formRel.$invalid" ng-click="createRel($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
 
         </tr>
         <tr ng-repeat = "t in ticketsDep">
@@ -82,10 +57,28 @@
 
             <td> {{t.title}} </td>
 
+            <td>
+
+                dependency
+            </td>
+            <td>
+
+
+                <select  class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+                    <option   ng-repeat="t in ticketsforDep" ng-value="t.id">{{t.id}} - {{t.title}}</option>
+                </select>
+
+
+            </td>
+            <td><button ng-disabled="formRel.$invalid" ng-click="createRelDep($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
+
+        </tr>
+
         </tr>
 
         </tbody>
     </table>
 
 </div>
-
+    </form>
+</div>

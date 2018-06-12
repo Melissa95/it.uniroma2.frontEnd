@@ -1,0 +1,31 @@
+
+<ng-include src="'html/sidenav.html'"></ng-include>
+
+<div ng-controller="ctrlNewRelation" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
+        <form name="createRelForm">
+            <div style="text-align: center;color:black" >
+
+                <table style="border-collapse: separate;padding-left: 20% ">
+                    <tr>
+                        <td><h5>Relation name</h5></td>
+                        <td> <input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="name"></td>
+                    </tr>
+
+                    <tr></tr>
+                    <tr>
+                       <td><h5>Is cyclic</h5></td>
+                        <td><input type="checkbox" style="width: 300px" class="btn btn-dark" ng-model="cyclic"></td>
+                    </tr>
+
+                    <tr></tr>
+
+                    <tr>
+                        <td></td>
+                        <td><button ng-disabled="createRelForm.$invalid" type="button" ng-click="createNewRel()" class="btn btn-dark">Submit</button></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
