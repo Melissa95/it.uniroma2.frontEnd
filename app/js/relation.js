@@ -42,7 +42,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
             }).catch(function() {
 
-                alert("Error getting relations");
+                alert("Error getting relations 1");
             });
 
 
@@ -313,28 +313,69 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                 + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
 
 
-            $http ({
+            $http({
                 method: 'POST',
                 url: url,
-                data : {},
+                data: {},
 
                 headers: {'Content-Type': 'application/json; charset=UTF-8'}
 
 
-
             }).then(function (response) {
 
-                if (response.status === 200){
+                if (response.status === 200) {
                     alert("Relation correctly created!");
                     $location.path("/homeCustomer");
                 }
 
-            }).catch(function() {
+            }).catch(function () {
 
                 alert("Creation failed!");
             });
 
-        }
+        } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {
+
+                console.log("sono nell'if ultimo" + $scope.relation + $scope.idChoose + $scope.ticketsNoRel[index].id);
+
+                var url = "http://localhost:8200/ticketingsystem/relationInstance/" + $scope.relation +"/" + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
+
+
+                $http ({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        relation: {
+                            name: $scope.relation
+                        },
+                        fatherTicket: {
+                            id: $scope.ticketsNoRel[index].id
+                        },
+                        sonTicket: {
+                            id: $scope.idChoose
+                        }
+
+                    },
+                    dataType: 'json',
+                    headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
+
+
+                }).then(function (response) {
+
+                    if (response.status === 201) {
+                        alert("Relation correctly created!");
+                        $location.path("/homeCustomer");
+                    }
+
+
+
+                }).catch(function() {
+
+                    //attivata se username è gia presente
+                    alert("Creation failed!");
+                });
+
+            }
     };
 
     $scope.createRelDep = function (index) {
