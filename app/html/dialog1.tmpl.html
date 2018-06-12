@@ -63,10 +63,10 @@
                                     {{y.id}} {{y.title}}
                                 </div></td>
                             </tr>
-                            <tr ng-repeat = "y in resp | filter: y.name">
+                            <tr ng-repeat = "y in relationName">
                                 <td>{{y.name}}</td>
-                                <td>
-                                    {{y.sonTicket.id}} {{y.sonTicket.title}}
+                                <td ng-repeat="rel in relTicket | filter: y.name:rel.name">
+                                    {{rel.sonTicket.id}} {{rel.sonTicket.title}}
                                 </td>
                             </tr>
                         </table>

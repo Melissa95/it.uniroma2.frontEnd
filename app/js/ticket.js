@@ -8,10 +8,12 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
     var idTick;
 
     $scope.ticket = null;
-    $scope.resp=null;
+    $scope.relTicket=null;
+    $scope.relationName=null;
 
-    $scope.findTicketRelation = function () {
+    /*$scope.findTicketRelation = function () {
 
+        console.log("sono in findTicketRelation");
 
         var urlRel = "http://localhost:8200/ticketingsystem/relationInstance/findSonTickets/" + $scope.ticket.id;
 
@@ -22,7 +24,7 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
         }).then(function (response) {
 
             if (response.status === 200) {
-                $scope.resp = response.data;
+                $scope.relTicket = response.data;
 
 
             }
@@ -35,7 +37,7 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
         });
 
 
-    };
+    };*/
 
 
     $scope.showDetails = function(param) {
@@ -82,8 +84,43 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
             if (response.status === 200) {
                 console.log("sono nella prima http");
                 $scope.ticket = response.data;
-                //$scope.findTicketRelation();
-            }
+                /*$scope.findTicketRelation();*/
+
+                var urlRelationName = "http://localhost:8200/ticketingsystem/relation";
+
+                $http ({
+                    method: 'GET',
+                    url: urlRelationName
+
+                }).then(function (response) {
+
+                    if (response.status === 200) {
+                        $scope.relationName = response.data;
+                    }
+                }).catch(function() {
+
+                    console.log("ERROR GETTING RELATION NAME");
+                    alert("Error getting relation's name");
+                });
+
+                var urlRel = "http://localhost:8200/ticketingsystem/relationInstance/findRelations/" + $scope.ticket.id;
+
+                $http ({
+                    method: 'GET',
+                    url: urlRel
+
+                }).then(function (response) {
+
+                    if (response.status === 200) {
+                        $scope.relTicket = response.data;
+                    }
+                }).catch(function() {
+
+                    console.log("ERROR GETTING RELATION");
+                    alert("Error getting relations 7");
+                });
+
+            };
 
         }).catch(function() {
 

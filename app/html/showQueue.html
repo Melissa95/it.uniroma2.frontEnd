@@ -1,0 +1,30 @@
+<body>
+
+<ng-include src="'html/sidenav.html'"></ng-include>
+
+
+<form name="prodShowQueue">
+    <div layout="column" style="text-align: center;color:white;padding-top: 7%;padding-left: 3%;padding-right: 3%" ng-controller="ctrlQueue" >
+
+
+        <table class="table table-dark" >
+            <thead>
+            <th> ID </th>
+            <th> Title </th>
+            <th> Description </th>
+            <th> Rank </th>
+            </thead>
+            <tr ng-repeat = "x in records">
+                <td> {{x.id}} </td>
+                <td> {{x.title}} </td>
+                <td> {{x.description}} </td>
+                <td>{{x.rank}}</td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</form>
+
+</body>

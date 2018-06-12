@@ -34,10 +34,16 @@ app.controller('ctrlSignIn', function($scope,$http,$location) {
              $location.path("/homeLogin");
          }
 
-      }).catch(function() {
-
+      }).catch(function(response) {
           //attivata se username è gia presente
-          alert("Error in registration");
+          if (response.status === 302) {
+              alert("Error: Username already exist");
+              $location.path("/homeSignIn");
+              $scope.username="";
+              $scope.password="";
+          }else {
+              alert("Error in registration");
+          }
       });
 
 

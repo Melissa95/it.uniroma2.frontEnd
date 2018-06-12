@@ -4,7 +4,7 @@ app.controller('ctrlNewRelation', function($scope, $http) {
     $scope.cyclic = false;
 
     $scope.createNewRel = function() {
-        var url = "http://localhost:8200/ticketingsystem/relation";
+        var url = "http://localhost:8200/ticketingsystem/relation/" + $scope.name;
 
 
         $http({

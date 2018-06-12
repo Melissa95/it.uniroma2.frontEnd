@@ -67,7 +67,20 @@ app.config(function($routeProvider,$mdThemingProvider) {
             controller:"ctrlNewRelation",
             requiresAuthentication: true,
             permission: ["admin"]
+        })
+        .when("/defineEscalation",{
+            templateUrl: "html/defineEscalation.html",
+            controller:"ctrlEscalation",
+            requiresAuthentication: true,
+            permission: ["admin"]
+        })
+        .when("/showQueue",{
+            templateUrl: "html/showQueue.html",
+            controller:"ctrlQueue",
+            requiresAuthentication: true,
+            permission: ["admin"]
         });
+
 
 
     $mdThemingProvider.theme('red')

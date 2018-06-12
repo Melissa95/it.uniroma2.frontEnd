@@ -1,0 +1,41 @@
+<ng-include src="'html/sidenav.html'"></ng-include>
+
+<div ng-controller="ctrlEscalation" style="padding-left:20%;padding-top: 3%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
+        <form name="escalationForm" style="padding-left: auto">
+            <div style="text-align: center;color:black">
+
+                <h2 style="padding-left: 5%">Define escalation of ticket in queue</h2>
+                <table style="border-collapse: separate;padding-left: 10% ">
+                    <tr>
+                        <td><h5>Weight of customer priority</h5></td>
+
+                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model="customerPriority"></td>
+
+                    </tr>
+                    <tr>
+                        <td><h5>Weight of team priority</h5></td>
+
+                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model=" teamPriority"></td>
+
+                    </tr>
+                    </br>
+
+
+                    </tr>
+                    <tr>
+                        <td><h5>Weight of waiting time</h5></td>
+                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model=" time"></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button ng-disabled="regForm.$invalid" ng-click="defineEscalation()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
