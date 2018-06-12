@@ -3,29 +3,43 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
     $scope.priority = ["1","2","3","4","5"];
     $scope.targ;
 
+    var present = false;
 
-    /*$scope.showDetails = function () {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'modal-form.html',
-            controller: ModalInstanceCtrl,
-            scope: $scope,
-            resolve: {
-                userForm: function () {
-                    return $scope.userForm;
-                }
+    var idTick;
+
+    $scope.ticket = null;
+    $scope.resp=null;
+
+    $scope.findTicketRelation = function () {
+
+
+        var urlRel = "http://localhost:8200/ticketingsystem/relationInstance/findSonTickets/" + $scope.ticket.id;
+
+        $http ({
+            method: 'GET',
+            url: urlRel
+
+        }).then(function (response) {
+
+            if (response.status === 200) {
+                $scope.resp = response.data;
+
+
             }
 
+
+        }).catch(function() {
+
+            console.log("ERROR GETTING RELATION");
+            alert("Error getting relations 7");
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
-        }, function () {
-            //codice
-        });
-    };*/
+
+    };
 
 
-    $scope.showDetails = function() {
+    $scope.showDetails = function(param) {
+        idTick = param;
         $mdDialog.show({
             controller: DialogController,
             templateUrl: 'html/dialog1.tmpl.html',
@@ -33,20 +47,20 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
             //targetEvent: ev,
             clickOutsideToClose:true
 
-
         })
             .then(function(answer) {
-
                 $scope.status = 'You said the information was "' + answer + '".';
             }, function() {
                 $scope.status = 'You cancelled the dialog.';
             });
     };
 
-    function DialogController($scope, $mdDialog) {
+
+    function DialogController($scope, $mdDialog,$http) {
         $scope.hide = function() {
             $mdDialog.hide();
         };
+        console.log("ctrl"+ idTick);
 
         $scope.cancel = function() {
             $mdDialog.cancel();
@@ -55,10 +69,34 @@ app.controller('ctrlTicket',['$scope','$http','$sessionStorage','$location', '$u
         $scope.answer = function(answer) {
             $mdDialog.hide(answer);
         };
+
+        var url = "http://localhost:8200/ticketingsystem/ticket/" + idTick;
+
+        $http ({
+            method: 'GET',
+            url: url
+
+
+        }).then(function (response) {
+
+            if (response.status === 200) {
+                console.log("sono nella prima http");
+                $scope.ticket = response.data;
+                //$scope.findTicketRelation();
+            }
+
+        }).catch(function() {
+
+              alert("error in show details");
+        });
+        //$scope.findTicketRelation();
+
+
     }
 
 
 
+    //$scope.findTicketRelation();
 
     $scope.createTick=function () {
 

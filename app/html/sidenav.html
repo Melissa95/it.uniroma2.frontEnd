@@ -6,11 +6,12 @@
                     md-disable-backdrop md-whiteframe="4" style="background-color: #111">
 
             <md-toolbar class="md-theme-indigo" style="background-color: #111">
-                <h1 class="md-toolbar-tools">Ticketing System
-                <md-button ng-click="toggleLeft()" class="fa fa-close" style="color: white;padding-left: 40%">
+                <table>
+                <tr><td><h1  class="md-toolbar-tools">Ticketing System</h1></td>
+                <td><div style="padding-left: 40%" ><md-button ng-click="toggleLeft()" class="fa fa-close" style="color: white">
 
-                </md-button></h1>
-
+                </md-button></div></td></tr>
+                </table>
             </md-toolbar>
 
             <!--<md-content layout-margin>
@@ -38,7 +39,7 @@
                     </md-toolbar>
                     <div ng-class="{dataContent:true, activeContent:data.expanded}">
                         <!--<div style="padding:10px" ng-bind="data.content"></div>-->
-                        <md-button style="background-color: #111;color: white;text-transform: capitalize" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}}  class="md-toolbar-tools">{{d.name}} </md-button>
+                        <md-button style="background-color: #111;color: white;text-transform: capitalize;font-size: medium;padding-left: 10%" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}}  class="md-toolbar-tools">{{d.name}} </md-button>
 
 
                     </div>
