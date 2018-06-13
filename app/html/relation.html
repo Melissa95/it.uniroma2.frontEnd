@@ -19,36 +19,13 @@
         <tr ng-repeat = "t in ticketsNoRel" >
             <td> {{t.id}}</td>
             <td> {{t.title}} </td>
+
+            <td><dir-select-relation> </dir-select-relation></td>
+            <td><dir-select-ticket> </dir-select-ticket></td>
             <td>
-
-                <form  name="myForm">
-                <select  style="color: white" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
-                    <option  ng-repeat="p in rel">{{p}}</option>
-                    <option ng-repeat="s in allRelation">{{s.name}}</option>
-                </select>
-                </form>
+                <button ng-disabled="formRel.$invalid" ng-click="createRel($index,null)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button>
             </td>
-            <td>
 
-
-                <select ng-show="relation == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
-                <option   ng-repeat="t in ticketsforEqu"  ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                </select>
-
-                <select ng-show="relation == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
-                    <option   ng-repeat="y in ticketsforDep"  ng-value="y.id">{{y.id}} - {{y.title}}</option>
-                </select>
-
-                <select ng-show="relation == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
-                    <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                </select>
-
-                <select ng-show="relation != null && relation != 'equality' && relation != 'regression' && relation !== 'dependency' " class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
-                    <option   ng-repeat="t in allTick" ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                </select>
-
-            </td>
-           <td><button ng-disabled="formRel.$invalid" ng-click="createRel($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
 
         </tr>
         <tr ng-repeat = "t in ticketsDep">

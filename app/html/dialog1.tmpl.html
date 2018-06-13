@@ -2,7 +2,7 @@
 <md-dialog aria-label="Details ticket">
     <form>
         <md-toolbar>
-            <div class="md-toolbar-tools" style="background-color: #111">
+            <div class="md-toolbar-tools" style="background-color: #1d2124">
                 <h2>Details ticket</h2>
                 <span flex></span>
                 <md-button ng-click="cancel()" class="fa fa-close" style="color: white" >
@@ -14,8 +14,8 @@
             <md-tabs md-dynamic-height  md-border-bottom>
                 <md-tab label="Details">
                     <md-content class="md-padding">
-                        <table class="table table-light">
-                            <tr> <td>ID</td>
+                       <table class="table table-light">
+                         <tr> <td>ID</td>
                                 <td> {{ticket.id}} </td>
                             </tr>
                             <tr> <td>Title</td>
@@ -49,7 +49,7 @@
                 </md-tab>
                 <md-tab label="show relations">
                     <md-content class="md-padding">
-                        <table class="table table-light">
+                      <table class="table table-light">
                             <tr> <td>Equivalence</td>
                                 <td> {{ticket.sameTicket.id}} {{ticket.sameTicket.title}} </td>
                             </tr>
@@ -72,40 +72,26 @@
                         </table>
                     </md-content>
                 </md-tab>
-
+<div ng-controller="ctrlRelation">
                 <md-tab label="create relation">
                     <md-content class="md-padding">
-                        <form  name="myForm">
-                            <select  style="color: white" class="btn btn-dark" ng-model ="relation" ng-click="valueRelation(relation)">
-                                <option ng-repeat="p in rel">{{p}}</option>
-                                <option ng-repeat="s in allRelation">{{s.name}}</option>
-                            </select>
-                        </form>
-                        </td>
-                        <td>
+                        <table align="center" class="table table-dark">
+                        <thead>
+                        <th>Choose a relation</th>
+                        <th>Choose a ticket</th>
+                        </thead>
+                       <tr>
 
+                        <td><dir-select-relation > </dir-select-relation></td>
+                        <td><dir-select-ticket> </dir-select-ticket></td>
+                           <td><button ng-click="createRel(null,ticket.id)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
 
-                            <select ng-show="relation == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
-                                <option   ng-repeat="t in ticketsforEqu"  ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                            </select>
-
-                            <select ng-show="relation == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
-                                <option   ng-repeat="y in ticketsforDep"  ng-value="y.id">{{y.id}} - {{y.title}}</option>
-                            </select>
-
-                            <select ng-show="relation == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
-                                <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                            </select>
-
-                            <select ng-show="relation != null && relation != 'equality' && relation != 'regression' && relation !== 'dependency' " class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
-                                <option   ng-repeat="t in allTick" ng-value="t.id">{{t.id}} - {{t.title}}</option>
-                            </select>
-
-                        </td>
-                        <td><button ng-disabled="formRel.$invalid" ng-click="createRel($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
+                      </tr>
+                        </table>
 
                     </md-content>
                 </md-tab>
+</div>
 
             </md-tabs>
         </md-dialog-content>
@@ -118,11 +104,8 @@
 
             <span flex></span>
 
-            <md-button ng-click="answer('not useful')" >
-                Not Useful
-            </md-button>
-            <md-button ng-click="answer('useful')" style="margin-right:20px;" >
-                Useful
+            <md-button ng-click="answer('not useful')" style="margin-right:20px;" >
+                Close
             </md-button>
         </md-dialog-actions>
     </form>

@@ -18,6 +18,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
 
 
+
        $scope.rel = ["equality","dependency","regression"];
 
 
@@ -241,14 +242,19 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
         $scope.idChoose = id;
     };
 
-    $scope.createRel = function (index) {
-        console.log("dati" + " " +  $scope.relation +  " " + $scope.idChoose + " " + $scope.ticketsNoRel[index].id );
+    $scope.createRel = function (index,id) {
 
+        var choosen;
+        if (index != null) {
+            choosen = $scope.ticketsNoRel[index].id;
+        }else if (id != null) {
+            choosen = id;
+        }
         if ($scope.relation==='equality') {
 
             console.log("sono nell'if equality");
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/" + $scope.ticketsNoRel[index].id;
+            var url = "http://localhost:8200/ticketingsystem/ticket/" + choosen;
 
 
             $http ({
@@ -282,7 +288,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
             console.log("sono nell'if dependency");
 
             var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/"
-                + $scope.idChoose + "/" + $scope.ticketsNoRel[index].id;
+                + $scope.idChoose + "/" + choosen;
 
 
             $http ({
@@ -310,7 +316,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
             console.log("sono nell'if regression");
 
             var url = "http://localhost:8200/ticketingsystem/ticket/addRegression/"
-                + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
+                + choosen + "/" + $scope.idChoose;
 
 
             $http({
@@ -335,9 +341,8 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
         } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {
 
-                console.log("sono nell'if ultimo" + $scope.relation + $scope.idChoose + $scope.ticketsNoRel[index].id);
 
-                var url = "http://localhost:8200/ticketingsystem/relationInstance/" + $scope.relation +"/" + $scope.ticketsNoRel[index].id + "/" + $scope.idChoose;
+                var url = "http://localhost:8200/ticketingsystem/relationInstance/" + $scope.relation +"/" + choosen + "/" + $scope.idChoose;
 
 
                 $http ({
@@ -348,7 +353,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                             name: $scope.relation
                         },
                         fatherTicket: {
-                            id: $scope.ticketsNoRel[index].id
+                            id: choosen
                         },
                         sonTicket: {
                             id: $scope.idChoose
