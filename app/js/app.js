@@ -2,6 +2,7 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('myApp', ['ngRoute','ngResource','AuthServices','ngAnimate','ui.bootstrap','ngMaterial']);
 
+
 app.config(function($routeProvider,$mdThemingProvider) {
     $routeProvider
         .when("/", {

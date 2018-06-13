@@ -1,5 +1,6 @@
 app.controller('DialogController',['$scope','myService','$mdDialog','$http',function($scope,myService,$mdDialog,$http){
 
+
     $scope.hide = function() {
         $mdDialog.hide();
     };

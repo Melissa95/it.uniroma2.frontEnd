@@ -109,6 +109,7 @@ app.controller('ctrlTicket',['$scope','myService','$http','$sessionStorage','$lo
 
 
         $http ({
+
             method: 'GET',
             url: url,
             dataType: 'json',

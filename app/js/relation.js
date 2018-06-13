@@ -1,5 +1,4 @@
 
-
 app.controller('ctrlRelation', function( $scope, $http, $location) {
 
         //ticket NEW & having no relations
