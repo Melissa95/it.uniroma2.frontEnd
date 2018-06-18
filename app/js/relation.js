@@ -271,7 +271,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
                 if (response.status === 200) {
                     alert("Relation correctly created!");
-                    $location.path("/homeCustomer");
+                    $location.path("/showAllTickets");
                 }
 
 
@@ -299,13 +299,15 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
                 if (response.status === 200){
                     alert("Relation correctly created!");
-                    $location.path("/homeCustomer");
+                    $location.path("/showAllTickets");
                 }
 
             }).catch(function(response) {
 
                 if (response.status === 424){
-                    alert("Creation failed!");
+                    var cicle = "" + response.data[0].id;
+                    for(var i=1; i<response.data.length; i++) {cicle += ", " + response.data[i].id;}
+                    alert("Creation failed due to this cycle: " + cicle);
                 }
 
             });
@@ -330,7 +332,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
                 if (response.status === 200) {
                     alert("Relation correctly created!");
-                    $location.path("/homeCustomer");
+                    $location.path("/showAllTickets");
                 }
 
             }).catch(function () {
@@ -368,7 +370,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
                     if (response.status === 201) {
                         alert("Relation correctly created!");
-                        $location.path("/homeCustomer");
+                        $location.path("/showAllTickets");
                     }
 
 
@@ -398,7 +400,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
             if (response.status === 200){
                 alert("Relation correctly created!");
-                $location.path("/homeCustomer");
+                $location.path("/showAllTickets");
             }
 
         }).catch(function(response) {
