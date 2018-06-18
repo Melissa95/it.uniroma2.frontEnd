@@ -304,10 +304,19 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
             }).catch(function(response) {
 
-                if (response.status === 424){
-                    var cicle = "" + response.data[0].id;
-                    for(var i=1; i<response.data.length; i++) {cicle += ", " + response.data[i].id;}
-                    alert("Creation failed due to this cycle: " + cicle);
+                if (response.status === 424) {
+                    if (response.data.length === 0) {
+                        alert("Reflective relation is forbidden");
+                        $location.path("/showAllTickets");
+                    } else {
+                        var cicle = "" + response.data[0].id;
+                        for (var i = 1; i < response.data.length; i++) {
+                            cicle += ", " + response.data[i].id;
+                        }
+                        alert("Creation failed due to this cycle: " + cicle);
+                        $location.path("/showAllTickets");
+
+                    }
                 }
 
             });
@@ -338,6 +347,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
             }).catch(function () {
 
                 alert("Creation failed!");
+                $location.path("/showAllTickets");
             });
 
         } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {
@@ -375,10 +385,22 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
 
 
-                }).catch(function() {
+                }).catch(function(response) {
 
-                    //attivata se username è gia presente
-                    alert("Creation failed!");
+                    if (response.status === 424) {
+                        if (response.data.length === 0) {
+                            alert("Reflective relation is forbidden");
+                            $location.path("/showAllTickets");
+                        } else {
+                            var cicle = "" + response.data[0].id;
+                            for (var i = 1; i < response.data.length; i++) {
+                                cicle += ", " + response.data[i].id;
+                            }
+                            alert("Creation failed due to this cycle: " + cicle);
+                            $location.path("/showAllTickets");
+
+                        }
+                    }
                 });
 
             }
@@ -405,8 +427,19 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
         }).catch(function(response) {
 
-            if (response.status === 424){
-                alert("Creation failed!");
+            if (response.status === 424) {
+                if (response.data.length === 0) {
+                    alert("Reflective relation is forbidden");
+                    $location.path("/showAllTickets");
+                } else {
+                    var cicle = "" + response.data[0].id;
+                    for (var i = 1; i < response.data.length; i++) {
+                        cicle += ", " + response.data[i].id;
+                    }
+                    alert("Creation failed due to this cycle: " + cicle);
+                    $location.path("/showAllTickets");
+
+                }
             }
 
         });

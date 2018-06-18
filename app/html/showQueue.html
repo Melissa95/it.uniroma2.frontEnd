@@ -12,12 +12,14 @@
             <th> ID </th>
             <th> Title </th>
             <th> Description </th>
+            <th> Date Starting Pending</th>
             <th> Rank </th>
             </thead>
             <tr ng-repeat = "x in records">
                 <td> {{x.id}} </td>
                 <td> {{x.title}} </td>
                 <td> {{x.description}} </td>
+                <td> {{x.datePendingStart}}</td>
                 <td>{{x.rank}}</td>
             </tr>
 

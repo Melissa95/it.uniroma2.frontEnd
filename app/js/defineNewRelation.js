@@ -1,4 +1,4 @@
-app.controller('ctrlNewRelation', function($scope, $http) {
+app.controller('ctrlNewRelation', function($scope, $http, $location) {
 
 
     $scope.cyclic = false;
@@ -21,11 +21,16 @@ app.controller('ctrlNewRelation', function($scope, $http) {
 
         }).then(function (response) {
 
-            if (response.status === 201) alert("relation created with success")
+            if (response.status === 201) {
+                alert("relation created with success");
+                $location.path("/relation");
+            }
 
-        }).catch(function () {
-
-            alert("Error in relation's creation");
+        }).catch(function (response) {
+            if (response.status === 302) {
+                alert("Error in relation's creation");
+                $location.path("/defineNewRelation");
+            }
         });
 
     }
