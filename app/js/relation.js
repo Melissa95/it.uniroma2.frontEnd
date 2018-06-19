@@ -245,7 +245,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
         var choosen;
         if (index != null) {
-            choosen = $scope.ticketsNoRel[index].id;
+            choosen = $scope.allTick[index].id;
         }else if (id != null) {
             choosen = id;
         }
@@ -253,7 +253,7 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
             console.log("sono nell'if equality");
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/" + choosen;
+            var url = "http://localhost:8200/ticketingsystem/ticket/addEqualityTicket/" + choosen + "/" + $scope.idChoose;
 
 
             $http ({
@@ -276,10 +276,15 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
 
 
-            }).catch(function() {
+            }).catch(function(response) {
 
-                //attivata se username è gia presente
-                alert("Creation failed!");
+                if (response.status === 401) {
+                    alert("Creation failed: cannot create equality with the same ticket");
+                    $location.path("/relation");
+                } else {
+                    alert("Creation failed");
+                    $location.path("/relation");
+                }
             });
 
         }else if ($scope.relation=== 'dependency') {
@@ -307,14 +312,14 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                 if (response.status === 424) {
                     if (response.data.length === 0) {
                         alert("Reflective relation is forbidden");
-                        $location.path("/showAllTickets");
+                        $location.path("/relation");
                     } else {
                         var cicle = "" + response.data[0].id;
                         for (var i = 1; i < response.data.length; i++) {
                             cicle += ", " + response.data[i].id;
                         }
                         alert("Creation failed due to this cycle: " + cicle);
-                        $location.path("/showAllTickets");
+                        $location.path("/relation");
 
                     }
                 }
@@ -344,10 +349,12 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                     $location.path("/showAllTickets");
                 }
 
-            }).catch(function () {
+            }).catch(function (response) {
 
-                alert("Creation failed!");
-                $location.path("/showAllTickets");
+                if (response.status === 424) {
+                    alert(" Creation failed: cannot create regression with the same ticket");
+                    $location.path("/relation");
+                }
             });
 
         } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {

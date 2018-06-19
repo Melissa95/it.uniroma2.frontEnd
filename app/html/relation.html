@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat = "t in ticketsNoRel" >
+        <tr ng-repeat = "t in allTick" >
             <td> {{t.id}}</td>
             <td> {{t.title}} </td>
 
@@ -27,7 +27,7 @@
             </td>
 
         </tr>
-        <tr ng-repeat = "t in ticketsDep">
+        <!--<tr ng-repeat = "t in ticketsDep">
             <td> {{t.id}}
 
 
@@ -48,9 +48,7 @@
             </td>
             <td><button ng-disabled="formRel.$invalid" ng-click="createRelDep($index)" type="button" class="btn btn-dark" style="text-align: center">Create Relation</button></td>
 
-        </tr>
-
-        </tr>
+        </tr>-->
 
         </tbody>
     </table>
