@@ -2,21 +2,23 @@
 
 <div ng-controller="ctrlEscalation" style="padding-left:20%;padding-top: 3%">
     <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
-        <form name="escalationForm" style="padding-left: auto">
+        <form name="escalationForm"> <!--style="padding-left: auto"-->
             <div style="text-align: center;color:black">
 
                 <h2 style="padding-left: 5%">Define escalation of ticket in queue</h2>
-                <table style="border-collapse: separate;padding-left: 10% ">
+                <p style="padding-left: 5%">rank = a * customer priority + b * team priority + c * waiting time</p>
+                <div style="align-content: center; padding-left: 260px">
+                <table style="/*border-collapse: separate;padding-left: 10%*/ ">
                     <tr>
-                        <td><h5>Weight of customer priority</h5></td>
+                        <td><h5>a</h5></td>
 
-                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model="customerPriority"></td>
+                        <td><input style="width: 200px" class="btn btn-dark" type="number" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,2})?$" ng-required="true" ng-model="customerPriority"></td>
 
                     </tr>
                     <tr>
-                        <td><h5>Weight of team priority</h5></td>
+                        <td><h5>b</h5></td>
 
-                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model=" teamPriority"></td>
+                        <td><input style="width: 200px" class="btn btn-dark" type="number" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,2})?$" ng-required="true" ng-model=" teamPriority"></td>
 
                     </tr>
                     </br>
@@ -24,17 +26,17 @@
 
                     </tr>
                     <tr>
-                        <td><h5>Weight of waiting time</h5></td>
-                        <td><input style="width: 400px" class="btn btn-dark" type="number" ng-minlength="3" ng-required="true" ng-model=" time"></td>
+                        <td><h5>c</h5></td>
+                        <td><input style="width: 200px" class="btn btn-dark" type="number" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,2})?$" ng-required="true" ng-model=" time"></td>
                     </tr>
                     <tr>
-
                     </tr>
-                    <tr>
+                    <tr >
                         <td></td>
-                        <td><button ng-disabled="regForm.$invalid" ng-click="defineEscalation()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
+                        <td style="padding-top: 20px"><button ng-disabled="regForm.$invalid" ng-click="defineEscalation()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
                     </tr>
                 </table>
+                </div>
             </div>
         </form>
     </div>
