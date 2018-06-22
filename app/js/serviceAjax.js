@@ -126,7 +126,10 @@ app.service("myAjax", function($q,$http) {
 
     };
 
+    this.getTicketGantt = function(data) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/ticket/findTicketForGantt/teamUno" , data);
 
+    }
 
 
 

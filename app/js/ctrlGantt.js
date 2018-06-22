@@ -1,17 +1,55 @@
 'use strict';
 
 
-app.controller('MainGanttCtrl', function($scope) {
+app.controller('MainGanttCtrl', function($scope,myAjax) {
+
 
     $scope.tasks = {
-        data:[
-            {id:1, text:"Ticket", start_date:"01-06-2018", duration:18//,order:10
-               },
-            {id:2, text:"Task #1",    start_date:"02-06-2018", duration:8//, order:10
-               },
-            {id:3, text:"Task #2",    start_date:"11-06-2018", duration:8//, order:20
-               }
-        ]
+
+        data: []
+    };
+
+
+    $scope.getGantt = function() {
+
+
+        var init = function () {
+            var param = {};
+            var i,j;
+
+            myAjax.getTicketGantt(param).then(function (response) {
+
+                if (response.status === 200) {
+
+                    for(i = 0; i < response.data.length; i++) {
+
+                        var tick = {};
+
+                        tick.id = response.data[i].id;
+                        tick.text = response.data[i].title;
+                        tick.start_date = response.data[i].dateExecutionStart;
+                        tick.duration = response.data[i].durationEstimation;
+                        $scope.tasks.data.push(tick);
+
+                    }
+
+
+                }
+
+
+            }, function () {
+
+                alert("error in gantt");
+            });
         };
+
+        init();
+
+    };
+
+    $scope.getGantt();
+
+
+
 
 });
