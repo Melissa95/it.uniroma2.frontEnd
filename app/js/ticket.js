@@ -1,8 +1,8 @@
-app.controller('ctrlTicket',['$scope','myService','$http','$sessionStorage','$location', '$uibModal','$log','$mdDialog',function($scope,myService,$http,$sessionStorage,$location,$uibModal, $log,$mdDialog) {
+app.controller('ctrlTicket',['$scope','myService','$sessionStorage','$location', '$uibModal','$log','$mdDialog','myAjax',function($scope,myService,$sessionStorage,$location,$uibModal, $log,$mdDialog,myAjax) {
 
 
     $scope.priority = ["1","2","3","4","5"];
-    $scope.targ;
+    $scope.targ = null;
 
     var idTick;
 
@@ -33,15 +33,11 @@ app.controller('ctrlTicket',['$scope','myService','$http','$sessionStorage','$lo
 
     $scope.createTick=function () {
 
-        var url = "http://localhost:8200/ticketingsystem/ticket";
-
         var date = new Date();
 
-        $http ({
-            method: 'POST',
-            url: url,
-            dataType: 'json',
-            data: {
+
+        var init = function () {
+            var param = {
                 title: $scope.title,
                 category: $scope.category,
                 target: {id: $scope.target},
@@ -50,53 +46,51 @@ app.controller('ctrlTicket',['$scope','myService','$http','$sessionStorage','$lo
                 customer: { username: $sessionStorage.user.username},
                 "status": "new",
                 "dateStart":date.getDate() +"/" + date.getMonth() + "/" + date.getFullYear()
-            },
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+            };
+            myAjax.createTicket(param).then(function (response) {
 
+                //$scope.items = data;
+                if (response.status === 201) $location.path("/showMyTicket");
 
-        }).then(function (response) {
+            }, function () {
 
-            if (response.status === 201) $location.path("/showMyTicket");
+                alert("Error in ticket's creation");
+            });
+        };
 
-        }).catch(function() {
+        init();
 
-            alert("Error in ticket's creation");
-        });
 
 
     };
 
     $scope.showAllTickets = function () {
 
+        var param = {};
 
-        var url = "http://localhost:8200/ticketingsystem/ticket";
+        var init = function () {
 
+            myAjax.getTickets(param).then(function (response) {
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            params: "",
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                if (response.status === 200) {
+                    $scope.result = false;
 
-
-        }).then(function (response) {
-
-            if (response.status === 201)
-                $scope.result=false;
-
-            $scope.records = response.data;
-            console.log(response.data );
+                    $scope.records = response.data;
+                    console.log(response.data);
 
 
-            $scope.resultNegative=true;
+                    $scope.resultNegative = true;
+                }
+            }, function () {
 
-        }).catch(function() {
+                $scope.resultNegative=false;
 
-            $scope.resultNegative=false;
+                $scope.result=true;
+            });
+        };
 
-            $scope.result=true;
-        });
+        init();
+
 
     };
 
@@ -105,49 +99,37 @@ app.controller('ctrlTicket',['$scope','myService','$http','$sessionStorage','$lo
     $scope.showProducts = function () {
 
 
-        var url = "http://localhost:8200/ticketingsystem/target";
+        var param = {};
+
+        var init = function () {
+
+            myAjax.getTargets(param).then(function (response) {
+
+                if (response.status === 200) {
+                    $scope.targ = response.data;
+                    $scope.result = false;
+
+                    //$scope.records = response.data;
+                    console.log("id"+$scope.targ.id);
 
 
-        $http ({
+                    $scope.resultNegative = true;
+                }
+            }, function () {
 
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            params: "",
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                $scope.resultNegative=false;
 
+                $scope.result=true;
+            });
+        };
 
-        }).then(function (response) {
+        init();
 
-            if (response.status === 201)
-
-                $scope.result=false;
-
-            $scope.targ = response.data;
-            $scope.resultNegative=true;
-
-
-
-        }).catch(function() {
-            $scope.resultNegative=false;
-            $scope.result=true;
-
-        });
 
     };
 
     $scope.showProducts();
 
-    /*$scope.showDependency = function (index) {
-        console.log("sono nel dep");
-        if(document.getElementById(index).style.display === 'none') {
-            document.getElementById(index).style.display = 'block';
-        }else{
-            document.getElementById(index).style.display = 'none';
-        }
-
-
-    }*/
 
 
 }]);

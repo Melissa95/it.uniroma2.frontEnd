@@ -1,4 +1,4 @@
-app.controller('ctrlEscalation', function($scope, $http,$location) {
+app.controller('ctrlEscalation', function($scope,myAjax,$location) {
 
     console.log("sono nel controller");
     $scope.result = true;
@@ -9,43 +9,37 @@ app.controller('ctrlEscalation', function($scope, $http,$location) {
 
     $scope.defineEscalation = function () {
 
-        console.log("sono in define esclation");
 
-        var url = "http://localhost:8200/ticketingsystem/escalation";
-        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
-
-
-        $http({
-            method: 'POST',
-            url: url,
-            dataType: 'json',
-            data: {
+        var init = function () {
+            var param = {
                 customerPriority: $scope.customerPriority,
                 teamPriority: $scope.teamPriority,
                 time: $scope.time
+            };
+            myAjax.escalation(param).then(function (response) {
 
-            },
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                if (response.status === 200) {
+                    $scope.result = false;
+                    $scope.customerPriority = "";
+                    $scope.teamPriority = "";
+                    $scope.time = "";
+                    $scope.resultNegative = true;
+                    $location.path("/showQueue");
+
+                }
+            }, function () {
+
+                $scope.resultNegative = false;
+                $scope.customerPriority = "";
+                $scope.teamPriority = "";
+                $scope.time = "";
+                $scope.result = true;
+            });
+        };
+
+        init();
 
 
-        }).then(function (response) {
-
-            if (response.status === 201)
-                $scope.result = false;
-            $scope.customerPriority = "";
-            $scope.teamPriority = "";
-            $scope.time = "";
-            $scope.resultNegative = true;
-            $location.path("/showQueue");
-
-        }).catch(function () {
-
-            $scope.resultNegative = false;
-            $scope.customerPriority = "";
-            $scope.teamPriority = "";
-            $scope.time = "";
-            $scope.result = true;
-        });
 
 
     }

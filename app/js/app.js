@@ -39,8 +39,8 @@ app.config(function($routeProvider,$mdThemingProvider) {
             templateUrl: "html/modifyUser.html",
             controller: "ctrlModifyUser"
         })
-        .when("/showTargets",{
-            templateUrl: "html/showTargets.html",
+        .when("/getTargets",{
+            templateUrl: "html/getTargets.html",
             controller: "ctrlTarget",
             requiresAuthentication: true,
             permissions: ["admin"]
@@ -139,10 +139,10 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval) {
     $scope.accordianData = [
         { "heading" : [{"type":"Account","perm":"['customer','admin']"}],    "content" : [{"name":"Modify account","html":"#!/modifyUser","permission":"['admin','customer']"},{"name":"Sign Out","html":"#!/","permission":"['admin','customer']"}] },
         { "heading" : [{"type":"Ticket","perm":"['customer', 'admin']"}],     "content" : [{"name":"New Ticket","html":"#!/createTicket","permission":"['admin','customer']"},{"name":"My Tickets","html":"#!/showMyTicket","permission":"['admin','customer']"},{"name":"All tickets","html":"#!/showAllTickets","permission":"['admin']"}]},
-        { "heading" : [{"type":"Target","perm":"['admin']"}],             "content" : [{"name":"New Target","html":"#!/insertTarget","permission":"['admin']"},{"name":"All targets","html":"#!/showTargets","permission":"['admin']"}] },
+        { "heading" : [{"type":"Target","perm":"['admin']"}],             "content" : [{"name":"New Target","html":"#!/insertTarget","permission":"['admin']"},{"name":"All targets","html":"#!/getTargets","permission":"['admin']"}] },
         { "heading" : [{"type":"Relation","perm":"['admin']"}],   "content" : [{"name":"define new relation","html":"#!/defineNewRelation","permission":"['admin']"},{"name":"create relation","html":"#!/relation","permission":"['admin']"}] },
         { "heading" : [{"type":"Escalation","perm":"['admin']"}],   "content" : [{"name":"define escalation","html":"#!/defineEscalation","permission":"['admin']"},{"name":"show queue","html":"#!/showQueue","permission":"['admin']"}] },
-        { "heading" : [{"type":"Schedule","perm":"['customer','admin']"}],   "content" : [{"name":"gantt","html":"#!/gantt","permission":"['admin','customer']"}] }
+        { "heading" : [{"type":"Schedule","perm":"['admin']"}],   "content" : [{"name":"gantt","html":"#!/gantt","permission":"['admin']"}] }
 
 
     ];

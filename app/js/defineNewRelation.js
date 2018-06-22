@@ -1,37 +1,34 @@
-app.controller('ctrlNewRelation', function($scope, $http, $location) {
+app.controller('ctrlNewRelation', function($scope, myAjax, $location) {
 
 
     $scope.cyclic = false;
 
     $scope.createNewRel = function() {
-        var url = "http://localhost:8200/ticketingsystem/relation/" + $scope.name;
 
 
-        $http({
-            method: 'POST',
-            url: url,
-            dataType: 'json',
-            data: {
+        var init = function () {
+            var param = {
                 name: $scope.name,
                 cyclic: $scope.cyclic
+            };
+            myAjax.newRelation(param).then(function (response) {
 
-            },
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                if (response.status === 201) {
+                    alert("relation created with success");
+                    $location.path("/relation");
+                }
 
 
-        }).then(function (response) {
+            }, function (err) {
 
-            if (response.status === 201) {
-                alert("relation created with success");
-                $location.path("/relation");
-            }
+                if (err.status === 302) {
+                    alert("Error in relation's creation");
+                    $location.path("/defineNewRelation");
+                }
+            });
+        };
 
-        }).catch(function (response) {
-            if (response.status === 302) {
-                alert("Error in relation's creation");
-                $location.path("/defineNewRelation");
-            }
-        });
+        init();
 
     }
 

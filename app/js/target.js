@@ -1,5 +1,5 @@
 
-app.controller('ctrlTarget', function($scope, $http,$location) {
+app.controller('ctrlTarget', function($scope,myAjax,$location) {
 
     console.log("sono nel controller");
     $scope.result = true;
@@ -10,87 +10,71 @@ app.controller('ctrlTarget', function($scope, $http,$location) {
 
     $scope.insertProduct = function() {
 
-        console.log("sono in insert product");
 
-        var url = "http://localhost:8200/ticketingsystem/target";
-        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
-
-
-        $http ({
-            method: 'POST',
-            url: url,
-            dataType: 'json',
-            data: {
+        var init = function () {
+            var param = {
                 name: $scope.name,
                 version: $scope.version,
                 description: $scope.description
+            };
+            myAjax.createTarget(param).then(function (response) {
 
-            },
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                //$scope.items = data;
+                if (response.status === 200) {
+                    $scope.result = false;
+                    $scope.name = "";
+                    $scope.version = "";
+                    $scope.description = "";
+                    $scope.resultNegative = true;
+                    $location.path("/getTargets");
+                }
 
+            }, function () {
 
-        }).then(function (response) {
-
-            if (response.status === 201)
-                $scope.result=false;
+                $scope.resultNegative=false;
                 $scope.name="";
                 $scope.version="";
                 $scope.description="";
-                $scope.resultNegative=true;
-                $location.path("/showTargets");
+                $scope.result=true;
+            });
+        };
 
-        }).catch(function() {
-
-            $scope.resultNegative=false;
-            $scope.name="";
-            $scope.version="";
-            $scope.description="";
-            $scope.result=true;
-        });
+        init();
 
 
 
-    }
+    };
 
 
     $scope.showProducts = function () {
 
-        console.log("sono in show product " );
+        var param = {};
 
-        var url = "http://localhost:8200/ticketingsystem/target";
+        var init = function () {
 
-        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
+            myAjax.getTargets(param).then(function (response) {
 
-        //var records;
+                if (response.status === 200) {
+                    $scope.result = false;
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            params: "",
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                    $scope.records = response.data;
+                    console.log(response.data);
 
 
-        }).then(function (response) {
+                    $scope.resultNegative = true;
+                }
+            }, function () {
 
-            if (response.status === 201)
-                $scope.result=false;
+                $scope.resultNegative=false;
 
-            $scope.records = response.data;
-            console.log(response.data );
+                $scope.result=true;
+            });
+        };
+
+        init();
 
 
-            $scope.resultNegative=true;
-
-        }).catch(function() {
-
-            $scope.resultNegative=false;
-
-            $scope.result=true;
-        });
-
-    }
-    console.log("sono dopo show product");
+    };
 
     $scope.showProducts();
 

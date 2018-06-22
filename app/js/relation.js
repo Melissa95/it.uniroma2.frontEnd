@@ -1,10 +1,7 @@
 
-app.controller('ctrlRelation', function( $scope, $http, $location) {
+app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
-        //ticket NEW & having no relations
-        $scope.ticketsNoRel = null;
-        //ticket already having a dependency
-        $scope.ticketsDep = null;
+
         //tickets available for dependency
         $scope.ticketsforDep=null;
         //tickets available for equality
@@ -23,27 +20,22 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
          $scope.getAllRelation = function() {
 
+             var init = function () {
+                 var param = {};
 
-            var url = "http://localhost:8200/ticketingsystem/relation";
+                 myAjax.getAllRel(param).then(function (response) {
 
+                     //$scope.items = data;
+                     if (response.status === 200)
+                         $scope.allRelation =  response.data;
 
-            $http ({
-                method: 'GET',
-                url: url,
-                dataType: 'json',
-                headers: {'Content-Type': 'charset=UTF-8'}
+                 }, function () {
 
+                     alert("Error getting relations ");
+                 });
+             };
 
-            }).then(function (response) {
-
-                if (response.status === 200)
-                    $scope.allRelation =  response.data;
-
-
-            }).catch(function() {
-
-                alert("Error getting relations 1");
-            });
+             init();
 
 
 
@@ -52,108 +44,28 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
          $scope.getAllRelation();
 
-        //returns tickets NEW & having no relations
-        $scope.getTicket = function() {
-
-
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketNoRelation";
-
-
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
-
-
-        }).then(function (response) {
-
-            if (response.status === 200)
-                $scope.ticketsNoRel =  response.data;
-                /*$scope.tickets =  $scope.tickets  || [
-                   response
-
-                ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
-
-
-
-    };
-
-    $scope.getTicket();
-
-
-
-    //returns ticket already having a dependency
-    $scope.getTicketDep = function() {
-
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketDependency";
-
-
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
-
-
-        }).then(function (response) {
-
-            if (response.status === 200)
-                $scope.ticketsDep =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
-
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
-
-
-
-    };
-
-    $scope.getTicketDep();
-
-
 
     //returns tickets available for dependency
     $scope.getTicketForDependency = function() {
 
 
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateDependency";
+        var init = function () {
+            var param = {};
 
+            myAjax.getTicketForDep(param).then(function (response) {
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
+                //$scope.items = data;
+                if (response.status === 200)
+                    console.log("ticket" + response.data[0].id);
+                    $scope.ticketsforDep =  response.data;
 
+            }, function () {
 
-        }).then(function (response) {
+                alert("Error getting tickets");
+            });
+        };
 
-            if (response.status === 200)
-                $scope.ticketsforDep =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
-
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
-
+        init();
 
 
     };
@@ -162,32 +74,22 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
     $scope.getTicketForRegression = function() {
 
 
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateRegression";
+        var init = function () {
+            var param = {};
 
+            myAjax.getTicketForReg(param).then(function (response) {
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
+                //$scope.items = data;
+                if (response.status === 200)
+                    $scope.ticketsforReg =  response.data;
 
+            }, function () {
 
-        }).then(function (response) {
+                alert("Error getting tickets");
+            });
+        };
 
-            if (response.status === 200)
-                $scope.ticketsforReg =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
-
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
-
-
+        init();
 
     };
 
@@ -195,30 +97,23 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
     $scope.getTicketForEquality = function() {
 
 
-        var url = "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateEquality";
 
+        var init = function () {
+            var param = {};
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            headers: {'Content-Type': 'charset=UTF-8'}
+            myAjax.getTicketForEqual(param).then(function (response) {
 
+                //$scope.items = data;
+                if (response.status === 200)
+                    $scope.ticketsforEqu =  response.data;
 
-        }).then(function (response) {
+            }, function () {
 
-            if (response.status === 200)
-                $scope.ticketsforEqu =  response.data;
-            /*$scope.tickets =  $scope.tickets  || [
-               response
+                alert("Error getting tickets");
+            });
+        };
 
-            ];*/
-
-        }).catch(function() {
-
-            //attivata se username è gia presente
-            alert("Error getting tickets");
-        });
+        init();
 
 
 
@@ -243,165 +138,133 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
 
     $scope.createRel = function (index,id) {
 
-        var choosen;
+        var choosenTable;
         if (index != null) {
-            choosen = $scope.allTick[index].id;
+            choosenTable = $scope.allTick[index].id;
         }else if (id != null) {
-            choosen = id;
+            choosenTable = id;
         }
         if ($scope.relation==='equality') {
 
-            console.log("sono nell'if equality");
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/addEqualityTicket/" + choosen + "/" + $scope.idChoose;
-
-
-            $http ({
-                method: 'PUT',
-                url: url,
-                data: {
+            var init = function () {
+                var param = {
                     sameTicket: { id: $scope.idChoose}
-                },
-                dataType: 'json',
-                headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                };
+                myAjax.putRelationEqual(param,choosenTable).then(function (response) {
+
+                    if (response.status === 200) {
+                        alert("Relation correctly created!");
+                        $location.path("/showAllTickets");
+                    }
 
 
+                }, function (err) {
 
-            }).then(function (response) {
+                    if (err.status === 401) {
+                        alert("Creation failed: cannot create equality with the same ticket");
+                        $location.path("/relation");
+                    } else {
+                        alert("Creation failed");
+                        $location.path("/relation");
+                    }
+                });
+            };
 
-                if (response.status === 200) {
-                    alert("Relation correctly created!");
-                    $location.path("/showAllTickets");
-                }
-
-
-
-            }).catch(function(response) {
-
-                if (response.status === 401) {
-                    alert("Creation failed: cannot create equality with the same ticket");
-                    $location.path("/relation");
-                } else {
-                    alert("Creation failed");
-                    $location.path("/relation");
-                }
-            });
+            init();
 
         }else if ($scope.relation=== 'dependency') {
 
-            console.log("sono nell'if dependency");
 
-            var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/"
-                + $scope.idChoose + "/" + choosen;
+            var init = function () {
+                var param = {};
+                myAjax.putRelationDep(param,choosenTable,$scope.idChoose).then(function (response) {
 
-
-            $http ({
-                method: 'POST',
-                url: url
-
-
-            }).then(function (response) {
-
-                if (response.status === 200){
-                    alert("Relation correctly created!");
-                    $location.path("/showAllTickets");
-                }
-
-            }).catch(function(response) {
-
-                if (response.status === 424) {
-                    if (response.data.length === 0) {
-                        alert("Reflective relation is forbidden");
-                        $location.path("/relation");
-                    } else {
-                        var cicle = "" + response.data[0].id;
-                        for (var i = 1; i < response.data.length; i++) {
-                            cicle += ", " + response.data[i].id;
-                        }
-                        alert("Creation failed due to this cycle: " + cicle);
-                        $location.path("/relation");
-
+                    if (response.status === 200){
+                        alert("Relation correctly created!");
+                        $location.path("/showAllTickets");
                     }
-                }
 
-            });
+
+                }, function (err) {
+
+                    if (err.status === 424) {
+                        if (err.data.length === 0) {
+                            alert("Reflective relation is forbidden");
+                            $location.path("/relation");
+                        } else {
+                            var cicle = "" + err.data[0].id;
+                            for (var i = 1; i < err.data.length; i++) {
+                                cicle += ", " + err.data[i].id;
+                            }
+                            alert("Creation failed due to this cycle: " + cicle);
+                            $location.path("/relation");
+
+                        }
+                    }
+                });
+            };
+
+            init();
 
         } else if ($scope.relation==='regression') {
 
-            console.log("sono nell'if regression");
-
-            var url = "http://localhost:8200/ticketingsystem/ticket/addRegression/"
-                + choosen + "/" + $scope.idChoose;
 
 
-            $http({
-                method: 'POST',
-                url: url,
-                data: {},
+            var init = function () {
+                var param = {};
+                myAjax.putRelationRegression(param,choosenTable,$scope.idChoose).then(function (response) {
 
-                headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                    if (response.status === 200) {
+                        alert("Relation correctly created!");
+                        $location.path("/showAllTickets");
+                    }
 
 
-            }).then(function (response) {
+                }, function (err) {
 
-                if (response.status === 200) {
-                    alert("Relation correctly created!");
-                    $location.path("/showAllTickets");
-                }
+                    if (err.status === 424) {
+                        alert(" Creation failed: cannot create regression with the same ticket");
+                        $location.path("/relation");
+                    }
+                });
+            };
 
-            }).catch(function (response) {
-
-                if (response.status === 424) {
-                    alert(" Creation failed: cannot create regression with the same ticket");
-                    $location.path("/relation");
-                }
-            });
+            init();
 
         } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {
 
 
-                var url = "http://localhost:8200/ticketingsystem/relationInstance/" + $scope.relation +"/" + choosen + "/" + $scope.idChoose;
 
-
-                $http ({
-                    method: 'POST',
-                    url: url,
-                    data: {
-                        relation: {
-                            name: $scope.relation
-                        },
-                        fatherTicket: {
-                            id: choosen
-                        },
-                        sonTicket: {
-                            id: $scope.idChoose
-                        }
-
+            var init = function () {
+                var param = {
+                    relation: {
+                        name: $scope.relation
                     },
-                    dataType: 'json',
-                    headers: {'Content-Type': 'application/json; charset=UTF-8'}
-
-
-
-                }).then(function (response) {
+                    fatherTicket: {
+                        id: choosenTable
+                    },
+                    sonTicket: {
+                        id: $scope.idChoose
+                    }
+                };
+                myAjax.putRelationCustom(param).then(function (response) {
 
                     if (response.status === 201) {
                         alert("Relation correctly created!");
                         $location.path("/showAllTickets");
                     }
 
+                }, function (err) {
 
-
-                }).catch(function(response) {
-
-                    if (response.status === 424) {
-                        if (response.data.length === 0) {
+                    if (err.status === 424) {
+                        if (err.data.length === 0) {
                             alert("Reflective relation is forbidden");
                             $location.path("/showAllTickets");
                         } else {
-                            var cicle = "" + response.data[0].id;
-                            for (var i = 1; i < response.data.length; i++) {
-                                cicle += ", " + response.data[i].id;
+                            var cicle = "" + err.data[0].id;
+                            for (var i = 1; i < err.data.length; i++) {
+                                cicle += ", " + err.data[i].id;
                             }
                             alert("Creation failed due to this cycle: " + cicle);
                             $location.path("/showAllTickets");
@@ -409,79 +272,35 @@ app.controller('ctrlRelation', function( $scope, $http, $location) {
                         }
                     }
                 });
+            };
+
+            init();
 
             }
     };
 
-    $scope.createRelDep = function (index) {
-        console.log("dati" + " " +  "dependency" +  " " + $scope.idChoose + " " + $scope.ticketsDep[index].id );
-
-        var url = "http://localhost:8200/ticketingsystem/ticket/addDependentTicket/"
-            + $scope.idChoose + "/" + $scope.ticketsDep[index].id;
-
-
-        $http ({
-            method: 'POST',
-            url: url
-
-
-        }).then(function (response) {
-
-            if (response.status === 200){
-                alert("Relation correctly created!");
-                $location.path("/showAllTickets");
-            }
-
-        }).catch(function(response) {
-
-            if (response.status === 424) {
-                if (response.data.length === 0) {
-                    alert("Reflective relation is forbidden");
-                    $location.path("/showAllTickets");
-                } else {
-                    var cicle = "" + response.data[0].id;
-                    for (var i = 1; i < response.data.length; i++) {
-                        cicle += ", " + response.data[i].id;
-                    }
-                    alert("Creation failed due to this cycle: " + cicle);
-                    $location.path("/showAllTickets");
-
-                }
-            }
-
-        });
-
-    };
 
     //returns all tickets
     $scope.allTickets = function () {
 
 
-        var url = "http://localhost:8200/ticketingsystem/ticket";
+        var param = {};
 
-        //var url = "http://192.168.43.101:8200/ticketingsystem/product";
+        var init = function () {
 
-        //var records;
+            myAjax.getTickets(param).then(function (response) {
 
-        $http ({
-            method: 'GET',
-            url: url,
-            dataType: 'json',
-            params: "",
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                if (response.status === 200) {
 
+                    $scope.allTick = response.data;
+                }
+            }, function () {
 
-        }).then(function (response) {
+                alert("error in get tickets");
+            });
+        };
 
-            if (response.status === 200)
-                $scope.allTick = response.data;
-
-
-        }).catch(function() {
-            alert("Creation failed!");
-
-        });
-
+        init();
     };
 
     $scope.allTickets();

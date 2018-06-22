@@ -11,7 +11,11 @@
 
 
 </head>
+
 <body ng-controller="MainGanttCtrl">
+
+<ng-include src="'html/sidenav.html'"></ng-include>
+
 
 <div data="tasks" dhx-gantt style="height:500px; width:100%; padding-top: 50px">
     <div gantt-template="task_text">

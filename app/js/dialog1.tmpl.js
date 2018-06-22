@@ -1,4 +1,4 @@
-app.controller('DialogController',['$scope','myService','$mdDialog','$http',function($scope,myService,$mdDialog,$http){
+app.controller('DialogController',['$scope','myService','$mdDialog','myAjax',function($scope,myService,$mdDialog,myAjax){
 
 
     $scope.hide = function() {
@@ -15,57 +15,67 @@ app.controller('DialogController',['$scope','myService','$mdDialog','$http',func
 
     $scope.idTick = myService.dataObj;
 
-    var url = "http://localhost:8200/ticketingsystem/ticket/" + $scope.idTick.id;
 
-    $http ({
-        method: 'GET',
-        url: url
+    var init = function () {
+        var param = {};
+        myAjax.getDetailsTicket(param, $scope.idTick.id).then(function (response) {
+
+            if (response.status === 200) {
+                $scope.ticket = response.data;
+
+                //$scope.showRelationTicket();
+
+               // $scope.showRelationCustomTicket($scope.ticket.id);
+            }
+
+        }, function () {
+
+            alert("error in show details");
+        });
+    };
+
+    init();
 
 
-    }).then(function (response) {
+        $scope.showRelationTicket = function () {
 
-        if (response.status === 200) {
-            console.log("sono nella prima http");
-            $scope.ticket = response.data;
+            var param = {};
+            myAjax.getRelationTicket(param).then(function (response) {
 
-            var urlRelationName = "http://localhost:8200/ticketingsystem/relation";
-
-            $http ({
-                method: 'GET',
-                url: urlRelationName
-
-            }).then(function (response) {
-
+                //$scope.items = data;
                 if (response.status === 200) {
                     $scope.relationName = response.data;
                 }
-            }).catch(function() {
+            }, function () {
 
-                console.log("ERROR GETTING RELATION NAME");
                 alert("Error getting relation's name");
             });
 
-            var urlRel = "http://localhost:8200/ticketingsystem/relationInstance/findRelations/" + $scope.ticket.id;
 
-            $http ({
-                method: 'GET',
-                url: urlRel
+        };
 
-            }).then(function (response) {
+        $scope.showRelationCustomTicket = function (ticketId) {
+            var param = {};
+            myAjax.getRelationCustomTicket(param, ticketId).then(function (response) {
 
                 if (response.status === 200) {
                     $scope.relTicket = response.data;
                 }
-            }).catch(function() {
+            }, function () {
 
-                console.log("ERROR GETTING RELATION");
-                alert("Error getting relations 7");
+                alert("Error getting relation's name");
             });
+        };
 
+        $scope.relation = function() {
+
+            $scope.showRelationTicket();
+
+            $scope.showRelationCustomTicket($scope.ticket.id);
         }
 
-    }).catch(function() {
-
-        alert("error in show details");
-    });
 }]);
+
+
+
+
