@@ -80,6 +80,12 @@ app.config(function($routeProvider,$mdThemingProvider) {
             controller:"ctrlQueue",
             requiresAuthentication: true,
             permission: ["admin"]
+        })
+        .when("/gantt",{
+            templateUrl:"html/gantt.html",
+            controller:"MainGanttCtrl",
+            requiresAuthentication: true,
+            permission: ["customer", "admin"]
         });
 
 
@@ -135,7 +141,9 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval) {
         { "heading" : [{"type":"Ticket","perm":"['customer', 'admin']"}],     "content" : [{"name":"New Ticket","html":"#!/createTicket","permission":"['admin','customer']"},{"name":"My Tickets","html":"#!/showMyTicket","permission":"['admin','customer']"},{"name":"All tickets","html":"#!/showAllTickets","permission":"['admin']"}]},
         { "heading" : [{"type":"Target","perm":"['admin']"}],             "content" : [{"name":"New Target","html":"#!/insertTarget","permission":"['admin']"},{"name":"All targets","html":"#!/showTargets","permission":"['admin']"}] },
         { "heading" : [{"type":"Relation","perm":"['admin']"}],   "content" : [{"name":"define new relation","html":"#!/defineNewRelation","permission":"['admin']"},{"name":"create relation","html":"#!/relation","permission":"['admin']"}] },
-        { "heading" : [{"type":"Escalation","perm":"['admin']"}],   "content" : [{"name":"define escalation","html":"#!/defineEscalation","permission":"['admin']"},{"name":"show queue","html":"#!/showQueue","permission":"['admin']"}] }
+        { "heading" : [{"type":"Escalation","perm":"['admin']"}],   "content" : [{"name":"define escalation","html":"#!/defineEscalation","permission":"['admin']"},{"name":"show queue","html":"#!/showQueue","permission":"['admin']"}] },
+        { "heading" : [{"type":"Schedule","perm":"['customer','admin']"}],   "content" : [{"name":"gantt","html":"#!/gantt","permission":"['admin','customer']"}] }
+
 
     ];
 
