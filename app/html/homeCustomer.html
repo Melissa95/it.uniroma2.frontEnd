@@ -5,11 +5,27 @@
 
     <div class="jumbotron" style="opacity:0.7">
 
-        <h1 class="display-4">Welcome {{user.username}} !</h1>
-        <p class="lead">From your customer function you can check your tickets status, create a new ticket and modify your personal information</p>
+        <h1 class="display-4">Welcome {{user.username}} {{user.role}}!</h1>
+        <div permission="['customer']">
+        <p class="lead">From your customer profile you can check your tickets status, create a new ticket and modify your personal information</p>
         <hr class="my-4">
         <p>Have a compliant about a target? Create your ticket</p>
+        </div>
+        <div permission="['admin']">
+            <p class="lead">From your admin profile you have customer functionality and you can also access all the system administration functionality</p>
+            <hr class="my-4">
+            <p>Have a compliant about a target? Create your ticket</p>
+        </div>
+        <div permission="['teamMember','teamLeader','teamCoordinator']">
+            <p class="lead">From your team profile you can access all the team related functionality</p>
+            <p>Do you want to see the advancement status of the tickets your team is working on?</p>
+        </div>
+        <div permission="['customer','admin']">
         <a class="btn btn-dark" ng-click="newTicket()" role="button" style="color: white">New ticket</a>
+        </div>
+        <div permission="['teamMember','teamLeader','teamCoordinator']">
+        <a class="btn btn-dark" ng-click="openModal()" role="button" style="color: white">Show Gantt</a>
+        </div>
     </div>
 
 </div>

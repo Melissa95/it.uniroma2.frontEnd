@@ -1,4 +1,4 @@
-app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth,$log) {
+app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth,$uibModal,$mdDialog) {
 
 
     $scope.newTicket = function() {
@@ -12,29 +12,20 @@ app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth,$log
             $location.path("/login");
     };
 
+    $scope.openModal = function() {
+        $mdDialog.show({
+            controller: "ctrlTeam",
+            templateUrl: 'html/modalTeam.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose:true
 
-    /*$scope.items = [
-        'The first choice!',
-        'And another choice for you.',
-        'but wait! A third!'
-    ];
-
-    $scope.status = {
-        isopen: false
+        })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
     };
 
-    $scope.toggled = function(open) {
-        console.log("sono nel toggled");
-        $log.log('Dropdown is now: ', open);
-    };
-
-    $scope.toggleDropdown = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.status.isopen = !$scope.status.isopen;
-    };
-
-    $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-*/
 });
 

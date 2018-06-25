@@ -39,7 +39,7 @@
                     </md-toolbar>
                     <div ng-class="{dataContent:true, activeContent:data.expanded}">
                         <!--<div style="padding:10px" ng-bind="data.content"></div>-->
-                        <md-button style="background-color: #111;color: white;text-transform: capitalize;font-size: medium;padding-left: 10%" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}}  class="md-toolbar-tools">{{d.name}} </md-button>
+                        <md-button style="background-color: #111;color: white;text-transform: capitalize;font-size: medium;padding-left: 10%" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}} class="md-toolbar-tools">{{d.name}} </md-button>
 
 
                     </div>

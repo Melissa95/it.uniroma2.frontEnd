@@ -126,18 +126,14 @@ app.service("myAjax", function($q,$http) {
 
     };
 
-    this.getTicketGantt = function(data) {
-        return ajax("GET", "http://localhost:8200/ticketingsystem/ticket/findTicketForGantt/teamUno" , data);
+    this.getTicketGantt = function(data,team) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/ticket/findTicketForGantt/" + team , data);
+
+    };
+
+    this.getMyTeam = function(data,username) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/team/findAllTeamsByPerson/" + username , data);
 
     }
-
-
-
-
-
-
-
-
-
 
 });

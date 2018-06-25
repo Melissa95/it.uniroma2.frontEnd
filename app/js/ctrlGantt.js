@@ -1,7 +1,7 @@
 'use strict';
 
 
-app.controller('MainGanttCtrl', function($scope,myAjax) {
+app.controller('MainGanttCtrl', function($scope,myAjax,myService) {
 
 
     $scope.tasks = {
@@ -13,11 +13,13 @@ app.controller('MainGanttCtrl', function($scope,myAjax) {
     $scope.getGantt = function() {
 
 
+        $scope.team = myService.dataObj.team;
+
         var init = function () {
             var param = {};
-            var i,j;
+            var i;
 
-            myAjax.getTicketGantt(param).then(function (response) {
+            myAjax.getTicketGantt(param,$scope.team).then(function (response) {
 
                 if (response.status === 200) {
 
