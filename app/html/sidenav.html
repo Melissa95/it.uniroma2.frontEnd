@@ -14,19 +14,9 @@
                 </table>
             </md-toolbar>
 
-            <!--<md-content layout-margin>
-                <div layout="column" layout-align="top center">-->
-
-                <!--<md-button class="md-primary md-raised" ng-click="showAdvanced($event)">Open Dialog</md-button>-->
-
-
-              <!--  </div>
-
-            </md-content>-->
 
             <md-content id="dynamic-content" class="f-clear-padding">
                 <div  class="md-accordion" ng-repeat="data in accordianData | UserFilter: user.role ">
-                    <!-- <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded"> this was the code in demo-->
                     <md-toolbar ng-init="data.expanded = false" ng-click="toggleView(accordianData, data, $index)" style="background-color: #111">
                         <div class="md-toolbar-tools">
                             <!-- <h2> -->
@@ -36,10 +26,11 @@
                             <div flex=""></div>
                             <div ng-class="{expandCollapse:true, active:data.expanded}"></div>
                         </div>
+
                     </md-toolbar>
                     <div ng-class="{dataContent:true, activeContent:data.expanded}">
-                        <!--<div style="padding:10px" ng-bind="data.content"></div>-->
-                        <md-button style="background-color: #111;color: white;text-transform: capitalize;font-size: medium;padding-left: 10%" ng-repeat="d in data.content" ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}} class="md-toolbar-tools">{{d.name}} </md-button>
+
+                      <md-button style="background-color: #111;color: white;text-transform: capitalize;font-size: medium;padding-left: 10%" ng-repeat="d in data.content"  ng-if="d.permission.indexOf(user.role) >= 0" href={{d.html}} class="md-toolbar-tools">{{d.name}}</md-button>
 
 
                     </div>

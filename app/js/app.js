@@ -116,7 +116,7 @@ app.run(function ($rootScope, $location, Auth) {
     });
 });
 
-app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval) {
+app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,Auth) {
     $scope.toggleLeft = buildToggler('left');
 
 
@@ -140,13 +140,12 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval) {
 
 
     $scope.accordianData = [
-        { "heading" : [{"type":"Account","perm":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}],    "content" : [{"name":"Modify account","html":"#!/modifyUser","permission":"['admin','customer','teamMember','teamLeader','teamCoordinator']"},{"name":"Sign Out","html":"#!/","permission":"['admin','customer','teamMember','teamLeader','teamCoordinator']"}] },
-        { "heading" : [{"type":"Schedule","perm":"['teamMember','teamLeader','teamCoordinator']"}],             "content" : [{"name":"Gantt","html":"#!/gantt","permission":"['teamMember','teamLeader','teamCoordinator']"}] },
-        { "heading" : [{"type":"Ticket","perm":"['customer', 'admin']"}],     "content" : [{"name":"New Ticket","html":"#!/createTicket","permission":"['admin','customer']"},{"name":"My Tickets","html":"#!/showMyTicket","permission":"['admin','customer']"},{"name":"All tickets","html":"#!/showAllTickets","permission":"['admin']"}]},
+        { "heading" : [{"type":"Account","perm":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}],    "content" : [{"name":"Modify account","html":"#!/modifyUser","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"},{"name":"Sign Out","html":"#!/","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}] },
+       // { "heading" : [{"type":"Schedule","perm":"['teamMember','teamLeader','teamCoordinator']"}],             "content" : [{"name":"Gantt","html":"#!/gantt","permission":"['teamMember','teamLeader','teamCoordinator']"}] },
+        { "heading" : [{"type":"Ticket","perm":"['customer', 'admin']"}],     "content" : [{"name":"New Ticket","html":"#!/createTicket","permission":"['customer','admin']"},{"name":"My Tickets","html":"#!/showMyTicket","permission":"['admin','customer']"},{"name":"All tickets","html":"#!/showAllTickets","permission":"['admin']"}]},
         { "heading" : [{"type":"Target","perm":"['admin']"}],             "content" : [{"name":"New Target","html":"#!/insertTarget","permission":"['admin']"},{"name":"All targets","html":"#!/getTargets","permission":"['admin']"}] },
         { "heading" : [{"type":"Relation","perm":"['admin']"}],   "content" : [{"name":"define new relation","html":"#!/defineNewRelation","permission":"['admin']"},{"name":"create relation","html":"#!/relation","permission":"['admin']"}] },
         { "heading" : [{"type":"Escalation","perm":"['admin']"}],   "content" : [{"name":"define escalation","html":"#!/defineEscalation","permission":"['admin']"},{"name":"show queue","html":"#!/showQueue","permission":"['admin']"}] }
-
 
 
     ];
@@ -162,7 +161,7 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval) {
                 data.expanded=!data.expanded;
             }
         }
-    }
+    };
 
 
 });
@@ -196,7 +195,12 @@ app.filter("UserFilter", function(){
         return selectedPerm;
     };
 
+
 });
+
+
+
+
 
 
 
