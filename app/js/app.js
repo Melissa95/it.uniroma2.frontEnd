@@ -41,8 +41,8 @@ app.config(function($routeProvider,$mdThemingProvider) {
             requiresAuthentication: true
 
         })
-        .when("/getTargets",{
-            templateUrl: "html/getTargets.html",
+        .when("/showTargets",{
+            templateUrl: "html/showTargets.html",
             controller: "ctrlTarget",
             requiresAuthentication: true,
             permissions: ["admin"]
