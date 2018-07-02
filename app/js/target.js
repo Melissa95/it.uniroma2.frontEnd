@@ -26,7 +26,7 @@ app.controller('ctrlTarget', function($scope,myAjax,$location) {
                     $scope.version = "";
                     $scope.description = "";
                     $scope.resultNegative = true;
-                    $location.path("/getTargets");
+                    $location.path("/showTargets");
                 }
 
             }, function () {
