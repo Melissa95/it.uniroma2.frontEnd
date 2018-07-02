@@ -12,7 +12,9 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
     };
 
     $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
+        if ($scope.myTeams.length === 0) {
+            $mdDialog.hide(answer);
+        }
     };
 
 
@@ -50,7 +52,6 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
     $scope.showGantt = function (team) {
 
         myService.dataObj.team = team;
-
 
         $scope.cancel();
         if ($scope.myTeams.length === 0) {
