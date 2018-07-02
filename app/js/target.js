@@ -20,7 +20,7 @@ app.controller('ctrlTarget', function($scope,myAjax,$location) {
             myAjax.createTarget(param).then(function (response) {
 
                 //$scope.items = data;
-                if (response.status === 200) {
+                if (response.status === 201) {
                     $scope.result = false;
                     $scope.name = "";
                     $scope.version = "";
