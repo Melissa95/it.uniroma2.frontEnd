@@ -19,6 +19,7 @@
                 <select  style="color: black" class="btn btn-light" ng-model ="team">
                     <option  ng-repeat="p in myTeams">{{p.teamName}}</option>
                 </select>
+                <p style="color: darkred" ng-hide="result" ng-model="result">You aren't insert in a team</p>
             </form>
                 </md-content>
             </md-tab>

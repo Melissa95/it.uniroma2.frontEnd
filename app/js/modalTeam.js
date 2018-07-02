@@ -1,6 +1,7 @@
 app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$location',function($scope,myService,$mdDialog,myAjax,Auth,$location){
 
     $scope.myTeams = null;
+    $scope.result = true;
 
     $scope.hide = function() {
         $mdDialog.hide();
@@ -24,6 +25,12 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
                 if (response.status === 200) {
 
                     $scope.myTeams = response.data;
+                    if($scope.myTeams.length === 0) {
+                        console.log("errore");
+                        $scope.result = false;
+                    }else {
+                        $scope.result = true;
+                    }
 
                 }
             }, function () {
@@ -46,7 +53,11 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
 
 
         $scope.cancel();
-        $location.path("/gantt");
+        if ($scope.myTeams.length === 0) {
+            $location.path("/homeCustomer");
+        }else {
+            $location.path("/gantt");
+        }
 
     }
 

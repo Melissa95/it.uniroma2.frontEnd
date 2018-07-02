@@ -4,7 +4,13 @@
 <ng-include src="'html/sidenav.html'"></ng-include>
 
 <form name="prodShowMyTickets">
-    <div  style="text-align: center;color:white;padding-top: 7%; padding-left: 3%;padding-right: 3%" ng-controller="ctrlUserTicket" >
+
+
+    <div  style="text-align: center;color:white;padding-top: 3%; padding-left: 3%;padding-right: 3%" ng-controller="ctrlUserTicket" >
+
+        <div class="jumbotron" style="padding-top: 3%; padding-left: 5%;padding-right: 5%;height:3px;background-color:white ;opacity: 0.85; ">
+            <h1 style="color:black">My tickets</h1>
+        </div>
 
 
         <table  class="table table-dark">
@@ -26,7 +32,7 @@
                 <td> {{x.description}} </td>
                 <td> {{x.customerPriority}} </td>
                 <td> {{x.target.id}} {{x.target.name}} </td>
-                <td> {{x.team}} </td>
+                <td> {{x.team.teamName}} </td>
             </tr>
 
         </table>

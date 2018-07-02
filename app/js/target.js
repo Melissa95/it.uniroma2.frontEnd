@@ -2,8 +2,7 @@
 app.controller('ctrlTarget', function($scope,myAjax,$location) {
 
     console.log("sono nel controller");
-    $scope.result = true;
-    $scope.resultNegative = true;
+
     $scope.records;
 
 
@@ -19,23 +18,19 @@ app.controller('ctrlTarget', function($scope,myAjax,$location) {
             };
             myAjax.createTarget(param).then(function (response) {
 
-                //$scope.items = data;
                 if (response.status === 201) {
-                    $scope.result = false;
                     $scope.name = "";
                     $scope.version = "";
                     $scope.description = "";
-                    $scope.resultNegative = true;
                     $location.path("/showTargets");
                 }
 
             }, function () {
 
-                $scope.resultNegative=false;
                 $scope.name="";
                 $scope.version="";
                 $scope.description="";
-                $scope.result=true;
+                alert("Error in target's creation");
             });
         };
 
