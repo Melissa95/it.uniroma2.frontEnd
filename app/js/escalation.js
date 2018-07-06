@@ -1,8 +1,8 @@
 app.controller('ctrlEscalation', function($scope,myAjax,$location) {
 
     console.log("sono nel controller");
-    $scope.result = true;
-    $scope.resultNegative = true;
+    /*$scope.result = true;
+    $scope.resultNegative = true;*/
 
 
 
@@ -18,22 +18,21 @@ app.controller('ctrlEscalation', function($scope,myAjax,$location) {
             };
             myAjax.escalation(param).then(function (response) {
 
-                if (response.status === 200) {
-                    $scope.result = false;
+                if (response.status === 201) {
+                    console.log("Escalation creata");
                     $scope.customerPriority = "";
                     $scope.teamPriority = "";
                     $scope.time = "";
-                    $scope.resultNegative = true;
-                    $location.path("/showQueue");
+                    alert("Escalation created");
+
 
                 }
             }, function () {
 
-                $scope.resultNegative = false;
                 $scope.customerPriority = "";
                 $scope.teamPriority = "";
                 $scope.time = "";
-                $scope.result = true;
+                alert("Error creation escalation");
             });
         };
 
