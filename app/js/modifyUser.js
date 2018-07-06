@@ -1,5 +1,5 @@
 
-app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$location) {
+app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$location,$mdDialog) {
 
     $scope.result = true;
     $scope.resultNegative = true;
@@ -31,8 +31,27 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                     $scope.password = "";
                     $sessionStorage.user = response.data;
                     console.log("response" + response.data.name);
-                    alert("Success in modify");
-                    $location.path("/homeCustomer");
+                    //alert("Success in modify");
+                    $mdDialog.show()
+                    {
+                        var resp = $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Operation success')
+                            .textContent('Success in modify account')
+                            .ariaLabel('Alert Dialog Demo')
+                            .ok('OK')
+                            .targetEvent();
+
+                        $mdDialog.show(resp).then(function () {
+                            $location.path("/homeCustomer");
+                        }, function () {
+                            console.log("error");
+
+                        });
+                    };
+
+
                 }
 
 
@@ -43,7 +62,16 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                 $scope.surname = "";
                 $scope.username = "";
                 $scope.password = "";
-                alert("Error in modify");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent('Error in modify account')
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('OK')
+                        .targetEvent()
+                );
             });
         };
 

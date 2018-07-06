@@ -4,50 +4,63 @@
 <ng-include src="'html/sidenav.html'"></ng-include>
 
 <div ng-controller="ctrlTarget" style="padding-left:20%;padding-top: 3%">
-    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
-<form name="prodForm">
-    <div style="text-align: center;color:black" >
-
-        <h1 style="padding-left: 5%">Create new target</h1>
-
-        <table align="center">
-            <tr>
-                <td><h5>Name</h5></td>
-                <td><input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="name"></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-                <td><h5>Version </h5></td>
-                <td><input style="width: 300px" class="btn btn-dark" ng-value="number" ng-required="true" ng-model="version"></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-                <td><h5>Description </h5></td>
-                <td> <input style="width: 300px" class="btn btn-dark" ng-minlength="5" ng-maxlength="200" ng-required="true" ng-model="description"></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-                <td></td>
-                <td><button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-
-            </tr>
+    <div class="jumbotron" style="background-color:white ;opacity: 0.95;width: 75%;height: 15%">
+        <md-content layout-padding style="background-color:white">
+            <form name="prodForm">
+                <h1 style="padding-left: 25%">Create new target</h1>
 
 
-        </table>
 
-    </div>
-</form>
+                <div layout-gt-sm="row">
+                    <md-input-container  flex-gt-sm>
+                        <label style="font-size: large">Name</label>
+                        <input ng-minlength="3" ng-required="true" name="name" ng-model="name">
+                        <div ng-messages="prodForm.name.$error">
+                            <div ng-message="required">You must insert a target's name</div>
+                            <div ng-message="minlength">You must insert a target's name (min 3 char)</div>
+
+                        </div>
+
+                    </md-input-container>
+
+                    <md-input-container  flex-gt-sm>
+                        <label style="font-size: large">Version</label>
+                        <input  ng-pattern="/^[0-9]{1,5}$/" ng-required="true" name="version" ng-model="version">
+                        <div ng-messages="prodForm.version.$error">
+                            <div ng-message="required">You must insert a target's version</div>
+                        </div>
+                        <div ng-messages="prodForm.version.$error">
+                            <div ng-message="pattern">You must insert a valid target's version; max 5 digits (ex: 34) </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div>
+
+                    <div layout-gt-xs="row">
+
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label style="font-size: large">Description</label>
+                            <textarea rows="4" ng-minlength="10" ng-required="true" name="description" ng-model="description" md-no-autogrow></textarea>
+                            <div ng-messages="prodForm.description.$error">
+                                <div ng-message="required">You must insert a description</div>
+                                <div ng-message="minlength">You must insert a valid description for your target (min 10 char)</div>
+
+                            </div>
+                        </md-input-container>
+
+
+                    </div>
+
+
+                </div>
+                <div align="center">
+                    <button ng-disabled="prodForm.$invalid" ng-click="insertProduct()" type="button" class="btn btn-dark" style="width: 150px">Submit</button></td>
+                </div>
+
+
+            </form>
+        </md-content>
     </div>
 </div>
 </body>

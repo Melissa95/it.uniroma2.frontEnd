@@ -12,54 +12,82 @@
     </div>
 </nav>
 
-<div ng-controller="ctrlSignIn" style="padding-left:20%;padding-top: 3%">
-<div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
+<div ng-controller="ctrlSignIn" style="padding-left:20%;padding-top: 1%">
+<div class="jumbotron" style="background-color:white;opacity:0.95;width: 75%;height: 10%">
+    <md-content layout-padding style="background-color: white">
 <form name="regForm">
-<div style="text-align: center;color:black" >
 
-    <table style="border-collapse: separate;padding-left: 20% ">
-        <tr>
-             <td><h5>Name</h5></td>
-             <td><input  style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="name"></td>
-        </tr>
-        <tr>
+        <div layout-gt-sm="row">
+            <md-input-container  flex-gt-sm>
+                <label style="font-size: large">Name</label>
+                <input  ng-minlength="3" ng-required="true" name="name" ng-model="name">
+                <div ng-messages="regForm.name.$error">
+                    <div ng-message="required">You must insert a name</div>
+                    <div ng-message="minlength">You must insert a name (min 3 char)</div>
+                </div>
 
-        </tr>
-        <tr>
-            <td><h5>Surname </h5></td>
-            <td><input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="surname"></td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-            <td><h5>Username </h5></td>
-            <td> <input style="width: 300px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="username"></td>
-        </tr>
-        <tr>
+            </md-input-container>
 
-        </tr>
-        <tr>
-            <td><h5>Password </h5></td>
-            <td><input style="width: 300px" class="btn btn-dark" placeholder="min 6 char" ng-minlength="6" ng-required="true" type="password" ng-model="password"></td>
-        </tr>
-        <tr>
+            <md-input-container  flex-gt-sm>
+                <label style="font-size: large">Surname</label>
+                <input ng-minlength="3" ng-required="true" name="surname" ng-model="surname">
+                <div ng-messages="regForm.surname.$error">
+                    <div ng-message="required">You must insert a surname</div>
+                    <div ng-message="minlength">You must insert a surname (min 3 char)</div>
+                </div>
+            </md-input-container>
+        </div>
 
-        </tr>
-        <tr>
-            <td><h5>Email </h5></td>
-            <td><input style="width: 300px" class="btn btn-dark" type="email" ng-pattern="emailFormat" name = "input" ng-required="true" ng-model="email"></td>
+        <div>
 
-        </tr>
-        <tr>
+            <div layout-gt-xs="row">
 
-        </tr>
-        <tr>
-            <td></td>
-            <td><button ng-disabled="regForm.$invalid" ng-click="register()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
-        </tr>
-    </table>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label style="font-size: large">Username</label>
+                        <input ng-minlength="3" ng-required="true" name="username" ng-model="username">
+                        <div ng-messages="regForm.username.$error">
+                            <div ng-message="required">You must insert a username</div>
+                            <div ng-message="minlength">You must insert a username (min 3 char)</div>
+                        </div>
+                    </md-input-container>
+
+
+                </div>
+            <div layout-gt-xs="row">
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label style="font-size: large">Password</label>
+                        <input placeholder="min 6 char" ng-minlength="6" name="password" ng-required="true" type="password" ng-model="password">
+                        <div ng-messages="regForm.password.$error">
+                            <div ng-message="required">You must insert a password</div>
+                            <div ng-message="minlength">You must insert a password (min 6 char)</div>
+
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+
+            <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label style="font-size: large">Email</label>
+                        <input type="email" ng-pattern="emailFormat" ng-value="email" name = "email" ng-required="true" ng-model="email">
+                        <div ng-messages="regForm.email.$error">
+                            <div ng-message="required">You must insert an email</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+        </div>
+
+<div align="center">
+    <button ng-disabled="regForm.$invalid" ng-click="register()" type="button" class="btn btn-dark" style="text-align: center;width: 150px">Submit</button>
 </div>
+
+
 </form>
+        </md-content>
 </div>
 </div>
 

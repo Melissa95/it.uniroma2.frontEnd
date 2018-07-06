@@ -65,6 +65,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth', '$mdDialog'
         var init = function () {
             var param = {
                         id:$scope.ticket,
+                        duration: $scope.duration,
                         team:{
                             teamName:$scope.team.teamName
 
