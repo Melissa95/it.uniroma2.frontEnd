@@ -1,5 +1,5 @@
 
-app.controller('ctrlModifyUser', function($scope,$http,$sessionStorage) {
+app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$location) {
 
     $scope.result = true;
     $scope.resultNegative = true;
@@ -9,49 +9,45 @@ app.controller('ctrlModifyUser', function($scope,$http,$sessionStorage) {
 
     $scope.modifyUser = function() {
 
-        console.log("sono in  modify User" + $sessionStorage.user.username );
-
-        var url = "http://localhost:8200/ticketingsystem/user/"+$sessionStorage.user.username;
+        console.log("sono in  modify User" + $sessionStorage.user.username);
 
 
-        $http ({
-            method: 'PUT',
-            url: url,
-            dataType: 'json',
-            data: {
+        var init = function () {
+            var param = {
                 name: $scope.name,
                 surname: $scope.surname,
                 username: $sessionStorage.user.username,
                 password: $scope.password,
                 //email: $scope.email,
                 "role": "customer"
-            },
-            headers: {'Content-Type': 'application/json; charset=UTF-8'}
+            };
+            myAjax.modifyUser(param).then(function (response) {
+
+                //$scope.items = data;
+                if (response.status === 200) {
+                    $scope.name = "";
+                    $scope.surname = "";
+                    $scope.username = "";
+                    $scope.password = "";
+                    $sessionStorage.user = response.data;
+                    console.log("response" + response.data.name);
+                    alert("Success in modify");
+                    $location.path("/homeCustomer");
+                }
 
 
-        }).then(function (response) {
+            }, function () {
 
-            if (response.status === 200)
-                $scope.result=false;
-                $scope.name="";
-                $scope.surname="";
-                $scope.username="";
-                $scope.password="";
-                $scope.resultNegative=true;
+                //attivata se username non è presente nel sistema
+                $scope.name = "";
+                $scope.surname = "";
+                $scope.username = "";
+                $scope.password = "";
+                alert("Error in modify");
+            });
+        };
 
-        }).catch(function() {
-
-            //attivata se username non è presente nel sistema
-            $scope.result=true;
-            $scope.name="";
-            $scope.surname="";
-            $scope.username="";
-            $scope.password="";
-            $scope.resultNegative=false;
-
-    });
-
-
+        init();
 
     }
 
