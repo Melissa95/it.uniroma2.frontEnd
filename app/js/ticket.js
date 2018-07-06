@@ -131,6 +131,5 @@ app.controller('ctrlTicket',['$scope','myService','$sessionStorage','$location',
     $scope.showProducts();
 
 
-
 }]);
 
