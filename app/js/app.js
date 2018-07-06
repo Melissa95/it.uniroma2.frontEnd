@@ -1,6 +1,6 @@
 
 // Declare app level module which depends on views, and components
-var app = angular.module('myApp', ['ngRoute','ngResource','AuthServices','ngAnimate','ui.bootstrap','ngMaterial']);
+var app = angular.module('myApp', ['ngRoute','ngResource','AuthServices','ngAnimate','ui.bootstrap','ngMaterial','ngMessages']);
 
 
 app.config(function($routeProvider,$mdThemingProvider) {
@@ -88,6 +88,10 @@ app.config(function($routeProvider,$mdThemingProvider) {
             controller:"MainGanttCtrl",
             requiresAuthentication: true,
             permission: ["teamMember","teamLeader","teamCoordinator"]
+        })
+        .when("/planning",{
+            templateUrl:"html/planning.html"
+
         });
 
 

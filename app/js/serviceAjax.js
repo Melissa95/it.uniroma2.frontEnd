@@ -134,6 +134,10 @@ app.service("myAjax", function($q,$http) {
     this.getMyTeam = function(data,username) {
         return ajax("GET", "http://localhost:8200/ticketingsystem/team/findAllTeamsByPerson/" + username , data);
 
+    };
+    this.getPlanning = function(data,teamName,date,durat,idtick) {
+        return ajax("POST", "http://localhost:8200/ticketingsystem/gantt/createGanttInstance/" + teamName + "/"+ date +"/"+ durat +"/"+idtick, data);
+
     }
 
 });

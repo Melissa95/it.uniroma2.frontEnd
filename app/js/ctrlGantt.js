@@ -1,12 +1,27 @@
 'use strict';
 
 
-app.controller('MainGanttCtrl', function($scope,myAjax,myService) {
+app.controller('MainGanttCtrl', function($scope,$mdDialog, $location, myAjax,myService) {
 
 
     $scope.tasks = {
 
         data: []
+    };
+
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+
+            $mdDialog.hide(answer);
+        
     };
 
 
