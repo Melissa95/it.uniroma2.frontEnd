@@ -1,62 +1,74 @@
 <ng-include src="'html/sidenav.html'"></ng-include>
 
-<div ng-controller="ctrlTicket" style="padding-left:20%;padding-top: 3%">
-    <div class="jumbotron" style="background-color:white ;opacity: 0.85;width: 75%;height: 15%">
-<form name="regForm" style="padding-left: auto">
-    <div style="text-align: center;color:black">
-
-        <h1 style="padding-left: 5%">Create new ticket</h1>
-        <table style="border-collapse: separate;padding-left: 10% ">
-            <tr>
-                <td><h5>Title</h5></td>
-                <td><input style="width: 400px;opacity:0.9" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="title"></td>
-
-            </tr>
-            <tr>
-                <td><h5>Category</h5></td>
-                <td><input style="width: 400px" class="btn btn-dark" ng-minlength="3" ng-required="true" ng-model="category"></td>
-            </tr>
-            </br>
 
 
+<div ng-controller="ctrlTicket" layout="column" ng-cloak style="padding-left: 25%; padding-top: 2%">
+    <div class="jumbotron" style="background-color:white ;opacity: 0.95;width: 75% ; height: 7% ">
 
-            <tr>
-                <td><h5>Target</h5></td>
-               <!-- <td><input type="number"  ng-required="true"  ng-model="product"></td>-->
-                <td><select style="width: 400px"  class="btn btn-dark" ng-model="target">
-                    <option   ng-repeat="tr in targ" ng-value="tr.id" >{{tr.id}} - {{tr.name}}</option>
-                </select></td>
-            </tr>
-            <tr>
+        <h1 style="text-align: center">Create new ticket</h1>
 
-            </tr>
-
-            <tr>
-                <td><h5>Description </h5></td>
-                <td> <textarea class="btn btn-dark" ng-minlength="10" cols="40" rows="5" ng-required="true" ng-model="description"></textarea></td>
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-                <td><h5>Priority </h5></td>
-                <td>
-                    <select style="width: 400px" class="btn btn-dark" ng-model ="customerPriority">
-                         <option ng-repeat="p in priority">{{p}}</option>
-                    </select>
-                </td>
+    <md-content style="background-color: white">
+        <form name="tickForm" style="color: #1d2124">
 
 
-            </tr>
-            <tr>
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label style="font-size: large">Title</label>
+                    <input ng-required="true" name="title" ng-model="title">
+                    <div ng-messages="tickForm.title.$error">
+                        <div ng-message="required">You must specify a title.</div>
+                    </div>
+                </md-input-container>
 
-            </tr>
-            <tr>
-                <td></td>
-                <td><button ng-disabled="regForm.$invalid" ng-click="createTick()" type="button" class="btn btn-dark" style="text-align: center">Submit</button></td>
-            </tr>
-        </table>
-    </div>
-</form>
+                <md-input-container flex="50">
+                    <label style="font-size: large">Category</label>
+                    <input ng-required="true" name="category" ng-model="category" minlength="3">
+                    <div ng-messages="tickForm.category.$error">
+                        <div ng-message="required">You must specify a category.</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+
+            <md-input-container class="md-block" flex="50">
+                <label style="font-size: large">Target</label>
+                <md-select name="target" ng-model="target" ng-required="true">
+                    <md-option ng-repeat="tr in targ" ng-value="tr.id" >{{tr.id}} - {{tr.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex="50">
+                <label style="font-size: large; color: dimgray">Priority</label>
+                <md-select name="priority" ng-model="customerPriority" >
+                    <md-option  ng-repeat="p in priority" ng-value="tr.id" >{{p}}</md-option>
+                </md-select>
+            </md-input-container>
+
+            </div>
+
+            <md-input-container class="md-block">
+                <label style="font-size: large">Description</label>
+                <textarea md-no-autogrow="true" ng-minlength="10" cols="40" rows="3" ng-required="true" name="description" ng-model="description"></textarea>
+
+                <div ng-messages="tickForm.description.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength']">
+                        You must specify a short description (min 10 digits) for your compliant.
+                    </div>
+                </div>
+            </md-input-container>
+
+
+
+            <div align="center">
+                <button style="width:150px" ng-disabled="tickForm.$invalid" ng-click="createTick()" type="button" class="btn btn-dark" style="text-align: center">Submit</button>
+            </div>
+
+
+        </form>
+    </md-content>
+
     </div>
 </div>
+
+
+
