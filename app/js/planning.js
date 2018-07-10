@@ -93,7 +93,8 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
 
 
     $scope.sendPlanning= function () {
-       var d= $scope.date.getDate() + "-"+ $scope.date.getMonth()+ "-"+$scope.date.getFullYear()+" "+$scope.date.getHours()+":"+$scope.date.getMinutes()+":"+$scope.date.getSeconds();
+        var month = $scope.date.getMonth() + 1;
+       var d= $scope.date.getDate() + "-"+ month + "-"+$scope.date.getFullYear();
         console.log("DATAAAAAAAAAA"+ d);
 
         var init = function () {
