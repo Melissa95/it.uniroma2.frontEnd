@@ -37,7 +37,16 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                 }
             }, function () {
 
-                console.log("Error in getting team");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in getting team")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
@@ -63,7 +72,16 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                 }
             }, function () {
 
-                console.log("Error in getting pending ticket");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in getting pending ticket")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
@@ -114,8 +132,16 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                             messageError = messageError + err.data[g].keyGanttDay.day +" " + ";" ;
 
                         }
-                        console.log(messageError);
-
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation failed')
+                                .textContent(messageError)
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('Got it!')
+                                .targetEvent()
+                        );
                     }
 
                     if (err.status === 424) {
@@ -123,18 +149,40 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                         var init = function () {
                             var param = {};
                             myAjax.getFatherTicket(param,$scope.ticket).then(function (response) {
-                                messageError = "Planning failed. Need to resolve the following ticket first: \n "  ;
+                                messageError = "Planning failed. Need to resolve the following ticket first: "  ;
                                 if (response.status === 200) {
 
                                     for(var g = 0; g < response.data.length; g++){
-                                        messageError = messageError + response.data[g].id + " " + response.data[g].title +  "\n";
+                                        messageError = messageError + response.data[g].id + " " + response.data[g].title + " " +  ";";
 
                                     }
+
+                                    $mdDialog.show(
+                                        $mdDialog.alert()
+                                            .parent(angular.element(document.querySelector('#popupContainer')))
+                                            .clickOutsideToClose(true)
+                                            .title('Operation failed')
+                                            .textContent(messageError)
+                                            .ariaLabel('Alert Dialog Demo')
+                                            .ok('Got it!')
+                                            .targetEvent()
+                                    );
 
                                 }
                             }, function () {
 
                                 messageError = "Planning failed internal error cause";
+
+                                $mdDialog.show(
+                                    $mdDialog.alert()
+                                        .parent(angular.element(document.querySelector('#popupContainer')))
+                                        .clickOutsideToClose(true)
+                                        .title('Operation failed')
+                                        .textContent(messageError)
+                                        .ariaLabel('Alert Dialog Demo')
+                                        .ok('Got it!')
+                                        .targetEvent()
+                                );
 
                             });
                         };
@@ -145,17 +193,6 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                     }
 
 
-
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('Operation failed')
-                        .textContent(messageError)
-                        .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
-                        .targetEvent()
-                );
 
             });
         };
@@ -195,7 +232,16 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
 
             }, function () {
 
-                alert("error in gantt");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in gantt")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
