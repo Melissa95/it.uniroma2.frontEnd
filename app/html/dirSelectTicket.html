@@ -1,18 +1,18 @@
 
 
-    <select ng-show="relation == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+    <select ng-show="relations[t.id] == 'equality'" class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
         <option   ng-repeat="t in ticketsforEqu"  ng-value="t.id">{{t.id}} - {{t.title}}</option>
     </select>
 
-    <select ng-show="relation == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
+    <select ng-show="relations[t.id] == 'dependency'" class="btn btn-dark" ng-model="ticketdep" ng-click="idTicket(ticketdep)">
         <option   ng-repeat="y in ticketsforDep"  ng-value="y.id">{{y.id}} - {{y.title}}</option>
     </select>
 
-    <select ng-show="relation == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
+    <select ng-show="relations[t.id] == 'regression'" class="btn btn-dark" ng-model="ticketreg" ng-click="idTicket(ticketreg)">
         <option   ng-repeat="t in ticketsforReg" ng-value="t.id">{{t.id}} - {{t.title}}</option>
     </select>
 
-    <select ng-show="relation != null && relation != 'equality' && relation != 'regression' && relation !== 'dependency' " class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
+    <select ng-show="relations[t.id] != null && relations[t.id] != 'equality' && relations[t.id] != 'regression' && relations[t.id] !== 'dependency' " class="btn btn-dark" ng-model="ticketequ" ng-click="idTicket(ticketequ)">
         <option   ng-repeat="t in allTick" ng-value="t.id">{{t.id}} - {{t.title}}</option>
     </select>
 

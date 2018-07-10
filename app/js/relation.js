@@ -11,6 +11,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
         $scope.allRelation=null;
         $scope.allTick=null;
+        $scope.relations = {};
 
 
 
@@ -126,9 +127,9 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
 
 
-    $scope.valueRelation = function (param) {
-        console.log("dati..." + param);
-        $scope.relation = param;
+    $scope.valueRelation = function (name, ticketId) {
+        console.log("dati..." + name);
+        $scope.relations[ticketId] = name;
     };
 
     $scope.idTicket = function (id) {
@@ -144,7 +145,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
         }else if (id != null) {
             choosenTable = id;
         }
-        if ($scope.relation==='equality') {
+        if ($scope.relations[choosenTable]==='equality') {
 
 
             var init = function () {
@@ -173,7 +174,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
             init();
 
-        }else if ($scope.relation=== 'dependency') {
+        }else if ($scope.relations[choosenTable]=== 'dependency') {
 
 
             var init = function () {
@@ -207,7 +208,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
             init();
 
-        } else if ($scope.relation==='regression') {
+        } else if ($scope.relations[choosenTable]==='regression') {
 
 
 
@@ -232,14 +233,14 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
             init();
 
-        } else if ($scope.relation !== null && $scope.relation !== 'equality' && $scope.relation !== 'regression' && $scope.relation !== 'dependency') {
+        } else if ($scope.relations[choosenTable] !== null && $scope.relations[choosenTable] !== 'equality' && $scope.relations[choosenTable] !== 'regression' && $scope.relations[choosenTable] !== 'dependency') {
 
 
 
             var init = function () {
                 var param = {
                     relation: {
-                        name: $scope.relation
+                        name: $scope.relations[choosenTable]
                     },
                     fatherTicket: {
                         id: choosenTable
@@ -293,6 +294,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 if (response.status === 200) {
 
                     $scope.allTick = response.data;
+
                 }
             }, function () {
 
