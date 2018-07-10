@@ -205,20 +205,6 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
 
 
 
-   /* $scope.showGantt = function (team) {
-
-        myService.dataObj.team = team;
-
-        $scope.cancel();
-        if ($scope.myTeams.length === 0) {
-            $location.path("/homeCustomer");
-        }else {
-            $location.path("/gantt");
-        }
-
-    }*/
-
-
 
 }]);
 

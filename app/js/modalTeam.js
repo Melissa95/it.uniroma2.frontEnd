@@ -1,4 +1,4 @@
-app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$location','$sessionStorage',function($scope,myService,$mdDialog,myAjax,Auth,$location,$sessionStorage){
+app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$sessionStorage',function($scope,$mdDialog,myAjax,Auth,$location,$sessionStorage){
 
     $scope.myTeams = null;
     $scope.result = true;
@@ -51,7 +51,6 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
 
     $scope.showGantt = function (team) {
 
-        myService.dataObj.team = team;
         $sessionStorage.team = team;
 
 
@@ -65,14 +64,14 @@ app.controller('ctrlTeam',['$scope','myService','$mdDialog','myAjax','Auth','$lo
 
     };
 
-    $scope.refreshPage = function () {
+    /*$scope.refreshPage = function () {
         if ($sessionStorage.team != null) {
             $scope.showGantt();
         }
-    };
+    };*/
 
 
-    $scope.refreshPage();
+    //$scope.refreshPage();
 
 }]);
 

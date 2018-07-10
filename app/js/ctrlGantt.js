@@ -82,6 +82,13 @@ app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sess
     $scope.getGantt();
 
 
+    /*$scope.refreshPage = function () {
+
+        $scope.showGantt();
+
+    };
+
+    $scope.refreshPage();*/
 
 
 
