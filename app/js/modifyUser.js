@@ -17,9 +17,9 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                 name: $scope.name,
                 surname: $scope.surname,
                 username: $sessionStorage.user.username,
-                password: $scope.password,
+                password: $scope.password
                 //email: $scope.email,
-                "role": "customer"
+                //"role": "customer"
             };
             myAjax.modifyUser(param).then(function (response) {
 
@@ -49,7 +49,7 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                             console.log("error");
 
                         });
-                    };
+                };
 
 
                 }

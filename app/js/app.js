@@ -120,7 +120,7 @@ app.run(function ($rootScope, $location, Auth) {
     });
 });
 
-app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,Auth) {
+app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,$mdDialog) {
     $scope.toggleLeft = buildToggler('left');
 
 
@@ -166,6 +166,8 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,Auth) {
             }
         }
     };
+
+
 
 
 });

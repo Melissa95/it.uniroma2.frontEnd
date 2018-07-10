@@ -138,6 +138,11 @@ app.service("myAjax", function($q,$http) {
     this.getPlanning = function(data,teamName,date,durat,idtick) {
         return ajax("POST", "http://localhost:8200/ticketingsystem/gantt/createGanttInstance/" + teamName + "/"+ date +"/"+ durat +"/"+idtick, data);
 
-    }
+    };
+
+    this.getFatherTicket = function(data,id) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/ticket/findFatherTicket/" + id, data);
+
+    };
 
 });

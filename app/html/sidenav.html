@@ -49,9 +49,21 @@
                     <a class="navbar-brand" href="#!/homeCustomer">Ticketing system</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
+
+                    <md-button ng-controller="MainGanttCtrl" md-no-ink class="md-black" ng-click="planning()">New planning</md-button>
+
                     <md-button ng-click="toggleLeft()" class="md-raised">
                         &#9776;
                     </md-button>
+
+
+                    <!--<md-button ng-click="planningGantt()"
+                               title="Plan new ticket"
+                               target="_blank"
+                               ng-disabled="false"
+                               class="md-icon-button launch" >
+                        <md-icon md-svg-icon="img/icons/launch.svg"></md-icon>
+                    </md-button>-->
                 </ul>
             </div>
         </nav>

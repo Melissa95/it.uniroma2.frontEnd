@@ -1,4 +1,4 @@
-app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth', '$mdDialog',function($scope,myService,myAjax,Auth, $mdDialog){
+app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location','$mdDialog','$route',function($scope,myService,myAjax,Auth, $location,$mdDialog,$route){
 
     $scope.myTeams = null;
     $scope.penTicket = null;
@@ -8,6 +8,20 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth', '$mdDialog'
     $scope.date =new Date();
 
     this.isOpen = false;
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+
+    };
+
 
     $scope.getTeam = function () {
 
@@ -57,44 +71,92 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth', '$mdDialog'
         init();
     };
 
+    $scope.getPendingTicket();
+
 
     $scope.sendPlanning= function () {
-       var d= $scope.date.getDate() + "-"+ $scope.date.getMonth()+ "-"+$scope.date.getFullYear()+"-------------"+$scope.date.getHours()+":"+$scope.date.getMinutes()
+       var d= $scope.date.getDate() + "-"+ $scope.date.getMonth()+ "-"+$scope.date.getFullYear()+" "+$scope.date.getHours()+":"+$scope.date.getMinutes()+":"+$scope.date.getSeconds();
         console.log("DATAAAAAAAAAA"+ d);
 
         var init = function () {
             var param = {
                         id:$scope.ticket,
-                        duration: $scope.duration,
+                        durationEstimation: $scope.duration,
+                        dateExecutionStart: d,
                         team:{
                             teamName:$scope.team.teamName
 
-                        }
+                        },
+                        status:'execution'
             };
 
             myAjax.getPlanning(param,$scope.team.teamName,d,$scope.duration,$scope.ticket).then(function (response) {
 
                 if (response.status === 200) {
 
-                    $scope.showGantt();
 
-                    $mdDialog.show({
-                        controller: "MainGanttCtrl",
-                        templateUrl: 'html/modalGantt.html',
-                        parent: angular.element(document.body),
-                        clickOutsideToClose:true
+                    $scope.cancel();
+                    $route.reload();
 
-                    }).then(function(answer) {
-                            $scope.status = 'You said the information was "' + answer + '".';
-                        }, function() {
-                            $scope.status = 'You cancelled the dialog.';
-                        });
+
                 }
 
 
-            }, function () {
+            }, function (err) {
 
-                alert("error in gantt");
+                var messageError = null;
+
+                    if(err.status === 406) {
+                        messageError = "Planning failed following day not available: ";
+
+                        for(var g = 0; g < err.data.length; g++){
+
+                            messageError = messageError + err.data[g].keyGanttDay.day +" " + ";" ;
+
+                        }
+                        console.log(messageError);
+
+                    }
+
+                    if (err.status === 424) {
+
+                        var init = function () {
+                            var param = {};
+                            myAjax.getFatherTicket(param,$scope.ticket).then(function (response) {
+                                messageError = "Planning failed. Need to resolve the following ticket first: \n "  ;
+                                if (response.status === 200) {
+
+                                    for(var g = 0; g < response.data.length; g++){
+                                        messageError = messageError + response.data[g].id + " " + response.data[g].title +  "\n";
+
+                                    }
+
+                                }
+                            }, function () {
+
+                                messageError = "Planning failed internal error cause";
+
+                            });
+                        };
+
+                        init();
+
+
+                    }
+
+
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent(messageError)
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
+
             });
         };
 

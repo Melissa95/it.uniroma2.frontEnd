@@ -1,14 +1,13 @@
 'use strict';
 
 
-app.controller('MainGanttCtrl', function($scope,$mdDialog, $location, myAjax,myService) {
+app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sessionStorage) {
 
 
     $scope.tasks = {
 
         data: []
     };
-
 
     $scope.hide = function() {
         $mdDialog.hide();
@@ -19,16 +18,32 @@ app.controller('MainGanttCtrl', function($scope,$mdDialog, $location, myAjax,myS
     };
 
     $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
 
-            $mdDialog.hide(answer);
-        
+    };
+
+    $scope.planning = function(){
+        $mdDialog.show({
+            controller: "ctrlPlanning",
+            templateUrl: 'html/modalPlanning.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose:true
+
+        })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
     };
 
 
     $scope.getGantt = function() {
 
 
-        $scope.team = myService.dataObj.team;
+       // $scope.team = myService.dataObj.team;
+
+        $scope.team = $sessionStorage.team;
 
         var init = function () {
             var param = {};
@@ -65,6 +80,9 @@ app.controller('MainGanttCtrl', function($scope,$mdDialog, $location, myAjax,myS
     };
 
     $scope.getGantt();
+
+
+
 
 
 

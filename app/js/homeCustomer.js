@@ -14,8 +14,8 @@ app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth,$uib
 
     $scope.openModal = function() {
         $mdDialog.show({
-            controller: "MainGanttCtrl",
-            templateUrl: 'html/modalGantt.html',
+            controller: "ctrlTeam",
+            templateUrl: 'html/modalTeam.html',
             parent: angular.element(document.body),
             clickOutsideToClose:true
 
