@@ -1,5 +1,5 @@
 
-app.controller('ctrlTarget', function($scope,myAjax,$location) {
+app.controller('ctrlTarget', function($scope,myAjax,$location,$mdDialog) {
 
     console.log("sono nel controller");
 
@@ -27,10 +27,20 @@ app.controller('ctrlTarget', function($scope,myAjax,$location) {
 
             }, function () {
 
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in target's creation")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
+
                 $scope.name="";
                 $scope.version="";
                 $scope.description="";
-                alert("Error in target's creation");
             });
         };
 

@@ -1,4 +1,4 @@
-app.controller('ctrlNewRelation', function($scope, myAjax, $location) {
+app.controller('ctrlNewRelation', function($scope, myAjax, $location,$mdDialog) {
 
 
     $scope.cyclic = false;
@@ -14,16 +14,50 @@ app.controller('ctrlNewRelation', function($scope, myAjax, $location) {
             myAjax.newRelation(param).then(function (response) {
 
                 if (response.status === 201) {
-                    alert("relation created with success");
-                    $location.path("/relation");
+
+                    $mdDialog.show()
+                    {
+                        var resp = $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Operation success')
+                            .textContent('Relation created with success')
+                            .ariaLabel('Alert Dialog Demo')
+                            .ok('OK')
+                            .targetEvent();
+
+                        $mdDialog.show(resp).then(function () {
+                            $location.path("/relation");
+                        }, function () {
+                            console.log("error");
+
+                        });
+                    };
                 }
 
 
             }, function (err) {
 
                 if (err.status === 302) {
-                    alert("Error in relation's creation");
-                    $location.path("/defineNewRelation");
+
+                    $mdDialog.show()
+                    {
+                        var resp = $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Operation failed')
+                            .textContent('Error in relation\'s creation')
+                            .ariaLabel('Alert Dialog Demo')
+                            .ok('OK')
+                            .targetEvent();
+
+                        $mdDialog.show(resp).then(function () {
+                            $location.path("/defineNewRelation");
+                        }, function () {
+                            console.log("error");
+
+                        });
+                    };
                 }
             });
         };

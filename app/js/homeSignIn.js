@@ -1,5 +1,5 @@
 
-app.controller('ctrlSignIn', function($scope,myAjax,$location) {
+app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
   $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
@@ -17,21 +17,65 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location) {
           };
           myAjax.signInUser(param).then(function(response) {
 
-              //$scope.items = data;
               if (response.status === 201) {
-                  alert("Registration success");
-                  $location.path("/homeLogin");
+
+                  $mdDialog.show()
+                  {
+                      var resp = $mdDialog.alert()
+                          .parent(angular.element(document.querySelector('#popupContainer')))
+                          .clickOutsideToClose(true)
+                          .title('Operation success')
+                          .textContent('Success in registration')
+                          .ariaLabel('Alert Dialog Demo')
+                          .ok('OK')
+                          .targetEvent();
+
+                      $mdDialog.show(resp).then(function () {
+                          $location.path("/homeLogin");
+                      }, function () {
+                          console.log("error");
+
+                      });
+                  };
               }
 
           }, function (err) {
 
               if (err.status === 302) {
-                  alert("Error: Username already exist");
-                  $location.path("/homeSignIn");
+
+                  $mdDialog.show()
+                  {
+                      var resp = $mdDialog.alert()
+                          .parent(angular.element(document.querySelector('#popupContainer')))
+                          .clickOutsideToClose(true)
+                          .title('Operation failed')
+                          .textContent('Username already exist')
+                          .ariaLabel('Alert Dialog Demo')
+                          .ok('OK')
+                          .targetEvent();
+
+                      $mdDialog.show(resp).then(function () {
+                          $location.path("/homeSignIn");
+                      }, function () {
+                          console.log("error");
+
+                      });
+                  };
+
                   $scope.username="";
                   $scope.password="";
+
               }else {
-                  alert("Error in registration");
+                  $mdDialog.show(
+                      $mdDialog.alert()
+                          .parent(angular.element(document.querySelector('#popupContainer')))
+                          .clickOutsideToClose(true)
+                          .title('Operation failed')
+                          .textContent("Error in registration")
+                          .ariaLabel('Alert Dialog Demo')
+                          .ok('Got it!')
+                          .targetEvent()
+                  );
               }
           });
       };

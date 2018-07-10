@@ -28,7 +28,6 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
 
                     $scope.myTeams = response.data;
                     if($scope.myTeams.length === 0) {
-                        console.log("errore");
                         $scope.result = false;
                     }else {
                         $scope.result = true;
@@ -37,7 +36,16 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
                 }
             }, function () {
 
-                console.log("Error in getting team");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in getting team")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 

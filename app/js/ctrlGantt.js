@@ -29,12 +29,7 @@ app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sess
             parent: angular.element(document.body),
             clickOutsideToClose:true
 
-        })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
-            });
+        });
     };
 
 
@@ -71,7 +66,16 @@ app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sess
 
             }, function () {
 
-                alert("error in gantt");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in gantt")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 

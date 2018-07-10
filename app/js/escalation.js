@@ -1,9 +1,4 @@
-app.controller('ctrlEscalation', function($scope,myAjax,$location) {
-
-    console.log("sono nel controller");
-    /*$scope.result = true;
-    $scope.resultNegative = true;*/
-
+app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog) {
 
 
 
@@ -19,11 +14,20 @@ app.controller('ctrlEscalation', function($scope,myAjax,$location) {
             myAjax.escalation(param).then(function (response) {
 
                 if (response.status === 201) {
-                    console.log("Escalation creata");
                     $scope.customerPriority = "";
                     $scope.teamPriority = "";
                     $scope.time = "";
-                    alert("Escalation created");
+
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#popupContainer')))
+                            .clickOutsideToClose(true)
+                            .title('Operation success')
+                            .textContent("Escalation created")
+                            .ariaLabel('Alert Dialog Demo')
+                            .ok('Got it!')
+                            .targetEvent()
+                    );
 
 
                 }
@@ -32,7 +36,16 @@ app.controller('ctrlEscalation', function($scope,myAjax,$location) {
                 $scope.customerPriority = "";
                 $scope.teamPriority = "";
                 $scope.time = "";
-                alert("Error creation escalation");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in escalation's creation")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 

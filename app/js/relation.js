@@ -1,5 +1,5 @@
 
-app.controller('ctrlRelation', function( $scope, myAjax, $location) {
+app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
 
         //tickets available for dependency
@@ -26,13 +26,22 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
                  myAjax.getAllRel(param).then(function (response) {
 
-                     //$scope.items = data;
                      if (response.status === 200)
                          $scope.allRelation =  response.data;
 
                  }, function () {
 
-                     alert("Error getting relations ");
+
+                     $mdDialog.show(
+                         $mdDialog.alert()
+                             .parent(angular.element(document.querySelector('#popupContainer')))
+                             .clickOutsideToClose(true)
+                             .title('Operation failed')
+                             .textContent("Error getting relations")
+                             .ariaLabel('Alert Dialog Demo')
+                             .ok('Got it!')
+                             .targetEvent()
+                     );
                  });
              };
 
@@ -57,12 +66,21 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
                 //$scope.items = data;
                 if (response.status === 200)
-                    console.log("ticket" + response.data[0].id);
                     $scope.ticketsforDep =  response.data;
 
             }, function () {
 
-                alert("Error getting tickets");
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error getting tickets")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
@@ -86,7 +104,17 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
             }, function () {
 
-                alert("Error getting tickets");
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error getting tickets")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
@@ -104,13 +132,22 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
             myAjax.getTicketForEqual(param).then(function (response) {
 
-                //$scope.items = data;
                 if (response.status === 200)
                     $scope.ticketsforEqu =  response.data;
 
             }, function () {
 
-                alert("Error getting tickets");
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error getting tickets")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
@@ -155,19 +192,59 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 myAjax.putRelationEqual(param,choosenTable).then(function (response) {
 
                     if (response.status === 200) {
-                        alert("Relation correctly created!");
-                        $location.path("/showAllTickets");
+
+
+                        $mdDialog.show()
+                        {
+                            var resp = $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation success')
+                                .textContent('Relation correctly created!')
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('OK')
+                                .targetEvent();
+
+                            $mdDialog.show(resp).then(function () {
+                                $location.path("/showAllTickets");
+                            }, function () {
+                                console.log("error");
+
+                            });
+                        };
                     }
 
 
                 }, function (err) {
 
                     if (err.status === 401) {
-                        alert("Creation failed: cannot create equality with the same ticket");
-                        $location.path("/relation");
+
+                       // $location.path("/relation");
+
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation failed')
+                                .textContent("Cannot create equality with the same ticket")
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('Got it!')
+                                .targetEvent()
+                        );
                     } else {
-                        alert("Creation failed");
-                        $location.path("/relation");
+
+                        //$location.path("/relation");
+
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation failed')
+                                .textContent("Error in creation")
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('Got it!')
+                                .targetEvent()
+                        );
                     }
                 });
             };
@@ -182,8 +259,25 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 myAjax.putRelationDep(param,choosenTable,$scope.idChoose).then(function (response) {
 
                     if (response.status === 200){
-                        alert("Relation correctly created!");
-                        $location.path("/showAllTickets");
+
+                        $mdDialog.show()
+                        {
+                            var resp = $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation success')
+                                .textContent('Relation correctly created!')
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('OK')
+                                .targetEvent();
+
+                            $mdDialog.show(resp).then(function () {
+                                $location.path("/showAllTickets");
+                            }, function () {
+                                console.log("error");
+
+                            });
+                        };
                     }
 
 
@@ -191,15 +285,38 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
 
                     if (err.status === 424) {
                         if (err.data.length === 0) {
-                            alert("Reflective relation is forbidden");
-                            $location.path("/relation");
+                            //$location.path("/relation");
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Reflective relation is forbidden")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Got it!')
+                                    .targetEvent()
+                            );
+
+
                         } else {
                             var cicle = "" + err.data[0].id;
                             for (var i = 1; i < err.data.length; i++) {
                                 cicle += ", " + err.data[i].id;
                             }
-                            alert("Creation failed due to this cycle: " + cicle);
-                            $location.path("/relation");
+                            //$location.path("/relation");
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Creation failed due to this cycle: " + cicle)
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Got it!')
+                                    .targetEvent()
+                            );
+
 
                         }
                     }
@@ -217,16 +334,46 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 myAjax.putRelationRegression(param,choosenTable,$scope.idChoose).then(function (response) {
 
                     if (response.status === 200) {
-                        alert("Relation correctly created!");
-                        $location.path("/showAllTickets");
+
+                        $mdDialog.show()
+                        {
+                            var resp = $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation success')
+                                .textContent('Relation correctly created!')
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('OK')
+                                .targetEvent();
+
+                            $mdDialog.show(resp).then(function () {
+                                $location.path("/showAllTickets");
+                            }, function () {
+                                console.log("error");
+
+                            });
+                        };
                     }
 
 
                 }, function (err) {
 
                     if (err.status === 424) {
-                        alert(" Creation failed: cannot create regression with the same ticket");
-                        $location.path("/relation");
+
+                        //$location.path("/relation");
+
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation failed')
+                                .textContent("cannot create regression with the same ticket ")
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('Got it!')
+                                .targetEvent()
+                        );
+
+
                     }
                 });
             };
@@ -252,23 +399,59 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 myAjax.putRelationCustom(param).then(function (response) {
 
                     if (response.status === 201) {
-                        alert("Relation correctly created!");
-                        $location.path("/showAllTickets");
+
+                        $mdDialog.show()
+                        {
+                            var resp = $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation success')
+                                .textContent('Relation correctly created!')
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('OK')
+                                .targetEvent();
+
+                            $mdDialog.show(resp).then(function () {
+                                $location.path("/showAllTickets");
+                            }, function () {
+                                console.log("error");
+
+                            });
+                        };
                     }
 
                 }, function (err) {
 
                     if (err.status === 424) {
                         if (err.data.length === 0) {
-                            alert("Reflective relation is forbidden");
-                            $location.path("/showAllTickets");
+                            //$location.path("/showAllTickets");
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Reflective relation is forbidden")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Got it!')
+                                    .targetEvent()
+                            );
                         } else {
                             var cicle = "" + err.data[0].id;
                             for (var i = 1; i < err.data.length; i++) {
                                 cicle += ", " + err.data[i].id;
                             }
-                            alert("Creation failed due to this cycle: " + cicle);
-                            $location.path("/showAllTickets");
+                            //$location.path("/showAllTickets");
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Creation failed due to this cycle: " + cicle)
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Got it!')
+                                    .targetEvent()
+                            );
 
                         }
                     }
@@ -298,7 +481,16 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location) {
                 }
             }, function () {
 
-                alert("error in get tickets");
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in get tickets")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 

@@ -74,6 +74,7 @@
                         <input type="email" ng-pattern="emailFormat" ng-value="email" name = "email" ng-required="true" ng-model="email">
                         <div ng-messages="regForm.email.$error">
                             <div ng-message="required">You must insert an email</div>
+                            <div ng-message="pattern">You must insert an email with the correct format (ex: example@gmail.com)</div>
                         </div>
                     </md-input-container>
 

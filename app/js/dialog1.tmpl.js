@@ -23,9 +23,7 @@ app.controller('DialogController',['$scope','myService','$mdDialog','myAjax',fun
             if (response.status === 200) {
                 $scope.ticket = response.data;
 
-                //$scope.showRelationTicket();
 
-               // $scope.showRelationCustomTicket($scope.ticket.id);
             }
 
         }, function () {

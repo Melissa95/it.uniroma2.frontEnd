@@ -31,7 +31,7 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                     $scope.password = "";
                     $sessionStorage.user = response.data;
                     console.log("response" + response.data.name);
-                    //alert("Success in modify");
+
                     $mdDialog.show()
                     {
                         var resp = $mdDialog.alert()

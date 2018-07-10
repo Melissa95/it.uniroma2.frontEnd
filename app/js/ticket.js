@@ -11,21 +11,30 @@ app.controller('ctrlTicket',['$scope','myService','$sessionStorage','$location',
     $scope.relationName=null;
 
 
-    $scope.showDetails = function(param) {
+    $scope.showDetails = function(tipo,param) {
         idTick = param;
         myService.dataObj = {"id": idTick};
-        $mdDialog.show({
-            controller: "DialogController",
-            templateUrl: 'html/dialog1.tmpl.html',
-            parent: angular.element(document.body),
-            clickOutsideToClose:true
+        if (tipo === 2) {
 
-        })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
-            });
+
+            $mdDialog.show({
+                controller: "DialogController",
+                templateUrl: 'html/dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
+
+            })
+
+        } else if (tipo === 1) {
+
+            $mdDialog.show({
+                controller: "DialogController",
+                templateUrl: 'html/modalDetailsMyTickets.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
+
+            })
+        }
     };
 
 
@@ -54,7 +63,17 @@ app.controller('ctrlTicket',['$scope','myService','$sessionStorage','$location',
 
             }, function () {
 
-                alert("Error in ticket's creation");
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in ticket's creation")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Got it!')
+                        .targetEvent()
+                );
             });
         };
 
