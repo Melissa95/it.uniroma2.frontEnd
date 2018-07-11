@@ -10,25 +10,26 @@
             <h1 style="color:black">Show queue</h1>
         </div>
 
-        <table class="table table-dark" >
-            <thead>
-            <th> ID </th>
-            <th> Title </th>
-            <th> Description </th>
-            <th> Date Starting Pending</th>
-            <th> Rank </th>
-            </thead>
-            <tr ng-repeat = "x in records">
-                <td> {{x.id}} </td>
-                <td> {{x.title}} </td>
-                <td> {{x.description}} </td>
-                <td> {{x.datePendingStart}}</td>
-                <td>{{x.rank}}</td>
-            </tr>
+        <div style="overflow:hidden;  overflow-y: scroll;  max-height: 450px;">
+            <table class="table table-dark" >
+                <thead>
+                <th> ID </th>
+                <th> Title </th>
+                <th> Description </th>
+                <th> Date Starting Pending</th>
+                <th> Rank </th>
+                </thead>
+                <tr ng-repeat = "x in records">
+                    <td> {{x.id}} </td>
+                    <td> {{x.title}} </td>
+                    <td> {{x.description}} </td>
+                    <td> {{x.datePendingStart}}</td>
+                    <td>{{x.rank}}</td>
+                </tr>
 
-        </table>
+            </table>
 
-
+        </div>
     </div>
 </form>
 

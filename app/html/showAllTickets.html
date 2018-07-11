@@ -3,13 +3,14 @@
 <ng-include src="'html/sidenav.html'"></ng-include>
 
 <form name="prodShowAllTickets">
-    <div layout="column" style="text-align: center;color:white;padding-top: 3%;padding-left: 3%;padding-right: 3%" ng-controller="ctrlTicket" >
+    <div layout="column" style="text-align: center;color:white;padding-top: 3%;padding-left: 3%;padding-right: 3%" ng-controller="ctrlTicket"  >
 
         <div class="jumbotron" style="padding-top: 3%; padding-left: 5%;padding-right: 5%;height:3px;background-color:white ;opacity: 0.85; ">
             <h1 style="color:black">All tickets</h1>
-        </div>
+        </div >
 
-        <table class="table table-dark">
+        <div style="overflow:hidden;  overflow-y: scroll;  max-height: 450px;">
+        <table class="table table-dark" >
             <thead>
             <th> ID </th>
             <th> Title </th>
@@ -33,7 +34,7 @@
 
         </table>
 
-
+        </div>
     </div>
 </form>
 
