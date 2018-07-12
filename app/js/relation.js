@@ -228,6 +228,9 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .targetEvent()
                             );
 
+                            $scope.relations[choosenTable] = "";
+                            $scope.idChoose = "";
+
                         }
 
 
