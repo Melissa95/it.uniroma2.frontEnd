@@ -65,7 +65,20 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                   $scope.username="";
                   $scope.password="";
 
-              }else {
+              }else if(err.status === 500){
+                  $mdDialog.show(
+                      $mdDialog.alert()
+                          .parent(angular.element(document.querySelector('#popupContainer')))
+                          .clickOutsideToClose(true)
+                          .title('Operation failed')
+                          .textContent("Email already exist")
+                          .ariaLabel('Alert Dialog Demo')
+                          .ok('Ok')
+                          .targetEvent()
+                  );
+
+                  $scope.email="";
+              }else{
                   $mdDialog.show(
                       $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
