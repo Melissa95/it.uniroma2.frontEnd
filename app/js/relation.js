@@ -193,26 +193,20 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200) {
 
+                        var confirm = $mdDialog.confirm()
+                            .title('Operation success')
+                            .textContent('Relation correctly created!')
+                            .ariaLabel('Lucky day')
+                            .targetEvent()
+                            .multiple(true)
+                            .ok('Ok');
 
-                        $mdDialog.show()
-                        {
-                            var resp = $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent('Relation correctly created!')
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent();
+                        /*$mdDialog.show(confirm).then(function() {
+                            $location.path("/showAllTickets");
+                        }, function() {
+                        });*/
 
-                            $mdDialog.show(resp).then(function () {
-                                $location.path("/showAllTickets");
-                            }, function () {
-                                console.log("error");
 
-                            });
-                        };
                     }
 
 
@@ -221,6 +215,8 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                     if (err.status === 401) {
 
                        // $location.path("/relation");
+
+
 
                         $mdDialog.show(
                             $mdDialog.alert()
@@ -275,12 +271,12 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .ok('Ok')
                                 .targetEvent();
 
-                            $mdDialog.show(resp).then(function () {
+                            /*$mdDialog.show(resp).then(function () {
                                 $location.path("/showAllTickets");
                             }, function () {
                                 console.log("error");
 
-                            });
+                            });*/
                         };
                     }
 
@@ -353,12 +349,12 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .ok('Ok')
                                 .targetEvent();
 
-                            $mdDialog.show(resp).then(function () {
+                            /*$mdDialog.show(resp).then(function () {
                                 $location.path("/showAllTickets");
                             }, function () {
                                 console.log("error");
 
-                            });
+                            });*/
                         };
                     }
 
@@ -420,12 +416,12 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .ok('Ok')
                                 .targetEvent();
 
-                            $mdDialog.show(resp).then(function () {
+                            /*$mdDialog.show(resp).then(function () {
                                 $location.path("/showAllTickets");
                             }, function () {
                                 console.log("error");
 
-                            });
+                            });*/
                         };
                     }
 
