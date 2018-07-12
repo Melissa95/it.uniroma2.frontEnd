@@ -228,8 +228,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .targetEvent()
                             );
 
-                            $scope.relations[choosenTable] = "";
-                            $scope.idChoose = "";
+
 
                         }
 
@@ -286,38 +285,52 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200){
 
-                        $mdDialog.show(
-                            $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent("Relation correctly created!")
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent()
-                        );
 
-                        /*$mdDialog.show()
-                        {
-                            var resp = $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent('Relation correctly created!')
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent();
+                        if (index != null) {
 
-                            /*$mdDialog.show(resp).then(function () {
-                                $location.path("/showAllTickets");
-                            }, function () {
-                                console.log("error");
+                            $mdDialog.show()
+                            {
+                                var resp = $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent('Relation correctly created!')
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent();
 
-                            });
-                        };*/
+                                $mdDialog.show(resp).then(function () {
+                                    $location.path("/showAllTickets");
+                                }, function () {
+                                    console.log("error");
+
+                                });
+                            };
+
+                        }else{
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent("Relation correctly created!")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .multiple(true)
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
+
+
+
+                        }
+
+
+
                     }
+
+
+
 
 
                 }, function (err) {
@@ -376,37 +389,46 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200) {
 
-                        $mdDialog.show(
-                            $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent("Relation correctly created!")
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent()
-                        );
 
-                        /*$mdDialog.show()
-                        {
-                            var resp = $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent('Relation correctly created!')
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent();
+                        if (index != null) {
 
-                            /*$mdDialog.show(resp).then(function () {
-                                $location.path("/showAllTickets");
-                            }, function () {
-                                console.log("error");
+                            $mdDialog.show()
+                            {
+                                var resp = $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent('Relation correctly created!')
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent();
 
-                            });
-                        };*/
+                                $mdDialog.show(resp).then(function () {
+                                    $location.path("/showAllTickets");
+                                }, function () {
+                                    console.log("error");
+
+                                });
+                            };
+
+                        }else{
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent("Relation correctly created!")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .multiple(true)
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
+
+
+
+                        }
+
                     }
 
 
@@ -455,37 +477,45 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 201) {
 
-                        $mdDialog.show(
-                            $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent("Relation correctly created!")
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent()
-                        );
+                        if (index != null) {
 
-                        /*$mdDialog.show()
-                        {
-                            var resp = $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Operation success')
-                                .textContent('Relation correctly created!')
-                                .ariaLabel('Alert Dialog Demo')
-                                .multiple(true)
-                                .ok('Ok')
-                                .targetEvent();
+                            $mdDialog.show()
+                            {
+                                var resp = $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent('Relation correctly created!')
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent();
 
-                            /*$mdDialog.show(resp).then(function () {
-                                $location.path("/showAllTickets");
-                            }, function () {
-                                console.log("error");
+                                $mdDialog.show(resp).then(function () {
+                                    $location.path("/showAllTickets");
+                                }, function () {
+                                    console.log("error");
 
-                            });
-                        };*/
+                                });
+                            };
+
+                        }else{
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation success')
+                                    .textContent("Relation correctly created!")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .multiple(true)
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
+
+
+
+                        }
+
                     }
 
                 }, function (err) {
