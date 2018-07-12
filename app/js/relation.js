@@ -193,7 +193,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200) {
 
-                        $mdDialog.show(
+                        var confirm = $mdDialog.show(
                             $mdDialog.alert()
                                 .parent(angular.element(document.querySelector('#popupContainer')))
                                 .clickOutsideToClose(true)
@@ -203,7 +203,16 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .multiple(true)
                                 .ok('Ok')
                                 .targetEvent()
+
+                        $mdDialog.show(confirm).then(function () {
+                            if (index != null) {
+                                $location.path("/showAllTickets");
+                            }
+                            }, function () {
+                                console.log("error");
+                            }
                         );
+
 
                         /*var confirm = $mdDialog.confirm()
                             .title('Operation success')
