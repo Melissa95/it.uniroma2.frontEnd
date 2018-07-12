@@ -27,7 +27,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           .title('Operation success')
                           .textContent('Success in registration')
                           .ariaLabel('Alert Dialog Demo')
-                          .ok('OK')
+                          .ok('Ok')
                           .targetEvent();
 
                       $mdDialog.show(resp).then(function () {
@@ -51,7 +51,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           .title('Operation failed')
                           .textContent('Username already exist')
                           .ariaLabel('Alert Dialog Demo')
-                          .ok('OK')
+                          .ok('Ok')
                           .targetEvent();
 
                       $mdDialog.show(resp).then(function () {
@@ -73,7 +73,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           .title('Operation failed')
                           .textContent("Error in registration")
                           .ariaLabel('Alert Dialog Demo')
-                          .ok('Got it!')
+                          .ok('Ok')
                           .targetEvent()
                   );
               }

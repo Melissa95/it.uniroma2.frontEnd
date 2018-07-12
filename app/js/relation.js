@@ -39,7 +39,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                              .title('Operation failed')
                              .textContent("Error getting relations")
                              .ariaLabel('Alert Dialog Demo')
-                             .ok('Got it!')
+                             .ok('Ok')
                              .targetEvent()
                      );
                  });
@@ -78,7 +78,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error getting tickets")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -112,7 +112,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error getting tickets")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -145,7 +145,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error getting tickets")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -202,7 +202,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation success')
                                 .textContent('Relation correctly created!')
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('OK')
+                                .ok('Ok')
                                 .targetEvent();
 
                             $mdDialog.show(resp).then(function () {
@@ -228,7 +228,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation failed')
                                 .textContent("Cannot create equality with the same ticket")
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('Got it!')
+                                .ok('Ok')
                                 .targetEvent()
                         );
                     } else {
@@ -242,7 +242,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation failed')
                                 .textContent("Error in creation")
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('Got it!')
+                                .ok('Ok')
                                 .targetEvent()
                         );
                     }
@@ -268,7 +268,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation success')
                                 .textContent('Relation correctly created!')
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('OK')
+                                .ok('Ok')
                                 .targetEvent();
 
                             $mdDialog.show(resp).then(function () {
@@ -294,7 +294,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .title('Operation failed')
                                     .textContent("Reflective relation is forbidden")
                                     .ariaLabel('Alert Dialog Demo')
-                                    .ok('Got it!')
+                                    .ok('Ok')
                                     .targetEvent()
                             );
 
@@ -313,7 +313,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .title('Operation failed')
                                     .textContent("Creation failed due to this cycle: " + cicle)
                                     .ariaLabel('Alert Dialog Demo')
-                                    .ok('Got it!')
+                                    .ok('Ok')
                                     .targetEvent()
                             );
 
@@ -343,7 +343,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation success')
                                 .textContent('Relation correctly created!')
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('OK')
+                                .ok('Ok')
                                 .targetEvent();
 
                             $mdDialog.show(resp).then(function () {
@@ -369,7 +369,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation failed')
                                 .textContent("cannot create regression with the same ticket ")
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('Got it!')
+                                .ok('Ok')
                                 .targetEvent()
                         );
 
@@ -408,7 +408,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .title('Operation success')
                                 .textContent('Relation correctly created!')
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('OK')
+                                .ok('Ok')
                                 .targetEvent();
 
                             $mdDialog.show(resp).then(function () {
@@ -433,7 +433,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .title('Operation failed')
                                     .textContent("Reflective relation is forbidden")
                                     .ariaLabel('Alert Dialog Demo')
-                                    .ok('Got it!')
+                                    .ok('Ok')
                                     .targetEvent()
                             );
                         } else {
@@ -449,7 +449,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                     .title('Operation failed')
                                     .textContent("Creation failed due to this cycle: " + cicle)
                                     .ariaLabel('Alert Dialog Demo')
-                                    .ok('Got it!')
+                                    .ok('Ok')
                                     .targetEvent()
                             );
 
@@ -488,7 +488,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error in get tickets")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });

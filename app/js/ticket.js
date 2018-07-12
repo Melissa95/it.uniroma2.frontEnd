@@ -71,7 +71,7 @@ app.controller('ctrlTicket',['$scope','myService','$sessionStorage','$location',
                         .title('Operation failed')
                         .textContent("Error in ticket's creation")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });

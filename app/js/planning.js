@@ -44,7 +44,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                         .title('Operation failed')
                         .textContent("Error in getting team")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -79,7 +79,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                         .title('Operation failed')
                         .textContent("Error in getting pending ticket")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -140,7 +140,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                 .title('Operation failed')
                                 .textContent(messageError)
                                 .ariaLabel('Alert Dialog Demo')
-                                .ok('Got it!')
+                                .ok('Ok')
                                 .targetEvent()
                         );
                     }
@@ -165,7 +165,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                             .title('Operation failed')
                                             .textContent(messageError)
                                             .ariaLabel('Alert Dialog Demo')
-                                            .ok('Got it!')
+                                            .ok('Ok')
                                             .targetEvent()
                                     );
 
@@ -181,7 +181,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                         .title('Operation failed')
                                         .textContent(messageError)
                                         .ariaLabel('Alert Dialog Demo')
-                                        .ok('Got it!')
+                                        .ok('Ok')
                                         .targetEvent()
                                 );
 
@@ -240,7 +240,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                         .title('Operation failed')
                         .textContent("Error in gantt")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });

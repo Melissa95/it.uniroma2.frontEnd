@@ -34,7 +34,7 @@ app.controller('ctrlTarget', function($scope,myAjax,$location,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error in target's creation")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
 

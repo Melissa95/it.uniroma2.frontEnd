@@ -73,7 +73,7 @@ app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sess
                         .title('Operation failed')
                         .textContent("Error in gantt")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -86,13 +86,6 @@ app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sess
     $scope.getGantt();
 
 
-    /*$scope.refreshPage = function () {
-
-        $scope.showGantt();
-
-    };
-
-    $scope.refreshPage();*/
 
 
 

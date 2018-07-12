@@ -23,7 +23,7 @@ app.controller('ctrlNewRelation', function($scope, myAjax, $location,$mdDialog) 
                             .title('Operation success')
                             .textContent('Relation created with success')
                             .ariaLabel('Alert Dialog Demo')
-                            .ok('OK')
+                            .ok('Ok')
                             .targetEvent();
 
                         $mdDialog.show(resp).then(function () {
@@ -48,7 +48,7 @@ app.controller('ctrlNewRelation', function($scope, myAjax, $location,$mdDialog) 
                             .title('Operation failed')
                             .textContent('Error in relation\'s creation')
                             .ariaLabel('Alert Dialog Demo')
-                            .ok('OK')
+                            .ok('Ok')
                             .targetEvent();
 
                         $mdDialog.show(resp).then(function () {

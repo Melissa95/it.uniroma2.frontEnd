@@ -40,7 +40,7 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                             .title('Operation success')
                             .textContent('Success in modify account')
                             .ariaLabel('Alert Dialog Demo')
-                            .ok('OK')
+                            .ok('Ok')
                             .targetEvent();
 
                         $mdDialog.show(resp).then(function () {
@@ -69,7 +69,7 @@ app.controller('ctrlModifyUser', function($scope,myAjax,$sessionStorage,$locatio
                         .title('Operation failed')
                         .textContent('Error in modify account')
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('OK')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });

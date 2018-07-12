@@ -1,5 +1,5 @@
 angular.module('AuthServices', ['ngResource', 'ngStorage'])
-    .factory('Auth', function($resource, $rootScope, $sessionStorage,$q){
+    .factory('Auth', function($resource, $rootScope, $sessionStorage,$q,$mdDialog){
 
         /**
          *  User profile resource
@@ -42,12 +42,32 @@ angular.module('AuthServices', ['ngResource', 'ngStorage'])
                         //password wrong
                         if (response.status === 302) {
                             reject();
-                            alert("Password wrong");
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Password wrong")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
                         }
                         //username wrong
                         if (response.status === 404) {
                             reject();
-                            alert("Username wrong");
+
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Username wrong")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
                         }
                         reject();
                     });

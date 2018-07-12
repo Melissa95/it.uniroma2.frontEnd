@@ -43,7 +43,7 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
                         .title('Operation failed')
                         .textContent("Error in getting team")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
@@ -72,14 +72,7 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
 
     };
 
-    /*$scope.refreshPage = function () {
-        if ($sessionStorage.team != null) {
-            $scope.showGantt();
-        }
-    };*/
 
-
-    //$scope.refreshPage();
 
 }]);
 

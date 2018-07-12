@@ -25,7 +25,7 @@ app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog) {
                             .title('Operation success')
                             .textContent("Escalation created")
                             .ariaLabel('Alert Dialog Demo')
-                            .ok('Got it!')
+                            .ok('Ok')
                             .targetEvent()
                     );
 
@@ -43,7 +43,7 @@ app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog) {
                         .title('Operation failed')
                         .textContent("Error in escalation's creation")
                         .ariaLabel('Alert Dialog Demo')
-                        .ok('Got it!')
+                        .ok('Ok')
                         .targetEvent()
                 );
             });
