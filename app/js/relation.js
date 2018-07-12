@@ -193,7 +193,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200) {
 
-                        var confirm = $mdDialog.show(
+                        /*var confirm = $mdDialog.show(
                             $mdDialog.alert()
                                 .parent(angular.element(document.querySelector('#popupContainer')))
                                 .clickOutsideToClose(true)
@@ -204,28 +204,31 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
                                 .ok('Ok')
                                 .targetEvent()
 
-                        $mdDialog.show(confirm).then(function () {
-                            if (index != null) {
-                                $location.path("/showAllTickets");
-                            }
+
+                        );*/
+
+
+                        $mdDialog.show()
+                        {
+                            var resp = $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation success')
+                                .textContent('Relation correctly created!')
+                                .ariaLabel('Alert Dialog Demo')
+                                .multiple(true)
+                                .ok('Ok')
+                                .targetEvent();
+
+                            $mdDialog.show(resp).then(function () {
+                                if (index != null) {
+                                    $location.path("/showAllTickets");
+                                }
                             }, function () {
                                 console.log("error");
-                            }
-                        );
 
-
-                        /*var confirm = $mdDialog.confirm()
-                            .title('Operation success')
-                            .textContent('Relation correctly created!')
-                            .ariaLabel('Lucky day')
-                            .targetEvent()
-                            .multiple(true)
-                            .ok('Ok');
-
-                        /*$mdDialog.show(confirm).then(function() {
-                            $location.path("/showAllTickets");
-                        }, function() {
-                        });*/
+                            });
+                        };
 
 
 
