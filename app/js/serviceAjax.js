@@ -42,6 +42,10 @@ app.service("myAjax", function($q,$http) {
         return ajax("GET", "http://localhost:8200/ticketingsystem/ticket", params);
     };
 
+    this.getTicketsForRel = function(params) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/ticket/findTicketForCreateEquality", params);
+    };
+
     this.getTargets = function (params) {
         return ajax("GET","http://localhost:8200/ticketingsystem/target",params);
 

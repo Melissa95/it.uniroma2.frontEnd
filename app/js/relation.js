@@ -12,6 +12,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
         $scope.allRelation=null;
         $scope.allTick=null;
         $scope.relations = {};
+        $scope.ticketsForRel=null;
 
 
 
@@ -598,6 +599,40 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
     };
 
     $scope.allTickets();
+
+    $scope.allTicketsForRel = function () {
+
+
+        var param = {};
+
+        var init = function () {
+
+            myAjax.getTicketsForRel(param).then(function (response) {
+
+                if (response.status === 200) {
+
+                    $scope.ticketsForRel = response.data;
+
+                }
+            }, function () {
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Operation failed')
+                        .textContent("Error in get tickets for relation")
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('Ok')
+                        .targetEvent()
+                );
+            });
+        };
+
+        init();
+    };
+
+    $scope.allTicketsForRel();
 
 
 });
