@@ -140,6 +140,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                 .title('Operation failed')
                                 .textContent(messageError)
                                 .ariaLabel('Alert Dialog Demo')
+                                .multiple(true)
                                 .ok('Ok')
                                 .targetEvent()
                         );
@@ -165,6 +166,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                             .title('Operation failed')
                                             .textContent(messageError)
                                             .ariaLabel('Alert Dialog Demo')
+                                            .multiple(true)
                                             .ok('Ok')
                                             .targetEvent()
                                     );
@@ -181,6 +183,7 @@ app.controller('ctrlPlanning',['$scope','myService','myAjax','Auth','$location',
                                         .title('Operation failed')
                                         .textContent(messageError)
                                         .ariaLabel('Alert Dialog Demo')
+                                        .multiple(true)
                                         .ok('Ok')
                                         .targetEvent()
                                 );
