@@ -193,7 +193,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 200) {
 
-                        var confirm = $mdDialog.confirm()
+                        $mdDialog.confirm()
                             .title('Operation success')
                             .textContent('Relation correctly created!')
                             .ariaLabel('Lucky day')
@@ -261,7 +261,7 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                         $mdDialog.show()
                         {
-                            var resp = $mdDialog.alert()
+                            $mdDialog.alert()
                                 .parent(angular.element(document.querySelector('#popupContainer')))
                                 .clickOutsideToClose(true)
                                 .title('Operation success')
