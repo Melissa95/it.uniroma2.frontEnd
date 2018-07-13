@@ -3,6 +3,31 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
   $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
+  /*$scope.alertResponse = function(title,msg,newPage) {
+
+      mdDialog.show()
+      {
+          var resp = $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#popupContainer')))
+              .clickOutsideToClose(true)
+              .title(title)
+              .textContent(msg)
+              .ariaLabel('Alert Dialog Demo')
+              .ok('Ok')
+              .targetEvent();
+
+          $mdDialog.show(resp).then(function () {
+              if(newPage != null) {
+                  $location.path(newPage);
+              }
+          }, function () {
+              console.log("error");
+
+          });
+      }
+
+  };*/
+
   $scope.register = function() {
 
 
@@ -18,6 +43,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
           myAjax.signInUser(param).then(function(response) {
 
               if (response.status === 201) {
+
 
                   $mdDialog.show()
                   {
@@ -43,6 +69,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
               if (err.status === 302) {
 
+
                   $mdDialog.show()
                   {
                       var resp = $mdDialog.alert()
@@ -66,6 +93,8 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                   $scope.password="";
 
               }else if(err.status === 500){
+
+
                   $mdDialog.show(
                       $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
@@ -79,6 +108,8 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
                   $scope.email="";
               }else{
+
+
                   $mdDialog.show(
                       $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))

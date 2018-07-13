@@ -51,7 +51,9 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <div permission="['teamLeader']">
-                    <md-button ng-controller="MainGanttCtrl" md-no-ink class="md-black" ng-click="planning()">New planning</md-button>
+                    <md-button ng-controller="MainGanttCtrl"  title="New Planning" ng-click="planning()">
+                        <image src="css/image/baseline-work_outline-24px.svg"></image>
+                    </md-button>
                     </div>
 
                     <md-button ng-click="toggleLeft()" class="md-raised">
