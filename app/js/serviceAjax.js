@@ -33,7 +33,7 @@ app.service("myAjax", function($q,$http,$scope) {
     };
 
     this.modifyUser = function (data) {
-        return ajax("PUT", user/"+ data.username, data);
+        return ajax("PUT", URL + "user/"+ data.username, data);
 
     };
 
