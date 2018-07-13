@@ -480,6 +480,8 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                     if (response.status === 201) {
 
+                        console.log("Ok");
+
                         if (index != null) {
 
                             $mdDialog.show()
@@ -519,6 +521,20 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
                         }
 
+                    }else if (response.status === 208) {
+
+
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Operation failed')
+                                .textContent("Relation already exist")
+                                .ariaLabel('Alert Dialog Demo')
+                                .multiple(true)
+                                .ok('Ok')
+                                .targetEvent()
+                        );
                     }
 
                 }, function (err) {

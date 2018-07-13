@@ -47,11 +47,11 @@
                         </table>
                     </md-content>
                 </md-tab>
-                <md-tab label="show relations" ng-click="relation()">
+                <md-tab label="show relations" ng-click="relationAllForThis()">
                     <md-content class="md-padding">
                       <table class="table table-light">
-                            <tr> <td>Equivalence</td>
-                                <td> {{ticket.sameTicket.id}} {{ticket.sameTicket.title}} </td>
+                            <tr> <td>Equality</td>
+                                <td>{{ticket.sameTicket.id}} {{ticket.sameTicket.title}}</td>
                             </tr>
                             <tr> <td>Dependency</td>
                                 <td><div ng-repeat = "x in  ticket.dependentTickets">

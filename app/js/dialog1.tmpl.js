@@ -65,11 +65,13 @@ app.controller('DialogController',['$scope','myService','$mdDialog','myAjax',fun
             });
         };
 
-        $scope.relation = function() {
+        $scope.relationAllForThis = function() {
 
             $scope.showRelationTicket();
 
             $scope.showRelationCustomTicket($scope.ticket.id);
+
+            init();
         }
 
 }]);
