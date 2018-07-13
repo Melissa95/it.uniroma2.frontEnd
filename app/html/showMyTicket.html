@@ -29,7 +29,7 @@
                     <tr ng-repeat = "x in records" style="text-align: center; display: table ; width: 100%">
                         <td style="width:20%"> {{x.id}} </td>
                         <td style="width:20%"> {{x.title}} </td>
-                        <td style="width:20%"> {{x.target.id}} {{x.target.name}} </td>
+                        <td style="width:20%"> {{x.target.id}} - {{x.target.name}} </td>
                         <td style="width:20%">
                             <button  class="btn btn-dark" ng-controller="ctrlTicket"  ng-click="showDetails(1,x.id)">Show Details</button>
 

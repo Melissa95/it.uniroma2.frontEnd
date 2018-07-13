@@ -179,10 +179,12 @@ app.controller('ctrlRelation', function( $scope, myAjax, $location,$mdDialog) {
 
         var choosenTable;
         if (index != null) {
-            choosenTable = $scope.allTick[index].id;
+            choosenTable = $scope.ticketsForRel[index].id;
         }else if (id != null) {
             choosenTable = id;
         }
+        console.log("relation in createRel = " + $scope.relations[choosenTable]);
+
         if ($scope.relations[choosenTable]==='equality') {
 
 
