@@ -1,9 +1,22 @@
 
-app.controller('ctrlTarget', function($scope,myAjax,$location,$mdDialog) {
+app.controller('ctrlTarget', function($scope,myService,myAjax,$location,$mdDialog) {
 
-    console.log("sono nel controller");
 
     $scope.records;
+
+    $scope.showDetails = function(param) {
+
+        idTarget = param;
+        myService.dataObj = {"id": idTarget};
+
+        $mdDialog.show({
+            controller: "modalCtrlTarget",
+            templateUrl: 'html/modalTarget.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+
+        })
+    };
 
 
 

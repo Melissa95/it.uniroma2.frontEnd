@@ -41,7 +41,10 @@
                                 <td> {{ticket.customerPriority}} </td>
                             </tr>
                             <tr> <td>Description</td>
-                                <td> {{ticket.description}} </td>
+                                <td><md-input-container>
+                                    <textarea cols="50" class="autogrow" readonly>{{ticket.description}}
+                                    </textarea>
+                                </md-input-container></td>
                             </tr>
 
                         </table>

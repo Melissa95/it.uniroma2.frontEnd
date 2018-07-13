@@ -149,4 +149,9 @@ app.service("myAjax", function($q,$http) {
 
     };
 
+    this.getDetailsTarget = function (data,id) {
+        return ajax("GET", "http://localhost:8200/ticketingsystem/target/" + id, data)
+
+    }
+
 });

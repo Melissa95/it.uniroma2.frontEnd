@@ -1,8 +1,8 @@
-<md-dialog aria-label="Details ticket">
+<md-dialog aria-label="Details target">
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools" style="background-color: #1d2124">
-                <h2>Details ticket</h2>
+                <h2>Details target</h2>
                 <span flex></span>
                 <md-button ng-click="cancel()" class="fa fa-close" style="color: white" >
                 </md-button>
@@ -14,33 +14,18 @@
                     <md-content class="md-padding">
                         <table class="table table-light">
                             <tr> <td>ID</td>
-                                <td> {{ticket.id}} </td>
+                                <td> {{target.id}} </td>
                             </tr>
-                            <tr> <td>Title</td>
-                                <td> {{ticket.title}} </td>
+                            <tr> <td>Target Name</td>
+                                <td> {{target.name}} </td>
                             </tr>
-                            <tr> <td>Status</td>
-                                <td> {{ticket.status}} </td>
-                            </tr>
-                            <tr> <td><p>Creation date</p></td>
-                                <td> {{ticket.dateStart}} </td>
-                            </tr>
-                            <tr> <td>Category</td>
-                                <td> {{ticket.category}} </td>
-                            </tr>
-                            <tr> <td>Target</td>
-                                <td> {{ticket.target.name}} </td>
+                            <tr> <td>Version</td>
+                                <td> {{target.version}} </td>
                             </tr>
 
-                            <tr> <td>Customer</td>
-                                <td> {{ticket.customer.username}} </td>
-                            </tr>
-                            <tr> <td>Customer Priority</td>
-                                <td> {{ticket.customerPriority}} </td>
-                            </tr>
                             <tr> <td>Description</td>
                                 <td> <md-input-container>
-                                    <textarea cols="50" class="autogrow" readonly>{{ticket.description}}
+                                    <textarea cols="50" class="autogrow" readonly>{{target.description}}
                                     </textarea>
                                 </md-input-container></td>
                             </tr>

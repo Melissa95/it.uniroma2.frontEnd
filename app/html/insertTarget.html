@@ -41,10 +41,11 @@
 
                         <md-input-container class="md-block" flex-gt-xs>
                             <label style="font-size: large">Description</label>
-                            <textarea rows="4" ng-minlength="10" ng-required="true" name="description" ng-model="description" md-no-autogrow></textarea>
+                            <textarea rows="4" ng-minlength="10" ng-maxlength="255" ng-required="true" name="description" ng-model="description" md-no-autogrow></textarea>
                             <div ng-messages="prodForm.description.$error">
                                 <div ng-message="required">You must insert a description</div>
                                 <div ng-message="minlength">You must insert a valid description for your target (min 10 char)</div>
+                                <div ng-message="maxlength">You must insert a valid description for your target (max 255 char)</div>
 
                             </div>
                         </md-input-container>
