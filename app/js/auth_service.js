@@ -55,7 +55,7 @@ angular.module('AuthServices', ['ngResource', 'ngStorage'])
                             );
                         }
                         //username wrong
-                        if (response.status === 404) {
+                        else if (response.status === 404) {
                             reject();
 
                             $mdDialog.show(
@@ -64,6 +64,17 @@ angular.module('AuthServices', ['ngResource', 'ngStorage'])
                                     .clickOutsideToClose(true)
                                     .title('Operation failed')
                                     .textContent("Username wrong")
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('Ok')
+                                    .targetEvent()
+                            );
+                        }else{
+                            $mdDialog.show(
+                                $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Operation failed')
+                                    .textContent("Internal Error")
                                     .ariaLabel('Alert Dialog Demo')
                                     .ok('Ok')
                                     .targetEvent()
