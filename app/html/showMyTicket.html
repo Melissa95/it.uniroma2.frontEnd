@@ -7,32 +7,36 @@
 
 
     <div  style="text-align: center;color:white;padding-top: 3%; padding-left: 3%;padding-right: 3%" ng-controller="ctrlUserTicket" >
+        <div >
+            <table  class="table table-dark" style="width: 100%">
+               <thead style="display: table; width: calc(100% - 17px)">
+                   <tr style="text-align: center; display: table ; width: 100%">
+                       <th ></th>
+                       <th ></th>
+                       <th ><h2 style="color:white">My Tickets</h2></th>
+                       <th ></th>
+                       <th ></th>
 
-        <div class="jumbotron" style="padding-top: 3%; padding-left: 5%;padding-right: 5%;height:3px;background-color:white ;opacity: 0.85; ">
-            <h1 style="color:black">My tickets</h1>
-        </div>
+                   </tr>
+                    <tr style="text-align: center; display: table ; width: 100%">
+                        <th style="width:20%"> ID </th>
+                        <th style="width:20%"> Title </th>
+                        <th style="width:20%"> Target ID - NAME</th>
+                        <th style="width:20%"></th>
+                    </tr>
+               </thead>
+                <tbody style="display: block; overflow-y: scroll; max-height: 400px">
+                    <tr ng-repeat = "x in records" style="text-align: center; display: table ; width: 100%">
+                        <td style="width:20%"> {{x.id}} </td>
+                        <td style="width:20%"> {{x.title}} </td>
+                        <td style="width:20%"> {{x.target.id}} {{x.target.name}} </td>
+                        <td style="width:20%">
+                            <button  class="btn btn-dark" ng-controller="ctrlTicket"  ng-click="showDetails(1,x.id)">Show Details</button>
 
-        <div style="overflow:hidden;  overflow-y: scroll; max-height: 450px">
-            <table  class="table table-dark">
-                <th> ID </th>
+                        </td>
 
-                <th> Title </th>
-
-                <th> Target ID - NAME</th>
-
-                <tr ng-repeat = "x in records">
-                    <td> {{x.id}} </td>
-                    <td> {{x.title}} </td>
-                    <td> {{x.target.id}} {{x.target.name}} </td>
-
-
-                <td>
-                    <button  class="btn btn-dark" ng-controller="ctrlTicket"  ng-click="showDetails(1,x.id)">Show Details</button>
-
-                </td>
-
-                </tr>
-
+                    </tr>
+                </tbody>
             </table>
         </div>
 
