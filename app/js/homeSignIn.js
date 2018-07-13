@@ -3,7 +3,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
   $scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
-  $scope.alertResponse = function(title,msg,newPage) {
+  /*$scope.alertResponse = function(title,msg,newPage) {
 
       mdDialog.show()
       {
@@ -26,7 +26,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
           });
       }
 
-  };
+  };*/
 
   $scope.register = function() {
 
@@ -44,9 +44,8 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
 
               if (response.status === 201) {
 
-                  $scope.alertResponse('Operation success','Success in registration',"/homeLogin");
 
-                  /*$mdDialog.show()
+                  $mdDialog.show()
                   {
                       var resp = $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
@@ -63,16 +62,15 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           console.log("error");
 
                       });
-                  };*/
+                  };
               }
 
           }, function (err) {
 
               if (err.status === 302) {
 
-                  $scope.alertResponse('Operation failed','Username already exist',"/homeSignIn");
 
-                  /*$mdDialog.show()
+                  $mdDialog.show()
                   {
                       var resp = $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
@@ -89,16 +87,15 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           console.log("error");
 
                       });
-                  };*/
+                  };
 
                   $scope.username="";
                   $scope.password="";
 
               }else if(err.status === 500){
 
-                  $scope.alertResponse('Operation failed','Email already exist',null);
 
-                  /*$mdDialog.show(
+                  $mdDialog.show(
                       $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
                           .clickOutsideToClose(true)
@@ -107,14 +104,13 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           .ariaLabel('Alert Dialog Demo')
                           .ok('Ok')
                           .targetEvent()
-                  );*/
+                  );
 
                   $scope.email="";
               }else{
 
-                  $scope.alertResponse('Operation failed','Error in registration',null);
 
-                  /*$mdDialog.show(
+                  $mdDialog.show(
                       $mdDialog.alert()
                           .parent(angular.element(document.querySelector('#popupContainer')))
                           .clickOutsideToClose(true)
@@ -123,7 +119,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           .ariaLabel('Alert Dialog Demo')
                           .ok('Ok')
                           .targetEvent()
-                  );*/
+                  );
               }
           });
       };
