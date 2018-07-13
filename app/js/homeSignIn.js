@@ -62,7 +62,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           console.log("error");
 
                       });
-                  };
+                  }
               }
 
           }, function (err) {
@@ -87,7 +87,7 @@ app.controller('ctrlSignIn', function($scope,myAjax,$location,$mdDialog) {
                           console.log("error");
 
                       });
-                  };
+                  }
 
                   $scope.username="";
                   $scope.password="";
