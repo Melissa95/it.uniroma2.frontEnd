@@ -3,6 +3,7 @@ app.service("myAjax", function($q,$http,$scope) {
     $scope.BEIpAddress = "localhost";
     $scope.URL = "http://" + BEIpAddress + ":8200/ticketingsystem/";
 
+
     var ajax = function(method,url,data) {
 
         var deferred = $q.defer();
