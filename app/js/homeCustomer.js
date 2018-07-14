@@ -1,4 +1,6 @@
-app.controller('ctrlCust', function($scope,$http,$location,$rootScope, Auth,$uibModal,$mdDialog) {
+app.controller('ctrlCust', function($scope,$http,$location,$rootScope,myService, Auth,$uibModal,$mdDialog) {
+
+    $scope.makeVisible=false;
 
 
     $scope.newTicket = function() {

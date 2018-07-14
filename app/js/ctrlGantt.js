@@ -3,6 +3,8 @@
 
 app.controller('MainGanttCtrl', function($scope,myAjax,myService,$mdDialog,$sessionStorage) {
 
+    $scope.makeVisible=true;
+
 
     $scope.tasks = {
 
