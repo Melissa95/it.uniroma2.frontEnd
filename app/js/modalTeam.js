@@ -12,9 +12,9 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
     };
 
     $scope.answer = function(answer) {
-        if ($scope.myTeams.length === 0) {
+
             $mdDialog.hide(answer);
-        }
+
     };
 
 
@@ -29,6 +29,7 @@ app.controller('ctrlTeam',['$scope','$mdDialog','myAjax','Auth','$location','$se
                     $scope.myTeams = response.data;
                     if($scope.myTeams.length === 0) {
                         $scope.result = false;
+
                     }else {
                         $scope.result = true;
                     }
