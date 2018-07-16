@@ -120,7 +120,7 @@ app.run(function ($rootScope, $location, Auth) {
     });
 });
 
-app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,$mdDialog) {
+app.controller('sideNavCtrl', function ($scope, Auth,$mdSidenav, $interval,$location) {
     $scope.toggleLeft = buildToggler('left');
 
 
@@ -144,7 +144,7 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,$mdDialog)
 
 
     $scope.accordianData = [
-        { "heading" : [{"type":"Account","perm":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}],    "content" : [{"name":"Modify account","html":"#!/modifyUser","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"},{"name":"Sign Out","html":"#!/","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}] },
+        { "heading" : [{"type":"Account","perm":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}],    "content" : [{"name":"Modify account","html":"#!/modifyUser","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"}] },
         { "heading" : [{"type":"Ticket","perm":"['customer', 'admin','teamMember','teamLeader','teamCoordinator']"}],     "content" : [{"name":"New Ticket","html":"#!/createTicket","permission":"['customer','admin','teamMember','teamLeader','teamCoordinator']"},{"name":"My Tickets","html":"#!/showMyTicket","permission":"['admin','customer','teamMember','teamLeader','teamCoordinator']"},{"name":"All tickets","html":"#!/showAllTickets","permission":"['admin']"}]},
         { "heading" : [{"type":"Target","perm":"['admin']"}],             "content" : [{"name":"New Target","html":"#!/insertTarget","permission":"['admin']"},{"name":"All targets","html":"#!/showTargets","permission":"['admin']"}] },
         { "heading" : [{"type":"Relation","perm":"['admin']"}],   "content" : [{"name":"define new relation","html":"#!/defineNewRelation","permission":"['admin']"},{"name":"create relation","html":"#!/relation","permission":"['admin']"}] },
@@ -164,6 +164,12 @@ app.controller('sideNavCtrl', function ($scope, $mdSidenav, $interval,$mdDialog)
                 data.expanded=!data.expanded;
             }
         }
+    };
+
+    $scope.logout = function () {
+        Auth.logout();
+        $location.path("/");
+
     };
 
 

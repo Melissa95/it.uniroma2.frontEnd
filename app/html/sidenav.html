@@ -50,6 +50,8 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
 
+                    <md-button ng-if="location.path != '/'" ng-click="logout()">Sign Out</md-button>
+
                     <div permission="['teamLeader']">
                     <md-button ng-controller="MainGanttCtrl" ng-if="makeVisible==true" title="New Planning" ng-click="planning()">
                         <image src="css/image/baseline-work_outline-24px.svg"></image>
@@ -59,6 +61,7 @@
                     <md-button ng-click="toggleLeft()" class="md-raised">
                         &#9776;
                     </md-button>
+
 
                 </ul>
             </div>
