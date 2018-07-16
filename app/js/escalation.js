@@ -30,7 +30,7 @@ app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog,$location) {
                             .targetEvent();
 
                         $mdDialog.show(resp).then(function () {
-                            $location.path("/");
+                            $location.path("/homeCustomer");
                         }, function () {
                             console.log("error");
 
