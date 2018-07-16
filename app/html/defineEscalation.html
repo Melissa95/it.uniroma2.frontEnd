@@ -25,7 +25,7 @@
                 <div layout-gt-sm="row">
                 <md-input-container >
                         <label style="font-size: large">Coefficient b</label>
-                        <input style="width: 300px"  ng-required="true" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" name="b" ng-model=" teamPriority" minlength="3">
+                        <input style="width: 300px"  ng-required="true" placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" name="b" ng-model=" teamPriority" >
                         <div ng-messages="escalationForm.b.$error">
                             <div ng-message="pattern">'b' must be a positive number</div>
                         </div>
@@ -36,7 +36,7 @@
                 <div layout-gt-sm="row">
                 <md-input-container >
                     <label style="font-size: large ">Coefficient c</label>
-                    <input style="width: 300px"  placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" ng-required="true" name="c" ng-model=" time" minlength="3">
+                    <input style="width: 300px"  placeholder="0.0" min="0" step="0.1" pattern="^\d+(?:\.\d{1,6})?$" ng-required="true" name="c" ng-model=" time">
                     <div ng-messages="escalationForm.c.$error">
                         <div ng-message="pattern">'c' has to be a positive number</div>
                     </div>

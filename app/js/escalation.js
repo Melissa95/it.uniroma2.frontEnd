@@ -1,4 +1,4 @@
-app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog) {
+app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog,$location) {
 
 
 
@@ -18,16 +18,25 @@ app.controller('ctrlEscalation', function($scope,myAjax,$mdDialog) {
                     $scope.teamPriority = "";
                     $scope.time = "";
 
-                    $mdDialog.show(
-                        $mdDialog.alert()
+                    $mdDialog.show()
+                    {
+                        var resp = $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
                             .clickOutsideToClose(true)
                             .title('Operation success')
-                            .textContent("Escalation created")
+                            .textContent('Escalation created')
                             .ariaLabel('Alert Dialog Demo')
                             .ok('Ok')
-                            .targetEvent()
-                    );
+                            .targetEvent();
+
+                        $mdDialog.show(resp).then(function () {
+                            $location.path("/");
+                        }, function () {
+                            console.log("error");
+
+                        });
+                    }
+
 
 
                 }
